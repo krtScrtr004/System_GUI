@@ -8,6 +8,7 @@ namespace System {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for ChangePass
@@ -135,6 +136,7 @@ namespace System {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(511, 307);
+			this->ControlBox = false;
 			this->Controls->Add(this->captionTxtBox);
 			this->Controls->Add(this->npassBtn);
 			this->Controls->Add(this->npassTxtBox);
@@ -148,9 +150,6 @@ namespace System {
 
 		}
 #pragma endregion
-	private: System::Void npassBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		MessageBox::Show("Password Changed Successfully!", "Change Password");
-		this->Close();
-	}
+	private: System::Void npassBtn_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

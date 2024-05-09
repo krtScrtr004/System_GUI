@@ -114,6 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -122,14 +123,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChangePass.cpp" />
+    <ClCompile Include="EditProfile.cpp" />
     <ClCompile Include="ForgetPass.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="Receipt.cpp" />
+    <ClCompile Include="Reservation.cpp" />
+    <ClCompile Include="ReserveInfoForm.cpp" />
     <ClCompile Include="Signup.cpp" />
+    <ClCompile Include="User.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChangePass.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EditProfile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ForgetPass.h">
@@ -141,14 +150,28 @@
     <ClInclude Include="Profile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Receipt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Reservation.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReserveInfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Signup.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="User.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChangePass.resx">
       <DependentUpon>ChangePass.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProfile.resx">
+      <DependentUpon>EditProfile.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetPass.resx">
       <DependentUpon>ForgetPass.h</DependentUpon>
@@ -158,6 +181,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Profile.resx">
       <DependentUpon>Profile.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receipt.resx">
+      <DependentUpon>Receipt.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservation.resx">
+      <DependentUpon>Reservation.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReserveInfoForm.resx">
+      <DependentUpon>ReserveInfoForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Signup.resx">
       <DependentUpon>Signup.h</DependentUpon>

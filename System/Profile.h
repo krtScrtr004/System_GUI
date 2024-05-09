@@ -1,5 +1,5 @@
 #pragma once
-#include "Utils.h"
+#include "User.h"
 
 namespace System {
 
@@ -9,69 +9,41 @@ namespace System {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for Profile
 	/// </summary>
 	public ref class Profile : public System::Windows::Forms::Form
 	{
+	private:
+		MySqlConnection^ conn;
+
 	public:
-		Profile(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		Profile(User^ user);
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Profile()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+		~Profile();
+
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ profileMStrip;
 	private: System::Windows::Forms::ToolStripMenuItem^ reserveMStrip;
-	private: System::Windows::Forms::ToolStripMenuItem^ historyMSrip;
+	private: System::Windows::Forms::ToolStripMenuItem^ reciptMStrip;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ aboutMStrip;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitMStrip;
 
-
-
-
-
-
-
-
-
-
-
-	private: System::Windows::Forms::PictureBox^ profileImg;
 	private: System::Windows::Forms::Label^ nameLbl;
 	private: System::Windows::Forms::Label^ idNumLbl;
 	private: System::Windows::Forms::Label^ accTypeLbl;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ currResLbl;
-	private: System::Windows::Forms::TextBox^ roomCodeTxtBox;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ noReservedTxtBox;
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ emailLbl;
 
-
-
-
-
-
-
-
-
+	private: System::Windows::Forms::Button^ editBtn;
+	private: System::Windows::Forms::PictureBox^ profileImg;
 
 
 
@@ -92,19 +64,15 @@ namespace System {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reserveMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->historyMSrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->reciptMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->aboutMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->profileImg = (gcnew System::Windows::Forms::PictureBox());
 			this->nameLbl = (gcnew System::Windows::Forms::Label());
 			this->idNumLbl = (gcnew System::Windows::Forms::Label());
 			this->accTypeLbl = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->currResLbl = (gcnew System::Windows::Forms::Label());
-			this->roomCodeTxtBox = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->noReservedTxtBox = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->emailLbl = (gcnew System::Windows::Forms::Label());
+			this->editBtn = (gcnew System::Windows::Forms::Button());
+			this->profileImg = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->profileImg))->BeginInit();
 			this->SuspendLayout();
@@ -117,13 +85,13 @@ namespace System {
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->profileMStrip, this->reserveMStrip,
-					this->historyMSrip, this->aboutMStrip, this->exitMStrip
+					this->reciptMStrip, this->aboutMStrip, this->exitMStrip
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(9, 2, 0, 2);
 			this->menuStrip1->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
-			this->menuStrip1->Size = System::Drawing::Size(650, 27);
+			this->menuStrip1->Size = System::Drawing::Size(372, 27);
 			this->menuStrip1->TabIndex = 3;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -136,6 +104,7 @@ namespace System {
 			this->profileMStrip->Name = L"profileMStrip";
 			this->profileMStrip->Size = System::Drawing::Size(67, 23);
 			this->profileMStrip->Text = L"Profile";
+			this->profileMStrip->Click += gcnew System::EventHandler(this, &Profile::profileMStrip_Click);
 			// 
 			// reserveMStrip
 			// 
@@ -145,15 +114,17 @@ namespace System {
 			this->reserveMStrip->Name = L"reserveMStrip";
 			this->reserveMStrip->Size = System::Drawing::Size(74, 23);
 			this->reserveMStrip->Text = L"Reserve";
+			this->reserveMStrip->Click += gcnew System::EventHandler(this, &Profile::reserveMStrip_Click);
 			// 
-			// historyMSrip
+			// reciptMStrip
 			// 
-			this->historyMSrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->reciptMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->historyMSrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->historyMSrip->Name = L"historyMSrip";
-			this->historyMSrip->Size = System::Drawing::Size(70, 23);
-			this->historyMSrip->Text = L"History";
+			this->reciptMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->reciptMStrip->Name = L"reciptMStrip";
+			this->reciptMStrip->Size = System::Drawing::Size(73, 23);
+			this->reciptMStrip->Text = L"Receipt";
+			this->reciptMStrip->Click += gcnew System::EventHandler(this, &Profile::reciptMStrip_Click);
 			// 
 			// aboutMStrip
 			// 
@@ -174,25 +145,16 @@ namespace System {
 			this->exitMStrip->Text = L"Exit";
 			this->exitMStrip->Click += gcnew System::EventHandler(this, &Profile::exitMStrip_Click);
 			// 
-			// profileImg
-			// 
-			this->profileImg->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"profileImg.BackgroundImage")));
-			this->profileImg->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->profileImg->Location = System::Drawing::Point(28, 43);
-			this->profileImg->Name = L"profileImg";
-			this->profileImg->Size = System::Drawing::Size(248, 232);
-			this->profileImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
-			this->profileImg->TabIndex = 13;
-			this->profileImg->TabStop = false;
-			// 
 			// nameLbl
 			// 
+			this->nameLbl->AutoEllipsis = true;
 			this->nameLbl->AutoSize = true;
-			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Impact", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nameLbl->Location = System::Drawing::Point(303, 43);
+			this->nameLbl->Location = System::Drawing::Point(45, 342);
 			this->nameLbl->Name = L"nameLbl";
-			this->nameLbl->Size = System::Drawing::Size(349, 42);
+			this->nameLbl->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->nameLbl->Size = System::Drawing::Size(291, 28);
 			this->nameLbl->TabIndex = 14;
 			this->nameLbl->Text = L"Lastname, Firstname MI.";
 			// 
@@ -203,8 +165,8 @@ namespace System {
 			this->idNumLbl->Cursor = System::Windows::Forms::Cursors::Default;
 			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idNumLbl->ForeColor = System::Drawing::SystemColors::ControlDark;
-			this->idNumLbl->Location = System::Drawing::Point(304, 76);
+			this->idNumLbl->ForeColor = System::Drawing::SystemColors::WindowFrame;
+			this->idNumLbl->Location = System::Drawing::Point(46, 405);
 			this->idNumLbl->Name = L"idNumLbl";
 			this->idNumLbl->Size = System::Drawing::Size(116, 20);
 			this->idNumLbl->TabIndex = 15;
@@ -217,112 +179,72 @@ namespace System {
 			this->accTypeLbl->Cursor = System::Windows::Forms::Cursors::Default;
 			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accTypeLbl->ForeColor = System::Drawing::SystemColors::ControlDark;
-			this->accTypeLbl->Location = System::Drawing::Point(469, 76);
+			this->accTypeLbl->ForeColor = System::Drawing::SystemColors::WindowFrame;
+			this->accTypeLbl->Location = System::Drawing::Point(46, 437);
 			this->accTypeLbl->Name = L"accTypeLbl";
 			this->accTypeLbl->Size = System::Drawing::Size(124, 20);
 			this->accTypeLbl->TabIndex = 16;
 			this->accTypeLbl->Text = L"STUDENT TYPE";
 			this->accTypeLbl->TextAlign = System::Drawing::ContentAlignment::TopRight;
 			// 
-			// label1
+			// emailLbl
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailLbl->AutoEllipsis = true;
+			this->emailLbl->AutoSize = true;
+			this->emailLbl->BackColor = System::Drawing::Color::Transparent;
+			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(306, 96);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(220, 22);
-			this->label1->TabIndex = 17;
-			this->label1->Text = L"sampleemail@rtu.edu.ph";
+			this->emailLbl->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->emailLbl->Location = System::Drawing::Point(46, 370);
+			this->emailLbl->Name = L"emailLbl";
+			this->emailLbl->Size = System::Drawing::Size(227, 24);
+			this->emailLbl->TabIndex = 17;
+			this->emailLbl->Text = L"sampleemail@rtu.edu.ph";
 			// 
-			// currResLbl
+			// editBtn
 			// 
-			this->currResLbl->AutoSize = true;
-			this->currResLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->editBtn->BackColor = System::Drawing::Color::MediumBlue;
+			this->editBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->editBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->editBtn->Font = (gcnew System::Drawing::Font(L"Impact", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->currResLbl->Location = System::Drawing::Point(304, 154);
-			this->currResLbl->Name = L"currResLbl";
-			this->currResLbl->Size = System::Drawing::Size(141, 19);
-			this->currResLbl->TabIndex = 18;
-			this->currResLbl->Text = L"Current Reservation:";
+			this->editBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->editBtn->Location = System::Drawing::Point(50, 477);
+			this->editBtn->Name = L"editBtn";
+			this->editBtn->Size = System::Drawing::Size(269, 40);
+			this->editBtn->TabIndex = 20;
+			this->editBtn->Text = L"EDIT";
+			this->editBtn->UseVisualStyleBackColor = false;
+			this->editBtn->Click += gcnew System::EventHandler(this, &Profile::editBtn_Click);
 			// 
-			// roomCodeTxtBox
+			// profileImg
 			// 
-			this->roomCodeTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->roomCodeTxtBox->Enabled = false;
-			this->roomCodeTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->roomCodeTxtBox->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->roomCodeTxtBox->Location = System::Drawing::Point(461, 152);
-			this->roomCodeTxtBox->Name = L"roomCodeTxtBox";
-			this->roomCodeTxtBox->Size = System::Drawing::Size(133, 25);
-			this->roomCodeTxtBox->TabIndex = 19;
-			this->roomCodeTxtBox->Text = L"Room Code";
-			this->roomCodeTxtBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::Color::MediumBlue;
-			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Impact", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button1->Location = System::Drawing::Point(307, 226);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(287, 49);
-			this->button1->TabIndex = 20;
-			this->button1->Text = L"EDIT";
-			this->button1->UseVisualStyleBackColor = false;
-			// 
-			// noReservedTxtBox
-			// 
-			this->noReservedTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->noReservedTxtBox->Enabled = false;
-			this->noReservedTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->noReservedTxtBox->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->noReservedTxtBox->Location = System::Drawing::Point(461, 183);
-			this->noReservedTxtBox->Name = L"noReservedTxtBox";
-			this->noReservedTxtBox->Size = System::Drawing::Size(133, 25);
-			this->noReservedTxtBox->TabIndex = 22;
-			this->noReservedTxtBox->Text = L"999";
-			this->noReservedTxtBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(304, 185);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(117, 19);
-			this->label2->TabIndex = 21;
-			this->label2->Text = L"No. of Reserved:";
+			this->profileImg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"profileImg.Image")));
+			this->profileImg->Location = System::Drawing::Point(53, 57);
+			this->profileImg->Name = L"profileImg";
+			this->profileImg->Size = System::Drawing::Size(266, 266);
+			this->profileImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->profileImg->TabIndex = 23;
+			this->profileImg->TabStop = false;
 			// 
 			// Profile
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(650, 298);
-			this->Controls->Add(this->noReservedTxtBox);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->roomCodeTxtBox);
-			this->Controls->Add(this->currResLbl);
-			this->Controls->Add(this->label1);
+			this->ClientSize = System::Drawing::Size(372, 567);
+			this->ControlBox = false;
+			this->Controls->Add(this->profileImg);
+			this->Controls->Add(this->editBtn);
+			this->Controls->Add(this->emailLbl);
 			this->Controls->Add(this->accTypeLbl);
 			this->Controls->Add(this->idNumLbl);
 			this->Controls->Add(this->nameLbl);
-			this->Controls->Add(this->profileImg);
 			this->Controls->Add(this->menuStrip1);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Name = L"Profile";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Profile";
-			this->Load += gcnew System::EventHandler(this, &Profile::Profile_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->profileImg))->EndInit();
@@ -331,17 +253,28 @@ namespace System {
 
 		}
 #pragma endregion
+	private:
+		User^ user;
 
-	// Edit Profile Sub Menu
-	private: System::Void editSubMStrip_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+	private: void fetchUserData();
+
+	private: void displayData();
+
+	//private: System::Void profileImg_Click(System::Object^ sender, System::EventArgs^ e);
+
+	// Profile Menu
+	private: System::Void profileMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
+	// Reservation Menu
+	private: System::Void reserveMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void reciptMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
 	// Exit Menu
-	private: System::Void exitMStrip_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (confirmExit())
-			Application::Exit();
-	}
-private: System::Void Profile_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void exitMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
+	// Edit Button
+	private: System::Void editBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
 };
 }

@@ -8,32 +8,25 @@ namespace System {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
 	/// Summary for Signup
 	/// </summary>
 	public ref class Signup : public System::Windows::Forms::Form
 	{
+	private:
+		MySqlConnection^ conn;
+
 	public:
-		Signup(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		Signup(void);
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Signup()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+		~Signup();
+
 	private: System::Windows::Forms::LinkLabel^ loginLnkLbl;
 	protected:
 	private: System::Windows::Forms::Button^ signupBtn;
@@ -43,9 +36,11 @@ namespace System {
 	private: System::Windows::Forms::Label^ emailLbl;
 	private: System::Windows::Forms::Label^ accTypeLbl;
 	private: System::Windows::Forms::ComboBox^ accTypeCbox;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ idTxtBox;
+
 	private: System::Windows::Forms::Label^ idNumLbl;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ lnameTxtBox;
+
 	private: System::Windows::Forms::Label^ lnameLbl;
 	private: System::Windows::Forms::TextBox^ fnameTxtBox;
 	private: System::Windows::Forms::Label^ fnameLbl;
@@ -72,9 +67,9 @@ namespace System {
 			this->emailLbl = (gcnew System::Windows::Forms::Label());
 			this->accTypeLbl = (gcnew System::Windows::Forms::Label());
 			this->accTypeCbox = (gcnew System::Windows::Forms::ComboBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->idTxtBox = (gcnew System::Windows::Forms::TextBox());
 			this->idNumLbl = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->lnameTxtBox = (gcnew System::Windows::Forms::TextBox());
 			this->lnameLbl = (gcnew System::Windows::Forms::Label());
 			this->fnameTxtBox = (gcnew System::Windows::Forms::TextBox());
 			this->fnameLbl = (gcnew System::Windows::Forms::Label());
@@ -117,12 +112,13 @@ namespace System {
 			// passTxtBox
 			// 
 			this->passTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->passTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->passTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->passTxtBox->Location = System::Drawing::Point(450, 315);
 			this->passTxtBox->Name = L"passTxtBox";
-			this->passTxtBox->Size = System::Drawing::Size(352, 43);
+			this->passTxtBox->Size = System::Drawing::Size(352, 38);
 			this->passTxtBox->TabIndex = 30;
+			this->passTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::passTxtBox_TextChanged);
 			// 
 			// passLbl
 			// 
@@ -138,12 +134,13 @@ namespace System {
 			// emailTxtBox
 			// 
 			this->emailTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->emailTxtBox->Location = System::Drawing::Point(65, 315);
 			this->emailTxtBox->Name = L"emailTxtBox";
-			this->emailTxtBox->Size = System::Drawing::Size(352, 43);
+			this->emailTxtBox->Size = System::Drawing::Size(352, 38);
 			this->emailTxtBox->TabIndex = 28;
+			this->emailTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::emailTxtBox_TextChanged);
 			// 
 			// emailLbl
 			// 
@@ -171,25 +168,27 @@ namespace System {
 			// 
 			this->accTypeCbox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->accTypeCbox->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->accTypeCbox->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->accTypeCbox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->accTypeCbox->FormattingEnabled = true;
-			this->accTypeCbox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Student", L"Faculty" });
+			this->accTypeCbox->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Student", L"Faculty", L"Admin" });
 			this->accTypeCbox->Location = System::Drawing::Point(450, 238);
-			this->accTypeCbox->Margin = System::Windows::Forms::Padding(5, 5, 5, 5);
+			this->accTypeCbox->Margin = System::Windows::Forms::Padding(5);
 			this->accTypeCbox->Name = L"accTypeCbox";
-			this->accTypeCbox->Size = System::Drawing::Size(352, 39);
+			this->accTypeCbox->Size = System::Drawing::Size(352, 35);
 			this->accTypeCbox->TabIndex = 25;
+			this->accTypeCbox->SelectedIndexChanged += gcnew System::EventHandler(this, &Signup::accTypeCbox_SelectedIndexChanged);
 			// 
-			// textBox2
+			// idTxtBox
 			// 
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->idTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->idTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(65, 239);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(352, 43);
-			this->textBox2->TabIndex = 24;
+			this->idTxtBox->Location = System::Drawing::Point(65, 239);
+			this->idTxtBox->Name = L"idTxtBox";
+			this->idTxtBox->Size = System::Drawing::Size(352, 38);
+			this->idTxtBox->TabIndex = 24;
+			this->idTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::idTxtBox_TextChanged);
 			// 
 			// idNumLbl
 			// 
@@ -202,15 +201,16 @@ namespace System {
 			this->idNumLbl->TabIndex = 23;
 			this->idNumLbl->Text = L"ID Number:";
 			// 
-			// textBox1
+			// lnameTxtBox
 			// 
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lnameTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->lnameTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(450, 160);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(352, 43);
-			this->textBox1->TabIndex = 22;
+			this->lnameTxtBox->Location = System::Drawing::Point(450, 160);
+			this->lnameTxtBox->Name = L"lnameTxtBox";
+			this->lnameTxtBox->Size = System::Drawing::Size(352, 38);
+			this->lnameTxtBox->TabIndex = 22;
+			this->lnameTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::lnameTxtBox_TextChanged);
 			// 
 			// lnameLbl
 			// 
@@ -226,12 +226,13 @@ namespace System {
 			// fnameTxtBox
 			// 
 			this->fnameTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->fnameTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fnameTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->fnameTxtBox->Location = System::Drawing::Point(65, 160);
 			this->fnameTxtBox->Name = L"fnameTxtBox";
-			this->fnameTxtBox->Size = System::Drawing::Size(352, 43);
+			this->fnameTxtBox->Size = System::Drawing::Size(352, 38);
 			this->fnameTxtBox->TabIndex = 20;
+			this->fnameTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::fnameTxtBox_TextChanged);
 			// 
 			// fnameLbl
 			// 
@@ -260,6 +261,7 @@ namespace System {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(873, 522);
+			this->ControlBox = false;
 			this->Controls->Add(this->loginLnkLbl);
 			this->Controls->Add(this->signupBtn);
 			this->Controls->Add(this->passTxtBox);
@@ -268,9 +270,9 @@ namespace System {
 			this->Controls->Add(this->emailLbl);
 			this->Controls->Add(this->accTypeLbl);
 			this->Controls->Add(this->accTypeCbox);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->idTxtBox);
 			this->Controls->Add(this->idNumLbl);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->lnameTxtBox);
 			this->Controls->Add(this->lnameLbl);
 			this->Controls->Add(this->fnameTxtBox);
 			this->Controls->Add(this->fnameLbl);
@@ -283,18 +285,29 @@ namespace System {
 
 		}
 #pragma endregion
+	private: String^ tempFname = " ";
+	private: String^ tempLname = " ";
+	private: String^ tempId = " ";
+	private: String^ tempAccType = " ";
+	private: String^ tempEmail = " ";
+	private: String^ tempPassword = " ";
+
+	private: System::Void fnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void lnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void idTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void accTypeCbox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void passTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 
 	// Sign Up Button
-	private: System::Void signupBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		// Input error handling
-		MessageBox::Show("Account Successfully Signed Up!", "Account Sign Up");
-		this->Close();
-	}
+	private: System::Void signupBtn_Click_1(System::Object^ sender, System::EventArgs^ e);
 
 	// Return to Login Page
-	private: System::Void loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-		// Redirect to Log In page
-		this->Close();
-	}
+	private: System::Void loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 };
 }
