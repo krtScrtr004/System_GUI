@@ -19,6 +19,8 @@ namespace System {
 		}
 	}
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	System::Void Signup::fnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempFname = fnameTxtBox->Text;
 	}
@@ -45,13 +47,13 @@ namespace System {
 
 	// Sign Up Button
     System::Void Signup::signupBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		User user;
-		bool isValidFname = user.checkName(tempFname),
-			isValidLname = user.checkName(tempLname),
-			isValidId = user.checkId(tempId),
-			isValidAccType = user.checkAccType(tempAccType),
-			isValidEmail = user.checkEmail(tempEmail),
-			isValidPass = user.checkPassword(tempPassword);
+		User^ user = gcnew User();
+		bool isValidFname = user->checkName(tempFname),
+			isValidLname = user->checkName(tempLname),
+			isValidId = user->checkId(tempId),
+			isValidAccType = user->checkAccType(tempAccType),
+			isValidEmail = user->checkEmail(tempEmail),
+			isValidPass = user->checkPassword(tempPassword);
 
 
 		bool isValid = isValidFname && isValidLname && 
@@ -87,4 +89,7 @@ namespace System {
 		// Redirect to Log In page
 		this->Close();
 	}
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 };

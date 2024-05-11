@@ -122,19 +122,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddRoom.cpp" />
     <ClCompile Include="ChangePass.cpp" />
     <ClCompile Include="EditProfile.cpp" />
     <ClCompile Include="ForgetPass.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Receipt.cpp" />
-    <ClCompile Include="Reservation.cpp" />
+    <ClCompile Include="RoomInfo.cpp" />
+    <ClCompile Include="RoomList.cpp" />
     <ClCompile Include="ReserveInfoForm.cpp" />
     <ClCompile Include="Signup.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddRoom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ChangePass.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -153,7 +158,10 @@
     <ClInclude Include="Receipt.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Reservation.h">
+    <ClInclude Include="RoomInfo.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RoomList.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReserveInfoForm.h">
@@ -167,6 +175,9 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddRoom.resx">
+      <DependentUpon>AddRoom.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangePass.resx">
       <DependentUpon>ChangePass.h</DependentUpon>
     </EmbeddedResource>
@@ -185,8 +196,11 @@
     <EmbeddedResource Include="Receipt.resx">
       <DependentUpon>Receipt.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservation.resx">
-      <DependentUpon>Reservation.h</DependentUpon>
+    <EmbeddedResource Include="RoomInfo.resx">
+      <DependentUpon>RoomInfo.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomList.resx">
+      <DependentUpon>RoomList.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReserveInfoForm.resx">
       <DependentUpon>ReserveInfoForm.h</DependentUpon>

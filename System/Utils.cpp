@@ -41,3 +41,36 @@ String^ rmWhiteSpaces(String^ str)
     // Convert back to System::String^
     return gcnew String(stdInputString.c_str());
 }
+
+String^ openFile(void) {
+    String^ fileLoc;
+
+    OpenFileDialog^ ofd = gcnew OpenFileDialog;
+    ofd->Filter = "PNG Files *.png | *png | JPG Files *.jpg | *.jpg"; //  Filters file type selection
+    if (ofd->ShowDialog() == Windows::Forms::DialogResult::OK)
+        fileLoc = ofd->FileName;
+
+    return fileLoc;
+}
+
+bool searchRoomCode(String^ roomCode, MySqlConnection^ conn) {
+    bool isPresent = false;
+
+    try {
+        String^ searchQuery = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode";
+        MySqlCommand^ cmdSearch = gcnew MySqlCommand(searchQuery, conn);
+        cmdSearch->Parameters->AddWithValue("@tempRoomCode", roomCode);
+
+        MySqlDataReader^ reader = cmdSearch->ExecuteReader();
+        if (reader->HasRows) {
+            MessageBox::Show("Warning: Room Code has already been used!");
+            isPresent = true;
+        }
+        reader->Close();
+    }
+    catch (Exception^ e) {
+        MessageBox::Show(e->Message);
+    }
+
+    return isPresent;
+}

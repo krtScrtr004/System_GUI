@@ -12,20 +12,22 @@ namespace System {
 	using namespace MySql::Data::MySqlClient;
 
 	/// <summary>
-	/// Summary for Reservation
+	/// Summary for RoomList
 	/// </summary>
-	public ref class Reservation : public System::Windows::Forms::Form
+	public ref class RoomList : public System::Windows::Forms::Form
 	{
 	public:
-		Reservation(User^ other);
+		RoomList(User^ other);
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Reservation();
-		
-	private: System::Windows::Forms::Label^ roomReserveLbl;
+		~RoomList();
+	private: System::Windows::Forms::Label^ roomHeaderLbl;
+	protected:
+
+
 	protected:
 	private: System::Windows::Forms::RadioButton^ clRBtn;
 	private: System::Windows::Forms::RadioButton^ labRBtn;
@@ -33,17 +35,21 @@ namespace System {
 
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ profileMStrip;
-	private: System::Windows::Forms::ToolStripMenuItem^ reserveMStrip;
-	private: System::Windows::Forms::ToolStripMenuItem^ receiptMSrip;
+	private: System::Windows::Forms::ToolStripMenuItem^ opt1MStrip;
+	private: System::Windows::Forms::ToolStripMenuItem^ opt2MStrip;
+
+
 
 	private: System::Windows::Forms::ToolStripMenuItem^ aboutMStrip;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitMStrip;
+	private: System::Windows::Forms::Button^ addRoomBtn;
+
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -52,30 +58,31 @@ namespace System {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->roomReserveLbl = (gcnew System::Windows::Forms::Label());
+			this->roomHeaderLbl = (gcnew System::Windows::Forms::Label());
 			this->clRBtn = (gcnew System::Windows::Forms::RadioButton());
 			this->labRBtn = (gcnew System::Windows::Forms::RadioButton());
 			this->roomsTbl = (gcnew System::Windows::Forms::DataGridView());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->reserveMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->receiptMSrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->opt2MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->aboutMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->addRoomBtn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomsTbl))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// roomReserveLbl
+			// roomHeaderLbl
 			// 
-			this->roomReserveLbl->AutoSize = true;
-			this->roomReserveLbl->Font = (gcnew System::Drawing::Font(L"Impact", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomHeaderLbl->AutoSize = true;
+			this->roomHeaderLbl->Font = (gcnew System::Drawing::Font(L"Impact", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomReserveLbl->Location = System::Drawing::Point(35, 44);
-			this->roomReserveLbl->Name = L"roomReserveLbl";
-			this->roomReserveLbl->Size = System::Drawing::Size(198, 35);
-			this->roomReserveLbl->TabIndex = 0;
-			this->roomReserveLbl->Text = L"RESERVE A ROOM";
+			this->roomHeaderLbl->Location = System::Drawing::Point(35, 44);
+			this->roomHeaderLbl->Name = L"roomHeaderLbl";
+			this->roomHeaderLbl->Size = System::Drawing::Size(198, 35);
+			this->roomHeaderLbl->TabIndex = 0;
+			this->roomHeaderLbl->Text = L"RESERVE A ROOM";
 			// 
 			// clRBtn
 			// 
@@ -89,7 +96,7 @@ namespace System {
 			this->clRBtn->TabStop = true;
 			this->clRBtn->Text = L"Classroom";
 			this->clRBtn->UseVisualStyleBackColor = true;
-			this->clRBtn->CheckedChanged += gcnew System::EventHandler(this, &Reservation::clRBtn_CheckedChanged);
+			this->clRBtn->CheckedChanged += gcnew System::EventHandler(this, &RoomList::clRBtn_CheckedChanged);
 			// 
 			// labRBtn
 			// 
@@ -103,7 +110,7 @@ namespace System {
 			this->labRBtn->TabStop = true;
 			this->labRBtn->Text = L"Laboratory";
 			this->labRBtn->UseVisualStyleBackColor = true;
-			this->labRBtn->CheckedChanged += gcnew System::EventHandler(this, &Reservation::labRBtn_CheckedChanged);
+			this->labRBtn->CheckedChanged += gcnew System::EventHandler(this, &RoomList::labRBtn_CheckedChanged);
 			// 
 			// roomsTbl
 			// 
@@ -117,9 +124,9 @@ namespace System {
 			this->roomsTbl->RowHeadersWidth = 51;
 			this->roomsTbl->RowTemplate->Height = 24;
 			this->roomsTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->roomsTbl->Size = System::Drawing::Size(426, 617);
+			this->roomsTbl->Size = System::Drawing::Size(426, 595);
 			this->roomsTbl->TabIndex = 3;
-			this->roomsTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reservation::roomsTbl_CellContentClick);
+			this->roomsTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RoomList::roomsTbl_CellContentClick);
 			// 
 			// menuStrip1
 			// 
@@ -128,8 +135,8 @@ namespace System {
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
-				this->profileMStrip, this->reserveMStrip,
-					this->receiptMSrip, this->aboutMStrip, this->exitMStrip
+				this->profileMStrip, this->opt1MStrip,
+					this->opt2MStrip, this->aboutMStrip, this->exitMStrip
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -142,33 +149,33 @@ namespace System {
 			// profileMStrip
 			// 
 			this->profileMStrip->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Text;
-			this->profileMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->profileMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->profileMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->profileMStrip->Name = L"profileMStrip";
-			this->profileMStrip->Size = System::Drawing::Size(67, 26);
+			this->profileMStrip->Size = System::Drawing::Size(60, 26);
 			this->profileMStrip->Text = L"Profile";
-			this->profileMStrip->Click += gcnew System::EventHandler(this, &Reservation::profileMStrip_Click);
+			this->profileMStrip->Click += gcnew System::EventHandler(this, &RoomList::profileMStrip_Click);
 			// 
-			// reserveMStrip
+			// opt1MStrip
 			// 
-			this->reserveMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt1MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reserveMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->reserveMStrip->Name = L"reserveMStrip";
-			this->reserveMStrip->Size = System::Drawing::Size(74, 26);
-			this->reserveMStrip->Text = L"Reserve";
-			this->reserveMStrip->Click += gcnew System::EventHandler(this, &Reservation::reserveMStrip_Click);
+			this->opt1MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt1MStrip->Name = L"opt1MStrip";
+			this->opt1MStrip->Size = System::Drawing::Size(78, 26);
+			this->opt1MStrip->Text = L"Reserve";
+			this->opt1MStrip->Click += gcnew System::EventHandler(this, &RoomList::opt1MStrip_Click);
 			// 
-			// receiptMSrip
+			// opt2MStrip
 			// 
-			this->receiptMSrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt2MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->receiptMSrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->receiptMSrip->Name = L"receiptMSrip";
-			this->receiptMSrip->Size = System::Drawing::Size(73, 26);
-			this->receiptMSrip->Text = L"Receipt";
-			this->receiptMSrip->Click += gcnew System::EventHandler(this, &Reservation::receiptMSrip_Click);
+			this->opt2MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt2MStrip->Name = L"opt2MStrip";
+			this->opt2MStrip->Size = System::Drawing::Size(73, 26);
+			this->opt2MStrip->Text = L"Receipt";
+			this->opt2MStrip->Click += gcnew System::EventHandler(this, &RoomList::opt2MStrip_Click);
 			// 
 			// aboutMStrip
 			// 
@@ -187,22 +194,35 @@ namespace System {
 			this->exitMStrip->Name = L"exitMStrip";
 			this->exitMStrip->Size = System::Drawing::Size(47, 26);
 			this->exitMStrip->Text = L"Exit";
-			this->exitMStrip->Click += gcnew System::EventHandler(this, &Reservation::exitMStrip_Click);
+			this->exitMStrip->Click += gcnew System::EventHandler(this, &RoomList::exitMStrip_Click);
 			// 
-			// Reservation
+			// addRoomBtn
+			// 
+			this->addRoomBtn->Font = (gcnew System::Drawing::Font(L"Impact", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->addRoomBtn->Location = System::Drawing::Point(41, 696);
+			this->addRoomBtn->Name = L"addRoomBtn";
+			this->addRoomBtn->Size = System::Drawing::Size(426, 37);
+			this->addRoomBtn->TabIndex = 8;
+			this->addRoomBtn->Text = L"ADD A ROOM";
+			this->addRoomBtn->UseVisualStyleBackColor = true;
+			this->addRoomBtn->Click += gcnew System::EventHandler(this, &RoomList::addRoomBtn_Click);
+			// 
+			// RoomList
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(510, 756);
+			this->Controls->Add(this->addRoomBtn);
 			this->Controls->Add(this->menuStrip1);
 			this->Controls->Add(this->roomsTbl);
 			this->Controls->Add(this->labRBtn);
 			this->Controls->Add(this->clRBtn);
-			this->Controls->Add(this->roomReserveLbl);
-			this->Name = L"Reservation";
+			this->Controls->Add(this->roomHeaderLbl);
+			this->Name = L"RoomList";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"Reservation";
-			this->Load += gcnew System::EventHandler(this, &Reservation::Reservation_Load);
+			this->Text = L"RoomList";
+			this->Load += gcnew System::EventHandler(this, &RoomList::RoomList_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomsTbl))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -211,21 +231,21 @@ namespace System {
 
 		}
 #pragma endregion
-	
-	private: 
+
+	private:
 		MySqlConnection^ conn = nullptr;
 		User^ user = nullptr;
+
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS----------------------------------------------------------------------*/
 	
-	private: System::Void Reservation_Load(System::Object^ sender, System::EventArgs^ e);
-	
-	private: void fillTable(void);
+	private: System::Void RoomList_Load(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void profileMStrip_Click(System::Object^ sender, System::EventArgs^ e);
-	
-	private: System::Void reserveMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
-	private: System::Void receiptMSrip_Click(System::Object^ sender, System::EventArgs^ e);
-		   
+	private: System::Void opt1MStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void opt2MStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
 	//private: System::Void aboutMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void exitMStrip_Click(System::Object^ sender, System::EventArgs^ e);
@@ -233,7 +253,19 @@ namespace System {
 	private: System::Void clRBtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void labRBtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
-	
+
 	private: System::Void roomsTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
+	private: System::Void addRoomBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS---------------------------------------------------------------------------*/
+
+	private: void fillTable(void);
+
+	private: void deletePassedRoomList(void);
+
+	private: bool checkUserRoomList(void);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };
 }

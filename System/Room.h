@@ -14,6 +14,7 @@ private:
 	String^ roomCode;
 	String^ building;
 	String^ status;
+	String^ roomType;
 	String^ boardType;
 	bool^ tv;
 	bool^ ac;
@@ -27,6 +28,8 @@ public:
 	void setBuilding(String^ BUILDING) { building = BUILDING; }
 
 	void setStatus(String^ STATUS) { status = STATUS; }
+
+	void setRoomType(String^ ROOM_TYPE) { roomType = ROOM_TYPE; }
 
 	void setBoardType(String^ BOARD_TYPE) { boardType = BOARD_TYPE; }
 
@@ -42,6 +45,8 @@ public:
 	String^ getBuilding(void) { return building; }
 
 	String^ getStatus(void) { return building; }
+
+	String^ getRoomType(void) { return roomType; }
 
 	String^ getBoardType(void) { return boardType; }
 

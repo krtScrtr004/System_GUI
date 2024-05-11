@@ -48,7 +48,7 @@ bool User::checkId(String^ ID) {
 		return false;
 	}
 
-	String^ query = "SELECT idNum FROM userInfo WHERE idNum = @tempIdNum";
+	String^ query = "SELECT `ID NUMBER` FROM userInfo WHERE `ID NUMBER` = @tempIdNum";
 	MySqlCommand^ command = gcnew MySqlCommand(query, conn);
 	command->Parameters->AddWithValue("@tempIdNum", ID);
 
@@ -56,8 +56,10 @@ bool User::checkId(String^ ID) {
 	MySqlDataReader^ reader = command->ExecuteReader();
 	if (reader->HasRows) {
 		MessageBox::Show("Warning: ID has already been used!");
+		reader->Close();
 		return false;
 	}
+	reader->Close();
 
 	return true;
 }

@@ -292,6 +292,8 @@ namespace System {
 	private: String^ tempEmail = " ";
 	private: String^ tempPassword = " ";
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	private: System::Void fnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void lnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
@@ -309,5 +311,7 @@ namespace System {
 
 	// Return to Login Page
 	private: System::Void loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };
 }

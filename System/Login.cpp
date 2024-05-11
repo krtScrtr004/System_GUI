@@ -22,6 +22,8 @@ namespace System {
 		}
 	}
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	System::Void Login::emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempEmail = emailTxtBox->Text;
 	}
@@ -32,13 +34,13 @@ namespace System {
 
 	// Redirect to Profile Page
 	System::Void Login::loginBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ query = "SELECT EMAIL, PASSWORD FROM userInfo WHERE EMAIL = @tempEmail AND PASSWORD = @tempPassword";
-		MySqlCommand^ command = gcnew MySqlCommand(query, conn);
-		command->Parameters->AddWithValue("@tempEmail", tempEmail);
-		command->Parameters->AddWithValue("@tempPassword", tempPassword);
-
 		// Reads data from DB
 		try {
+			String^ query = "SELECT EMAIL, PASSWORD FROM userInfo WHERE EMAIL = @tempEmail AND PASSWORD = @tempPassword";
+			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
+			command->Parameters->AddWithValue("@tempEmail", tempEmail);
+			command->Parameters->AddWithValue("@tempPassword", tempPassword);
+
 			MySqlDataReader^ reader = command->ExecuteReader();
 			if (reader->HasRows) {
 				User^ user = gcnew User();
@@ -71,6 +73,9 @@ namespace System {
 		ForgetPass^ forgetPassForm = gcnew ForgetPass();
 		forgetPassForm->Show();
 	}
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 };
 
 [STAThreadAttribute]

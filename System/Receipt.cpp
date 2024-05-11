@@ -1,6 +1,6 @@
 #include "Receipt.h"
-#include "Reservation.h"
 #include "Room.h"
+#include "RoomList.h"
 #include "Utils.h"
 
 namespace System {
@@ -19,57 +19,25 @@ namespace System {
 		}
 	}
 
+    /*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
     System::Void Receipt::Receipt_Load(System::Object^ sender, System::EventArgs^ e) {
-
-        String^ querySearch = "SELECT * FROM reservation WHERE `USER ID` = @userId";
-        MySqlCommand^ cmdSearch = gcnew MySqlCommand(querySearch, conn);
-        cmdSearch->Parameters->AddWithValue("@userId", user->getId());
-
         try {
+            String^ querySearch = "SELECT * FROM reservation WHERE `USER ID` = @userId";
+            MySqlCommand^ cmdSearch = gcnew MySqlCommand(querySearch, conn);
+            cmdSearch->Parameters->AddWithValue("@userId", user->getId());
+
             MySqlDataReader^ readerSearch = cmdSearch->ExecuteReader();
             if (readerSearch->HasRows) {
-                String^ queryData = "SELECT `ROOM CODE`, DATE_FORMAT(`DATE`, '%Y-%m-%d') AS dateOnly, `IN TIME`, `OUT TIME` FROM reservation WHERE `USER ID` = @tempUserId";
-                MySqlCommand^ cmdReservation = gcnew MySqlCommand(queryData, conn);
-                cmdReservation->Parameters->AddWithValue("@tempUserId", user->getId());
-
-                MySqlDataReader^ readerReservation = cmdReservation->ExecuteReader();
-                if (readerReservation->Read()) {
-                    rcodeTxtBox->Text = readerReservation["ROOM CODE"]->ToString();
-                    dateTxtBox->Text = readerReservation["dateOnly"]->ToString();
-                    inTimeTxtBox->Text = readerReservation["IN TIME"]->ToString();
-                    outTimeTxtBox->Text = readerReservation["OUT TIME"]->ToString();
-
-                    readerReservation->Close();
-
-                    String^ queryRoom = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode";
-                    MySqlCommand^ cmdRoom = gcnew MySqlCommand(queryRoom, conn);
-                    cmdRoom->Parameters->AddWithValue("@tempRoomCode", rcodeTxtBox->Text);
-
-                    MySqlDataReader^ readerRoom = cmdRoom->ExecuteReader();
-                    if (readerRoom->Read()) {
-                        Room^ room = gcnew Room();
-                        // TODO: Test this 
-                        room->setBuilding(readerRoom["BUILDING"]->ToString());
-                        if (readerRoom["IMAGE"] != DBNull::Value) {
-                            array<unsigned char>^ img = safe_cast<array<unsigned char>^>(readerRoom["IMAGE"]);
-                            room->setImg(img);
-                        }
-
-                        if (room->getImg() != nullptr)
-                        {
-                            MemoryStream^ ms = gcnew MemoryStream(room->getImg());
-                            Image^ img = Image::FromStream(ms);
-                            roomImg->Image = img;
-                        }
-
-                        readerRoom->Close();
-                    }
-                }
+                
+                readerSearch->Close();
+                fetchLblData();
             }
             else {
                 MessageBox::Show("You do not have pending reservation!");
                 this->Close();
             }
+            readerSearch->Close();
         }
         catch (Exception^ e) {
             MessageBox::Show(e->Message);
@@ -96,5 +64,66 @@ namespace System {
         catch (Exception^ e) {
             MessageBox::Show(e->Message);
         }
+        this->Close();
     }
+
+    /*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
+
+    void Receipt::fetchLblData(void) {
+        try
+        {
+            String^ queryData = "SELECT `ROOM CODE`, DATE_FORMAT(`DATE`, '%Y-%m-%d') AS dateOnly, `IN TIME`, `OUT TIME` FROM reservation WHERE `USER ID` = @tempUserId";
+            MySqlCommand^ cmdReservation = gcnew MySqlCommand(queryData, conn);
+            cmdReservation->Parameters->AddWithValue("@tempUserId", user->getId());
+
+            MySqlDataReader^ readerReservation = cmdReservation->ExecuteReader();
+            if (readerReservation->Read()) {
+                rcodeTxtBox->Text = readerReservation["ROOM CODE"]->ToString();
+                dateTxtBox->Text = readerReservation["dateOnly"]->ToString();
+                inTimeTxtBox->Text = readerReservation["IN TIME"]->ToString();
+                outTimeTxtBox->Text = readerReservation["OUT TIME"]->ToString();
+
+                readerReservation->Close();
+                fetchRoomImg();
+               
+            }
+            readerReservation->Close();
+        }
+        catch (Exception^ e) {
+            MessageBox::Show(e->Message);
+        }
+    }
+
+    void Receipt::fetchRoomImg(void) {
+        try {
+            String^ queryRoom = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode";
+            MySqlCommand^ cmdRoom = gcnew MySqlCommand(queryRoom, conn);
+            cmdRoom->Parameters->AddWithValue("@tempRoomCode", rcodeTxtBox->Text);
+
+            MySqlDataReader^ readerRoom = cmdRoom->ExecuteReader();
+            if (readerRoom->Read()) {
+                Room^ room = gcnew Room();
+                room->setBuilding(readerRoom["BUILDING"]->ToString());
+                bldgTxtBox->Text = room->getBuilding();
+                if (readerRoom["IMAGE"] != DBNull::Value) {
+                    array<unsigned char>^ img = safe_cast<array<unsigned char>^>(readerRoom["IMAGE"]);
+                    room->setImg(img);
+                }
+
+                if (room->getImg() != nullptr)
+                {
+                    MemoryStream^ ms = gcnew MemoryStream(room->getImg());
+                    Image^ img = Image::FromStream(ms);
+                    roomImg->Image = img;
+                }
+            }
+            readerRoom->Close();
+        }
+        catch (Exception^ e) {
+            MessageBox::Show(e->Message);
+        }
+    }
+
+    /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 }

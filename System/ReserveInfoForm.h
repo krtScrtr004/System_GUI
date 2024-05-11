@@ -395,6 +395,8 @@ namespace System {
 		String^ tempTime;
 		Decimal^ tempDuration;
 
+	/*---------------------------------------------------------------------------EVENT HANDLER FUNCTIONS----------------------------------------------------------------------*/
+
 	private: System::Void roomImg_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void ReserveInfoForm_Load(System::Object^ sender, System::EventArgs^ e);
@@ -407,5 +409,21 @@ namespace System {
 	
 	// Submit Button
 	private: System::Void reserveBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
+
+	private: bool checkDateFormat(void);
+
+	private: bool checkTimeFormat(void);
+
+	private: bool checkDuration(void);
+
+	// Parse time to string
+	private: String^ parseTime(void);
+
+	private: bool checkIfReserved(void);
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 };
 }

@@ -42,10 +42,16 @@
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Reservation.cpp">
+    <ClCompile Include="RoomList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Receipt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,13 +83,19 @@
     <ClInclude Include="User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Reservation.h">
+    <ClInclude Include="RoomList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Receipt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddRoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

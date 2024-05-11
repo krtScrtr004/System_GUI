@@ -17,12 +17,11 @@ namespace System {
 		}
 	}
 
+/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	// Image Selection Button
 	System::Void EditProfile::imgSlctBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		OpenFileDialog^ ofd = gcnew OpenFileDialog;
-		ofd->Filter = "PNG Files *.png | *png | JPG Files *.jpg | *.jpg"; //  Filters file type selection
-		if (ofd->ShowDialog() == Windows::Forms::DialogResult::OK) 
-			tempProfileImgLoc = ofd->FileName;
+			tempProfileImgLoc = openFile();
 	}
 
 	// First Name Text Box
@@ -64,18 +63,15 @@ namespace System {
 		// Reads image and copy to 'profileImg' in binary
 		array<unsigned char>^ profileImg = user->getProfileImg();
 		if (!String::IsNullOrWhiteSpace(tempProfileImgLoc)) {
-			try
-			{
+			try {
 				FileStream^ fs = gcnew FileStream(tempProfileImgLoc, FileMode::Open, FileAccess::Read);
 				BinaryReader^ br = gcnew BinaryReader(fs);
 				profileImg = br->ReadBytes(fs->Length);
 			}
-			catch (Exception^ e)
-			{
+			catch (Exception^ e) {
 				MessageBox::Show(e->Message);
 			}
 		}
-
 		user->setProfileImg(profileImg);
 
 		String^ query = "UPDATE userInfo SET `FIRST NAME` = @tempFname, `LAST NAME` = @tempLname, PASSWORD = @tempPassword, PROFILE = @tempProfileImg WHERE EMAIL = @thisEmail";
@@ -103,4 +99,6 @@ namespace System {
 
 		this->Close();
 	}
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };

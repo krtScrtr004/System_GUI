@@ -310,6 +310,8 @@ namespace System {
 		String^ tempLname = user->getLname();
 		String^ tempPassword = user->getPassword();
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	// Image Selection Button
 	private: System::Void imgSlctBtn_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -333,6 +335,8 @@ namespace System {
 
 	// Confirmation Button
 	private: System::Void confirmBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 };
 }

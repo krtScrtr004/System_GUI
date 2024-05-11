@@ -14,8 +14,12 @@ using namespace System::Windows::Forms;
 
 void mySqlConn(MySqlConnection^% conn);
 
-void mySqlDeconn(MySqlConnection^% conn);
+void mySqlDeconn(MySqlConnection^% conn); 
 
 bool confirmDialogue(String^ text, String^ header);
 
 String^ rmWhiteSpaces(String^ str);
+
+String^ openFile(void);
+
+bool searchRoomCode(String^ roomCode, MySqlConnection^ conn);

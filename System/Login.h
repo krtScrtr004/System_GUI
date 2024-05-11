@@ -206,9 +206,10 @@ namespace System {
 		}
 #pragma endregion
 
-	private:
-		String^ tempEmail = " ";
-		String^ tempPassword = " ";
+	private: String^ tempEmail;
+	private: String^ tempPassword;
+
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
 	private: System::Void emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 
@@ -217,11 +218,14 @@ namespace System {
 	// Redirect to Profile Page
 	private: System::Void loginBtn_Click(System::Object^ sender, System::EventArgs^ e);
 
-		   // Sign Up Hyperlink
+	 // Sign Up Hyperlink
 	private: System::Void signupLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 
-		   // Forget Password Hyperlink
+	// Forget Password Hyperlink
 	private: System::Void fpassLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+
+	 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 };
 };

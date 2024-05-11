@@ -267,11 +267,21 @@ namespace System {
 		User^ user = gcnew User();
 
 		String^ tempFeedback;
+
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 	
 	private: System::Void Receipt_Load(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void fdBackTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	
 	private: System::Void submitBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
+
+	private: void fetchLblData(void);
+
+	private: void fetchRoomImg(void);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };
 }

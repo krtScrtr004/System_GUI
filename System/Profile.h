@@ -31,8 +31,10 @@ namespace System {
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ profileMStrip;
-	private: System::Windows::Forms::ToolStripMenuItem^ reserveMStrip;
-	private: System::Windows::Forms::ToolStripMenuItem^ reciptMStrip;
+	private: System::Windows::Forms::ToolStripMenuItem^ opt1MStrip;
+	private: System::Windows::Forms::ToolStripMenuItem^ opt2MStrip;
+
+
 
 	private: System::Windows::Forms::ToolStripMenuItem^ aboutMStrip;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitMStrip;
@@ -63,8 +65,8 @@ namespace System {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->reserveMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->reciptMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->opt2MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->aboutMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->nameLbl = (gcnew System::Windows::Forms::Label());
@@ -84,8 +86,8 @@ namespace System {
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
-				this->profileMStrip, this->reserveMStrip,
-					this->reciptMStrip, this->aboutMStrip, this->exitMStrip
+				this->profileMStrip, this->opt1MStrip,
+					this->opt2MStrip, this->aboutMStrip, this->exitMStrip
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -106,25 +108,25 @@ namespace System {
 			this->profileMStrip->Text = L"Profile";
 			this->profileMStrip->Click += gcnew System::EventHandler(this, &Profile::profileMStrip_Click);
 			// 
-			// reserveMStrip
+			// opt1MStrip
 			// 
-			this->reserveMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt1MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reserveMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->reserveMStrip->Name = L"reserveMStrip";
-			this->reserveMStrip->Size = System::Drawing::Size(74, 23);
-			this->reserveMStrip->Text = L"Reserve";
-			this->reserveMStrip->Click += gcnew System::EventHandler(this, &Profile::reserveMStrip_Click);
+			this->opt1MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt1MStrip->Name = L"opt1MStrip";
+			this->opt1MStrip->Size = System::Drawing::Size(74, 23);
+			this->opt1MStrip->Text = L"Reserve";
+			this->opt1MStrip->Click += gcnew System::EventHandler(this, &Profile::opt1MStrip_Click);
 			// 
-			// reciptMStrip
+			// opt2MStrip
 			// 
-			this->reciptMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt2MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reciptMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->reciptMStrip->Name = L"reciptMStrip";
-			this->reciptMStrip->Size = System::Drawing::Size(73, 23);
-			this->reciptMStrip->Text = L"Receipt";
-			this->reciptMStrip->Click += gcnew System::EventHandler(this, &Profile::reciptMStrip_Click);
+			this->opt2MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt2MStrip->Name = L"opt2MStrip";
+			this->opt2MStrip->Size = System::Drawing::Size(73, 23);
+			this->opt2MStrip->Text = L"Receipt";
+			this->opt2MStrip->Click += gcnew System::EventHandler(this, &Profile::opt2MStrip_Click);
 			// 
 			// aboutMStrip
 			// 
@@ -245,6 +247,7 @@ namespace System {
 			this->Name = L"Profile";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Profile";
+			this->Load += gcnew System::EventHandler(this, &Profile::Profile_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->profileImg))->EndInit();
@@ -256,25 +259,32 @@ namespace System {
 	private:
 		User^ user;
 
-	private: void fetchUserData();
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS---------------------------------------------------------------------*/
 
-	private: void displayData();
-
-	//private: System::Void profileImg_Click(System::Object^ sender, System::EventArgs^ e);
+	// FOrm Load
+	private: System::Void Profile_Load(System::Object^ sender, System::EventArgs^ e);
 
 	// Profile Menu
 	private: System::Void profileMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
-	// Reservation Menu
-	private: System::Void reserveMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+	// RoomList Menu
+	private: System::Void opt1MStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
-	private: System::Void reciptMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void opt2MStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
 	// Exit Menu
 	private: System::Void exitMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
 	// Edit Button
 	private: System::Void editBtn_Click(System::Object^ sender, System::EventArgs^ e);
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
+
+	private: void fetchUserData();
+
+	private: void displayData();
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 };
 }
