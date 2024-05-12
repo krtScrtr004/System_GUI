@@ -1,5 +1,4 @@
 #pragma once
-#include "Utils.h"
 
 namespace System {
 
@@ -40,7 +39,7 @@ namespace System {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^ aboutMStrip;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ exitMStrip;
 	private: System::Windows::Forms::Button^ addRoomBtn;
 
@@ -66,7 +65,6 @@ namespace System {
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt2MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->aboutMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->addRoomBtn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomsTbl))->BeginInit();
@@ -134,15 +132,15 @@ namespace System {
 			this->menuStrip1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->profileMStrip, this->opt1MStrip,
-					this->opt2MStrip, this->aboutMStrip, this->exitMStrip
+					this->opt2MStrip, this->exitMStrip
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(9, 2, 0, 2);
 			this->menuStrip1->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
-			this->menuStrip1->Size = System::Drawing::Size(510, 30);
+			this->menuStrip1->Size = System::Drawing::Size(510, 27);
 			this->menuStrip1->TabIndex = 7;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -153,7 +151,7 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->profileMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->profileMStrip->Name = L"profileMStrip";
-			this->profileMStrip->Size = System::Drawing::Size(60, 26);
+			this->profileMStrip->Size = System::Drawing::Size(60, 23);
 			this->profileMStrip->Text = L"Profile";
 			this->profileMStrip->Click += gcnew System::EventHandler(this, &RoomList::profileMStrip_Click);
 			// 
@@ -163,7 +161,7 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->opt1MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->opt1MStrip->Name = L"opt1MStrip";
-			this->opt1MStrip->Size = System::Drawing::Size(78, 26);
+			this->opt1MStrip->Size = System::Drawing::Size(78, 23);
 			this->opt1MStrip->Text = L"Reserve";
 			this->opt1MStrip->Click += gcnew System::EventHandler(this, &RoomList::opt1MStrip_Click);
 			// 
@@ -173,18 +171,9 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->opt2MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->opt2MStrip->Name = L"opt2MStrip";
-			this->opt2MStrip->Size = System::Drawing::Size(73, 26);
+			this->opt2MStrip->Size = System::Drawing::Size(73, 23);
 			this->opt2MStrip->Text = L"Receipt";
 			this->opt2MStrip->Click += gcnew System::EventHandler(this, &RoomList::opt2MStrip_Click);
-			// 
-			// aboutMStrip
-			// 
-			this->aboutMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->aboutMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->aboutMStrip->Name = L"aboutMStrip";
-			this->aboutMStrip->Size = System::Drawing::Size(64, 26);
-			this->aboutMStrip->Text = L"About";
 			// 
 			// exitMStrip
 			// 
@@ -192,7 +181,7 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->exitMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->exitMStrip->Name = L"exitMStrip";
-			this->exitMStrip->Size = System::Drawing::Size(47, 26);
+			this->exitMStrip->Size = System::Drawing::Size(47, 23);
 			this->exitMStrip->Text = L"Exit";
 			this->exitMStrip->Click += gcnew System::EventHandler(this, &RoomList::exitMStrip_Click);
 			// 

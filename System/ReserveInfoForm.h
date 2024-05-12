@@ -176,7 +176,6 @@ namespace System {
 			this->roomImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->roomImg->TabIndex = 31;
 			this->roomImg->TabStop = false;
-			this->roomImg->Click += gcnew System::EventHandler(this, &ReserveInfoForm::roomImg_Click);
 			// 
 			// roomNameLbl
 			// 
@@ -396,8 +395,6 @@ namespace System {
 		Decimal^ tempDuration;
 
 	/*---------------------------------------------------------------------------EVENT HANDLER FUNCTIONS----------------------------------------------------------------------*/
-
-	private: System::Void roomImg_Click(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void ReserveInfoForm_Load(System::Object^ sender, System::EventArgs^ e);
 

@@ -36,7 +36,7 @@ namespace System {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^ aboutMStrip;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ exitMStrip;
 
 	private: System::Windows::Forms::Label^ nameLbl;
@@ -67,7 +67,6 @@ namespace System {
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt2MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->aboutMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->nameLbl = (gcnew System::Windows::Forms::Label());
 			this->idNumLbl = (gcnew System::Windows::Forms::Label());
@@ -85,9 +84,9 @@ namespace System {
 			this->menuStrip1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->profileMStrip, this->opt1MStrip,
-					this->opt2MStrip, this->aboutMStrip, this->exitMStrip
+					this->opt2MStrip, this->exitMStrip
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -127,15 +126,6 @@ namespace System {
 			this->opt2MStrip->Size = System::Drawing::Size(73, 23);
 			this->opt2MStrip->Text = L"Receipt";
 			this->opt2MStrip->Click += gcnew System::EventHandler(this, &Profile::opt2MStrip_Click);
-			// 
-			// aboutMStrip
-			// 
-			this->aboutMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->aboutMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->aboutMStrip->Name = L"aboutMStrip";
-			this->aboutMStrip->Size = System::Drawing::Size(64, 23);
-			this->aboutMStrip->Text = L"About";
 			// 
 			// exitMStrip
 			// 

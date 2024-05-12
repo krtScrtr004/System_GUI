@@ -216,9 +216,9 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->editProfileLbl->Location = System::Drawing::Point(24, 33);
 			this->editProfileLbl->Name = L"editProfileLbl";
-			this->editProfileLbl->Size = System::Drawing::Size(334, 35);
+			this->editProfileLbl->Size = System::Drawing::Size(278, 35);
 			this->editProfileLbl->TabIndex = 22;
-			this->editProfileLbl->Text = L"Edit Your Profile Information";
+			this->editProfileLbl->Text = L"Edit Profile Information";
 			// 
 			// imgSlctLbl
 			// 

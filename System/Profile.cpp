@@ -2,6 +2,7 @@
 #include "Profile.h"
 #include "Receipt.h"
 #include "RoomList.h"
+#include "UserList.h"
 #include "Utils.h"
 
 namespace System {
@@ -26,10 +27,14 @@ namespace System {
 
 	// Form Load
 	System::Void Profile::Profile_Load(System::Object^ sender, System::EventArgs^ e) {
-		if (user->getAccType() == "Admin")
+		if (user->getAccType() == "Admin") {
 			opt1MStrip->Text = "Room List";
-		else
-			opt2MStrip->Text = "Reserve";
+			opt2MStrip->Text = "User List";
+		}
+		else {
+			opt1MStrip->Text = "Reserve";
+			opt2MStrip->Text = "Receipt";
+		}
 	}
 
 	// Profile Menu
@@ -48,8 +53,15 @@ namespace System {
 
 	// 
 	System::Void Profile::opt2MStrip_Click(System::Object ^ sender, System::EventArgs ^ e) {
-		Receipt^ receiptForm = gcnew Receipt(user);
-		receiptForm->Show();
+		if (user->getAccType() == "Admin") {
+			UserList^ userListForm = gcnew UserList();
+			userListForm->Show();
+			this->Close();
+		}
+		else {
+			Receipt^ receiptForm = gcnew Receipt(user);
+			receiptForm->Show();
+		}
 	}
 
 	// Exit Menu

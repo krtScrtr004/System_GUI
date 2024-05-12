@@ -9,6 +9,8 @@
 #include "RoomInfo.h"
 #include "RoomList.h"
 #include "ReserveInfoForm.h"
+#include "UserList.h"
+#include "Utils.h"
 
 namespace System {
 	RoomList::RoomList(User^ other) : user(other)
@@ -31,10 +33,16 @@ namespace System {
 	// Form Load
 	System::Void RoomList::RoomList_Load(System::Object^ sender, System::EventArgs^ e) {
 		if (user->getAccType() == "Admin") {
+			opt1MStrip->Text = "Room List";
+			opt2MStrip->Text = "User List";
+
 			roomHeaderLbl->Text = "ROOM LIST";
 			roomsTbl->Height = 495;
 		}
 		else {
+			opt1MStrip->Text = "Reserve";
+			opt2MStrip->Text = "Receipt";
+
 			roomHeaderLbl->Text = "RESERVE A ROOM";
 			roomsTbl->Height = 417;
 
@@ -72,8 +80,15 @@ namespace System {
 	}
 
 	System::Void RoomList::opt2MStrip_Click(System::Object^ sender, System::EventArgs^ e) {
-		Receipt^ receiptForm = gcnew Receipt(user);
-		receiptForm->Show();
+		if (user->getAccType() == "Admin") {
+			UserList^ userListForm = gcnew UserList();
+			userListForm->Show();
+			this->Close();
+		}
+		else {
+			Receipt^ receiptForm = gcnew Receipt(user);
+			receiptForm->Show();
+		}
 	}
 
 	// Exit Menu
@@ -130,8 +145,13 @@ namespace System {
 				}
 				else {
 					// TODO:
-					ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
-					reserveInfoForm->Show();
+					if (room->getStatus() == "Available") {
+						ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
+						reserveInfoForm->Show();
+					}
+					else {
+						MessageBox::Show("Warnong: This room is currently not available!");
+					}
 				}
 			}
 
@@ -153,7 +173,6 @@ namespace System {
 	// Fill Table with Appropriate Data
 	void RoomList::fillTable(void) {
 		String^ query;
-		// TODO: Add the logic to prevent the user to reserve another room in case of pendingg reservation
 		if (clRBtn->Checked) {
 			query = "SELECT `ROOM CODE`, BUILDING, STATUS FROM room WHERE `ROOM TYPE` = 'Classroom'";
 		}
@@ -170,7 +189,6 @@ namespace System {
 		catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 		}
-
 
 		roomsTbl->Show();
 	}
