@@ -23,7 +23,7 @@ namespace System {
 
     System::Void Receipt::Receipt_Load(System::Object^ sender, System::EventArgs^ e) {
         try {
-            String^ querySearch = "SELECT * FROM reservation WHERE `USER ID` = @userId";
+            String^ querySearch = "SELECT * FROM reservation WHERE `USER ID` = @userId AND STATUS = 1";
             MySqlCommand^ cmdSearch = gcnew MySqlCommand(querySearch, conn);
             cmdSearch->Parameters->AddWithValue("@userId", user->getId());
 

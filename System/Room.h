@@ -44,7 +44,7 @@ public:
 
 	String^ getBuilding(void) { return building; }
 
-	String^ getStatus(void) { return building; }
+	String^ getStatus(void) { return status; }
 
 	String^ getRoomType(void) { return roomType; }
 

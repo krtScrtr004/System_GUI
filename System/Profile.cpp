@@ -10,8 +10,6 @@ namespace System {
 	{
 		InitializeComponent();
 		mySqlConn(conn);
-		fetchUserData();
-		displayData();
 	}
 
 	Profile::~Profile()
@@ -27,6 +25,8 @@ namespace System {
 
 	// Form Load
 	System::Void Profile::Profile_Load(System::Object^ sender, System::EventArgs^ e) {
+		fetchUserData();
+
 		if (user->getAccType() == "Admin") {
 			opt1MStrip->Text = "Room List";
 			opt2MStrip->Text = "User List";
@@ -35,6 +35,9 @@ namespace System {
 			opt1MStrip->Text = "Reserve";
 			opt2MStrip->Text = "Receipt";
 		}
+
+		displayData();
+		fillTable();
 	}
 
 	// Profile Menu
@@ -54,7 +57,7 @@ namespace System {
 	// 
 	System::Void Profile::opt2MStrip_Click(System::Object ^ sender, System::EventArgs ^ e) {
 		if (user->getAccType() == "Admin") {
-			UserList^ userListForm = gcnew UserList();
+			UserList^ userListForm = gcnew UserList(user);
 			userListForm->Show();
 			this->Close();
 		}
@@ -121,6 +124,32 @@ namespace System {
 		emailLbl->Text = user->getEmail();
 		idNumLbl->Text = user->getId();
 		accTypeLbl->Text = user->getAccType() + " Type";
+	}
+
+	void Profile::fillTable(void) {
+		try {
+			String^ query;
+			if (user->getAccType() == "Admin") {
+				query = "SELECT * FROM reservation";
+			}
+			else {
+				query = "SELECT `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`, STATUS FROM reservation WHERE `USER ID` = @tempUserId";
+			}
+
+			MySqlCommand^ command = gcnew MySqlCommand(query, conn); 
+			if (user->getAccType() != "Admin") {
+				command->Parameters->AddWithValue("@tempUserId", user->getId());
+			}
+
+			MySqlDataAdapter^ adapter = gcnew MySqlDataAdapter(command);
+			DataTable^ dt = gcnew DataTable();
+			adapter->Fill(dt);
+			historyTbl->DataSource = dt;
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+
 	}
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

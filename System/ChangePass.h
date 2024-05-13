@@ -10,31 +10,15 @@ namespace System {
 	using namespace System::Drawing;
 	using namespace MySql::Data::MySqlClient;
 
-	/// <summary>
-	/// Summary for ChangePass
-	/// </summary>
 	public ref class ChangePass : public System::Windows::Forms::Form
 	{
 	public:
-		ChangePass(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		ChangePass(String^ email);
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~ChangePass()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+
+		~ChangePass();
+		
 	private: System::Windows::Forms::Label^ captionTxtBox;
 	protected:
 
@@ -71,27 +55,26 @@ namespace System {
 			// 
 			this->captionTxtBox->AllowDrop = true;
 			this->captionTxtBox->AutoSize = true;
-			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->captionTxtBox->Location = System::Drawing::Point(73, 106);
+			this->captionTxtBox->Location = System::Drawing::Point(56, 77);
 			this->captionTxtBox->Name = L"captionTxtBox";
 			this->captionTxtBox->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->captionTxtBox->Size = System::Drawing::Size(160, 17);
+			this->captionTxtBox->Size = System::Drawing::Size(172, 19);
 			this->captionTxtBox->TabIndex = 37;
 			this->captionTxtBox->Text = L"Type your new password";
 			this->captionTxtBox->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// npassBtn
 			// 
-			this->npassBtn->BackColor = System::Drawing::Color::MediumBlue;
+			this->npassBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->npassBtn->FlatAppearance->BorderSize = 0;
-			this->npassBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->npassBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->npassBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->npassBtn->Location = System::Drawing::Point(77, 216);
+			this->npassBtn->Location = System::Drawing::Point(60, 176);
 			this->npassBtn->Name = L"npassBtn";
 			this->npassBtn->Size = System::Drawing::Size(352, 40);
 			this->npassBtn->TabIndex = 36;
@@ -101,20 +84,20 @@ namespace System {
 			// 
 			// npassTxtBox
 			// 
-			this->npassTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->npassTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->npassTxtBox->Location = System::Drawing::Point(77, 160);
+			this->npassTxtBox->Location = System::Drawing::Point(60, 139);
 			this->npassTxtBox->Name = L"npassTxtBox";
 			this->npassTxtBox->Size = System::Drawing::Size(352, 31);
 			this->npassTxtBox->TabIndex = 35;
+			this->npassTxtBox->TextChanged += gcnew System::EventHandler(this, &ChangePass::npassTxtBox_TextChanged);
 			// 
 			// npassLbl
 			// 
 			this->npassLbl->AutoSize = true;
 			this->npassLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->npassLbl->Location = System::Drawing::Point(73, 136);
+			this->npassLbl->Location = System::Drawing::Point(56, 115);
 			this->npassLbl->Name = L"npassLbl";
 			this->npassLbl->Size = System::Drawing::Size(108, 19);
 			this->npassLbl->TabIndex = 34;
@@ -125,7 +108,7 @@ namespace System {
 			this->changePassLbl->AutoSize = true;
 			this->changePassLbl->Font = (gcnew System::Drawing::Font(L"Impact", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->changePassLbl->Location = System::Drawing::Point(70, 65);
+			this->changePassLbl->Location = System::Drawing::Point(53, 36);
 			this->changePassLbl->Name = L"changePassLbl";
 			this->changePassLbl->Size = System::Drawing::Size(261, 41);
 			this->changePassLbl->TabIndex = 33;
@@ -135,8 +118,7 @@ namespace System {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(511, 307);
-			this->ControlBox = false;
+			this->ClientSize = System::Drawing::Size(468, 268);
 			this->Controls->Add(this->captionTxtBox);
 			this->Controls->Add(this->npassBtn);
 			this->Controls->Add(this->npassTxtBox);
@@ -144,18 +126,23 @@ namespace System {
 			this->Controls->Add(this->changePassLbl);
 			this->Name = L"ChangePass";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"ChangePass";
+			this->Text = L"CLASSBOOK";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
+	private: MySqlConnection^ conn = gcnew MySqlConnection();
+	private: String^ tempEmail;
+	private: String^ tempPassword;
+
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	private: System::Void npassTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	
 	private: System::Void npassBtn_Click(System::Object^ sender, System::EventArgs^ e);
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
 };
 }

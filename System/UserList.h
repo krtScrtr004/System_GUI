@@ -11,9 +11,6 @@ namespace System {
 	using namespace System::Drawing;
 	using namespace MySql::Data::MySqlClient;
 
-	/// <summary>
-	/// Summary for UserList
-	/// </summary>
 	public ref class UserList : public System::Windows::Forms::Form
 	{
 	public:
@@ -41,6 +38,11 @@ namespace System {
 	private: System::Windows::Forms::Label^ emailLbl;
 	private: System::Windows::Forms::Label^ accTypeDataLbl;
 	private: System::Windows::Forms::Label^ accTypeLbl;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::PictureBox^ nameIcon;
+	private: System::Windows::Forms::PictureBox^ idNumIcon;
+	private: System::Windows::Forms::PictureBox^ emailIcon;
+	private: System::Windows::Forms::PictureBox^ accTypeIcon;
 
 
 
@@ -59,6 +61,7 @@ namespace System {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UserList::typeid));
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt2MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -74,9 +77,19 @@ namespace System {
 			this->emailLbl = (gcnew System::Windows::Forms::Label());
 			this->accTypeDataLbl = (gcnew System::Windows::Forms::Label());
 			this->accTypeLbl = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->nameIcon = (gcnew System::Windows::Forms::PictureBox());
+			this->idNumIcon = (gcnew System::Windows::Forms::PictureBox());
+			this->emailIcon = (gcnew System::Windows::Forms::PictureBox());
+			this->accTypeIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersTbl))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->userProfileImg))->BeginInit();
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->nameIcon))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->idNumIcon))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->emailIcon))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->accTypeIcon))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// profileMStrip
@@ -143,20 +156,22 @@ namespace System {
 			this->usersTbl->AllowUserToAddRows = false;
 			this->usersTbl->AllowUserToDeleteRows = false;
 			this->usersTbl->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->usersTbl->Location = System::Drawing::Point(341, 62);
+			this->usersTbl->Location = System::Drawing::Point(41, 62);
 			this->usersTbl->MultiSelect = false;
 			this->usersTbl->Name = L"usersTbl";
 			this->usersTbl->ReadOnly = true;
 			this->usersTbl->RowHeadersWidth = 51;
 			this->usersTbl->RowTemplate->Height = 24;
 			this->usersTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->usersTbl->Size = System::Drawing::Size(652, 474);
+			this->usersTbl->Size = System::Drawing::Size(652, 471);
 			this->usersTbl->TabIndex = 12;
 			this->usersTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UserList::usersTbl_CellContentClick);
 			// 
 			// userProfileImg
 			// 
-			this->userProfileImg->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->userProfileImg->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->userProfileImg->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"userProfileImg.BackgroundImage")));
+			this->userProfileImg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"userProfileImg.Image")));
 			this->userProfileImg->Location = System::Drawing::Point(35, 62);
 			this->userProfileImg->Name = L"userProfileImg";
 			this->userProfileImg->Size = System::Drawing::Size(240, 240);
@@ -169,7 +184,7 @@ namespace System {
 			this->nameLbl->AutoSize = true;
 			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nameLbl->Location = System::Drawing::Point(31, 321);
+			this->nameLbl->Location = System::Drawing::Point(86, 320);
 			this->nameLbl->Name = L"nameLbl";
 			this->nameLbl->Size = System::Drawing::Size(54, 19);
 			this->nameLbl->TabIndex = 15;
@@ -181,7 +196,7 @@ namespace System {
 			this->nameDataLbl->AutoSize = true;
 			this->nameDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nameDataLbl->Location = System::Drawing::Point(31, 340);
+			this->nameDataLbl->Location = System::Drawing::Point(86, 339);
 			this->nameDataLbl->Name = L"nameDataLbl";
 			this->nameDataLbl->Size = System::Drawing::Size(102, 20);
 			this->nameDataLbl->TabIndex = 16;
@@ -192,7 +207,7 @@ namespace System {
 			this->idNumDataLbl->AutoSize = true;
 			this->idNumDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idNumDataLbl->Location = System::Drawing::Point(31, 394);
+			this->idNumDataLbl->Location = System::Drawing::Point(86, 393);
 			this->idNumDataLbl->Name = L"idNumDataLbl";
 			this->idNumDataLbl->Size = System::Drawing::Size(145, 20);
 			this->idNumDataLbl->TabIndex = 18;
@@ -203,7 +218,7 @@ namespace System {
 			this->idNumLbl->AutoSize = true;
 			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idNumLbl->Location = System::Drawing::Point(31, 375);
+			this->idNumLbl->Location = System::Drawing::Point(86, 374);
 			this->idNumLbl->Name = L"idNumLbl";
 			this->idNumLbl->Size = System::Drawing::Size(91, 19);
 			this->idNumLbl->TabIndex = 17;
@@ -215,7 +230,7 @@ namespace System {
 			this->emailDataLbl->AutoSize = true;
 			this->emailDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailDataLbl->Location = System::Drawing::Point(31, 452);
+			this->emailDataLbl->Location = System::Drawing::Point(86, 455);
 			this->emailDataLbl->Name = L"emailDataLbl";
 			this->emailDataLbl->Size = System::Drawing::Size(102, 20);
 			this->emailDataLbl->TabIndex = 20;
@@ -226,7 +241,7 @@ namespace System {
 			this->emailLbl->AutoSize = true;
 			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailLbl->Location = System::Drawing::Point(31, 433);
+			this->emailLbl->Location = System::Drawing::Point(86, 436);
 			this->emailLbl->Name = L"emailLbl";
 			this->emailLbl->Size = System::Drawing::Size(54, 19);
 			this->emailLbl->TabIndex = 19;
@@ -237,28 +252,82 @@ namespace System {
 			this->accTypeDataLbl->AutoSize = true;
 			this->accTypeDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accTypeDataLbl->Location = System::Drawing::Point(31, 516);
+			this->accTypeDataLbl->Location = System::Drawing::Point(86, 513);
 			this->accTypeDataLbl->Name = L"accTypeDataLbl";
-			this->accTypeDataLbl->Size = System::Drawing::Size(167, 20);
+			this->accTypeDataLbl->Size = System::Drawing::Size(176, 20);
 			this->accTypeDataLbl->TabIndex = 22;
-			this->accTypeDataLbl->Text = L"ACCOUN TYPE HERE";
+			this->accTypeDataLbl->Text = L"ACCOUNT TYPE HERE";
 			// 
 			// accTypeLbl
 			// 
 			this->accTypeLbl->AutoSize = true;
 			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accTypeLbl->Location = System::Drawing::Point(31, 497);
+			this->accTypeLbl->Location = System::Drawing::Point(86, 494);
 			this->accTypeLbl->Name = L"accTypeLbl";
-			this->accTypeLbl->Size = System::Drawing::Size(108, 19);
+			this->accTypeLbl->Size = System::Drawing::Size(116, 19);
 			this->accTypeLbl->TabIndex = 21;
-			this->accTypeLbl->Text = L"ACCOUN TYPE:";
+			this->accTypeLbl->Text = L"ACCOUNT TYPE:";
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->panel1->Controls->Add(this->usersTbl);
+			this->panel1->Location = System::Drawing::Point(320, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(725, 591);
+			this->panel1->TabIndex = 23;
+			// 
+			// nameIcon
+			// 
+			this->nameIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"nameIcon.Image")));
+			this->nameIcon->Location = System::Drawing::Point(35, 320);
+			this->nameIcon->Name = L"nameIcon";
+			this->nameIcon->Size = System::Drawing::Size(45, 39);
+			this->nameIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->nameIcon->TabIndex = 50;
+			this->nameIcon->TabStop = false;
+			// 
+			// idNumIcon
+			// 
+			this->idNumIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"idNumIcon.Image")));
+			this->idNumIcon->Location = System::Drawing::Point(35, 374);
+			this->idNumIcon->Name = L"idNumIcon";
+			this->idNumIcon->Size = System::Drawing::Size(45, 39);
+			this->idNumIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->idNumIcon->TabIndex = 51;
+			this->idNumIcon->TabStop = false;
+			// 
+			// emailIcon
+			// 
+			this->emailIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"emailIcon.Image")));
+			this->emailIcon->Location = System::Drawing::Point(35, 436);
+			this->emailIcon->Name = L"emailIcon";
+			this->emailIcon->Size = System::Drawing::Size(45, 39);
+			this->emailIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->emailIcon->TabIndex = 52;
+			this->emailIcon->TabStop = false;
+			// 
+			// accTypeIcon
+			// 
+			this->accTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"accTypeIcon.Image")));
+			this->accTypeIcon->Location = System::Drawing::Point(35, 494);
+			this->accTypeIcon->Name = L"accTypeIcon";
+			this->accTypeIcon->Size = System::Drawing::Size(45, 39);
+			this->accTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->accTypeIcon->TabIndex = 53;
+			this->accTypeIcon->TabStop = false;
 			// 
 			// UserList
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1045, 587);
+			this->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->ClientSize = System::Drawing::Size(1045, 574);
+			this->Controls->Add(this->accTypeIcon);
+			this->Controls->Add(this->emailIcon);
+			this->Controls->Add(this->idNumIcon);
+			this->Controls->Add(this->nameIcon);
 			this->Controls->Add(this->accTypeDataLbl);
 			this->Controls->Add(this->accTypeLbl);
 			this->Controls->Add(this->emailDataLbl);
@@ -269,7 +338,7 @@ namespace System {
 			this->Controls->Add(this->nameLbl);
 			this->Controls->Add(this->userProfileImg);
 			this->Controls->Add(this->menuStrip1);
-			this->Controls->Add(this->usersTbl);
+			this->Controls->Add(this->panel1);
 			this->Name = L"UserList";
 			this->Text = L"UserList";
 			this->Load += gcnew System::EventHandler(this, &UserList::UserList_Load);
@@ -277,6 +346,11 @@ namespace System {
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersTbl))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->userProfileImg))->EndInit();
+			this->panel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->nameIcon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->idNumIcon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->emailIcon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->accTypeIcon))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -285,6 +359,8 @@ namespace System {
 
 	private: MySqlConnection^ conn = gcnew MySqlConnection();
 	private: User^ user = gcnew User();
+
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
 	private: System::Void profileMStrip_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -298,7 +374,11 @@ namespace System {
 	
 	private: System::Void usersTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
 
 	void searchUser(User^ user);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 };
 }

@@ -10,31 +10,14 @@ namespace System {
 	using namespace System::Drawing;
 	using namespace MySql::Data::MySqlClient;
 
-	/// <summary>
-	/// Summary for ForgetPass
-	/// </summary>
 	public ref class ForgetPass : public System::Windows::Forms::Form
 	{
 	public:
-		ForgetPass(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		ForgetPass(void);
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~ForgetPass()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+		~ForgetPass();
+
 	private: System::Windows::Forms::Button^ findAccBtn;
 	protected:
 
@@ -68,13 +51,12 @@ namespace System {
 			// 
 			// findAccBtn
 			// 
-			this->findAccBtn->BackColor = System::Drawing::Color::MediumBlue;
+			this->findAccBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->findAccBtn->FlatAppearance->BorderSize = 0;
-			this->findAccBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->findAccBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->findAccBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->findAccBtn->Location = System::Drawing::Point(57, 200);
+			this->findAccBtn->Location = System::Drawing::Point(57, 181);
 			this->findAccBtn->Name = L"findAccBtn";
 			this->findAccBtn->Size = System::Drawing::Size(352, 40);
 			this->findAccBtn->TabIndex = 31;
@@ -84,22 +66,22 @@ namespace System {
 			// 
 			// emailTxtBox
 			// 
-			this->emailTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->emailTxtBox->Location = System::Drawing::Point(57, 144);
 			this->emailTxtBox->Name = L"emailTxtBox";
 			this->emailTxtBox->Size = System::Drawing::Size(352, 31);
 			this->emailTxtBox->TabIndex = 24;
+			this->emailTxtBox->TextChanged += gcnew System::EventHandler(this, &ForgetPass::emailTxtBox_TextChanged);
 			// 
 			// emailLbl
 			// 
 			this->emailLbl->AutoSize = true;
-			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->emailLbl->Location = System::Drawing::Point(53, 120);
 			this->emailLbl->Name = L"emailLbl";
-			this->emailLbl->Size = System::Drawing::Size(43, 17);
+			this->emailLbl->Size = System::Drawing::Size(49, 19);
 			this->emailLbl->TabIndex = 23;
 			this->emailLbl->Text = L"Email:";
 			// 
@@ -117,14 +99,15 @@ namespace System {
 			// captionTxtBox
 			// 
 			this->captionTxtBox->AccessibleRole = System::Windows::Forms::AccessibleRole::None;
+			this->captionTxtBox->AutoEllipsis = true;
 			this->captionTxtBox->AutoSize = true;
-			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->captionTxtBox->Location = System::Drawing::Point(54, 87);
 			this->captionTxtBox->Name = L"captionTxtBox";
-			this->captionTxtBox->Size = System::Drawing::Size(335, 17);
+			this->captionTxtBox->Size = System::Drawing::Size(364, 19);
 			this->captionTxtBox->TabIndex = 32;
 			this->captionTxtBox->Text = L"Enter your email and we\'ll check for it in our database\r\n";
 			// 
@@ -132,8 +115,7 @@ namespace System {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(479, 304);
-			this->ControlBox = false;
+			this->ClientSize = System::Drawing::Size(471, 263);
 			this->Controls->Add(this->captionTxtBox);
 			this->Controls->Add(this->findAccBtn);
 			this->Controls->Add(this->emailTxtBox);
@@ -141,18 +123,23 @@ namespace System {
 			this->Controls->Add(this->fpassLbl);
 			this->Name = L"ForgetPass";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"ForgetPass";
+			this->Text = L"CLASSBOOK";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+		private: MySqlConnection^ conn = gcnew MySqlConnection();
+		private: String^ tempEmail;
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS------------------------------------------------------------------------*/
 
+	private: System::Void emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
+	
 	// Find Account Page
 	private: System::Void findAccBtn_Click(System::Object^ sender, System::EventArgs^ e);
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 };
 }

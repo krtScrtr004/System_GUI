@@ -22,6 +22,8 @@ namespace System {
 		}
 	}
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+
 	System::Void UserList::UserList_Load(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			String^ query = "SELECT `LAST NAME`, `FIRST NAME`, `ID NUMBER`, EMAIL, `ACCOUNT TYPE` FROM userInfo";
@@ -75,11 +77,11 @@ namespace System {
 		String^ selectedId = usersTbl->Rows[usersTbl->CurrentCell->RowIndex]->Cells[2]->Value->ToString();
 		
 		User^ currentUser = gcnew User();
-		user->setId(selectedId);
+		currentUser->setId(selectedId);
 		
 		searchUser(currentUser);
 
-		if (user->getProfileImg() != nullptr) {
+		if (currentUser->getProfileImg() != nullptr) {
 			MemoryStream^ ms = gcnew MemoryStream(currentUser->getProfileImg());
 			Image^ img = Image::FromStream(ms);
 			userProfileImg->Image = img;
@@ -90,6 +92,8 @@ namespace System {
 		emailDataLbl->Text = currentUser->getEmail();
 		accTypeDataLbl->Text = currentUser->getAccType() + " Type";
 	}
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
 
 	void UserList::searchUser(User^ currentUser) {
 		try {
@@ -116,4 +120,7 @@ namespace System {
 			MessageBox::Show(e->Message);
 		}
 	}
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 }

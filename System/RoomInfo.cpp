@@ -8,7 +8,7 @@ namespace System {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
-
+	 
 	RoomInfo::~RoomInfo()
 	{
 		mySqlDeconn(conn);

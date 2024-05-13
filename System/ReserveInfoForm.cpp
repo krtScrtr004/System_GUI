@@ -101,13 +101,14 @@ namespace System {
 				this->Close();
 			}
 
-			String^ insertQuery = "INSERT INTO reservation (`USER ID`, `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`) VALUES (@tempUserId1, @tempRoomCode1, @tempDate1, @tempInTime1, @tempOutTime1)";
+			String^ insertQuery = "INSERT INTO reservation (`USER ID`, `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`, STATUS) VALUES (@tempUserId1, @tempRoomCode1, @tempDate1, @tempInTime1, @tempOutTime1, @tempStatus1)";
 			MySqlCommand^ cmdInsert = gcnew MySqlCommand(insertQuery, conn);
 			cmdInsert->Parameters->AddWithValue("@tempUserId1", user->getId());
 			cmdInsert->Parameters->AddWithValue("@tempRoomCode1", room->getRoomCode());
 			cmdInsert->Parameters->AddWithValue("@tempDate1", tempDate);
 			cmdInsert->Parameters->AddWithValue("@tempInTime1", tempTime);
 			cmdInsert->Parameters->AddWithValue("@tempOutTime1", outTime);
+			cmdInsert->Parameters->AddWithValue("@tempStatus1", true);
 
 			cmdInsert->ExecuteNonQuery();
 
