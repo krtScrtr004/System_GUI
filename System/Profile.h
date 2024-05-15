@@ -54,6 +54,10 @@ namespace System {
 
 
 
+
+
+
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -68,6 +72,11 @@ namespace System {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->profileMStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->opt1MStrip = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -95,7 +104,8 @@ namespace System {
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->menuStrip1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->menuStrip1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
@@ -106,50 +116,53 @@ namespace System {
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(9, 2, 0, 2);
-			this->menuStrip1->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
 			this->menuStrip1->Size = System::Drawing::Size(830, 27);
 			this->menuStrip1->TabIndex = 3;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// profileMStrip
 			// 
-			this->profileMStrip->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->profileMStrip->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->profileMStrip->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Text;
-			this->profileMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->profileMStrip->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->profileMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->profileMStrip->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->profileMStrip->Name = L"profileMStrip";
-			this->profileMStrip->Size = System::Drawing::Size(67, 23);
+			this->profileMStrip->Size = System::Drawing::Size(79, 23);
 			this->profileMStrip->Text = L"Profile";
 			this->profileMStrip->Click += gcnew System::EventHandler(this, &Profile::profileMStrip_Click);
 			// 
 			// opt1MStrip
 			// 
-			this->opt1MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt1MStrip->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->opt1MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt1MStrip->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->opt1MStrip->Name = L"opt1MStrip";
-			this->opt1MStrip->Size = System::Drawing::Size(74, 23);
+			this->opt1MStrip->Size = System::Drawing::Size(76, 23);
 			this->opt1MStrip->Text = L"Reserve";
 			this->opt1MStrip->Click += gcnew System::EventHandler(this, &Profile::opt1MStrip_Click);
 			// 
 			// opt2MStrip
 			// 
-			this->opt2MStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->opt2MStrip->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->opt2MStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->opt2MStrip->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->opt2MStrip->Name = L"opt2MStrip";
-			this->opt2MStrip->Size = System::Drawing::Size(73, 23);
+			this->opt2MStrip->Size = System::Drawing::Size(76, 23);
 			this->opt2MStrip->Text = L"Receipt";
 			this->opt2MStrip->Click += gcnew System::EventHandler(this, &Profile::opt2MStrip_Click);
 			// 
 			// exitMStrip
 			// 
-			this->exitMStrip->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->exitMStrip->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->exitMStrip->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->exitMStrip->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->exitMStrip->Name = L"exitMStrip";
-			this->exitMStrip->Size = System::Drawing::Size(47, 23);
+			this->exitMStrip->Size = System::Drawing::Size(52, 23);
 			this->exitMStrip->Text = L"Exit";
 			this->exitMStrip->Click += gcnew System::EventHandler(this, &Profile::exitMStrip_Click);
 			// 
@@ -157,12 +170,14 @@ namespace System {
 			// 
 			this->nameLbl->AutoEllipsis = true;
 			this->nameLbl->AutoSize = true;
-			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->nameLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->nameLbl->Location = System::Drawing::Point(38, 317);
+			this->nameLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->nameLbl->Location = System::Drawing::Point(32, 317);
 			this->nameLbl->Name = L"nameLbl";
 			this->nameLbl->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->nameLbl->Size = System::Drawing::Size(225, 34);
+			this->nameLbl->Size = System::Drawing::Size(251, 35);
 			this->nameLbl->TabIndex = 14;
 			this->nameLbl->Text = L"Sample, Sample";
 			// 
@@ -171,12 +186,13 @@ namespace System {
 			this->idNumLbl->AutoSize = true;
 			this->idNumLbl->BackColor = System::Drawing::Color::Transparent;
 			this->idNumLbl->Cursor = System::Windows::Forms::Cursors::Default;
-			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idNumLbl->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->idNumLbl->Location = System::Drawing::Point(77, 396);
+			this->idNumLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->idNumLbl->Location = System::Drawing::Point(71, 392);
 			this->idNumLbl->Name = L"idNumLbl";
-			this->idNumLbl->Size = System::Drawing::Size(126, 20);
+			this->idNumLbl->Size = System::Drawing::Size(109, 24);
 			this->idNumLbl->TabIndex = 15;
 			this->idNumLbl->Text = L"2023 - 666666";
 			// 
@@ -185,12 +201,13 @@ namespace System {
 			this->accTypeLbl->AutoSize = true;
 			this->accTypeLbl->BackColor = System::Drawing::Color::Transparent;
 			this->accTypeLbl->Cursor = System::Windows::Forms::Cursors::Default;
-			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accTypeLbl->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->accTypeLbl->Location = System::Drawing::Point(77, 433);
+			this->accTypeLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->accTypeLbl->Location = System::Drawing::Point(71, 426);
 			this->accTypeLbl->Name = L"accTypeLbl";
-			this->accTypeLbl->Size = System::Drawing::Size(130, 20);
+			this->accTypeLbl->Size = System::Drawing::Size(155, 24);
 			this->accTypeLbl->TabIndex = 16;
 			this->accTypeLbl->Text = L"STUDENT TYPE";
 			this->accTypeLbl->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -200,23 +217,26 @@ namespace System {
 			this->emailLbl->AutoEllipsis = true;
 			this->emailLbl->AutoSize = true;
 			this->emailLbl->BackColor = System::Drawing::Color::Transparent;
-			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailLbl->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->emailLbl->Location = System::Drawing::Point(77, 357);
+			this->emailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->emailLbl->Location = System::Drawing::Point(71, 357);
 			this->emailLbl->Name = L"emailLbl";
-			this->emailLbl->Size = System::Drawing::Size(220, 22);
+			this->emailLbl->Size = System::Drawing::Size(216, 24);
 			this->emailLbl->TabIndex = 17;
 			this->emailLbl->Text = L"sampleemail@rtu.edu.ph";
 			// 
 			// editBtn
 			// 
-			this->editBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->editBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
 			this->editBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->editBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->editBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->editBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->editBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->editBtn->Location = System::Drawing::Point(42, 470);
+			this->editBtn->Location = System::Drawing::Point(36, 470);
 			this->editBtn->Name = L"editBtn";
 			this->editBtn->Size = System::Drawing::Size(262, 40);
 			this->editBtn->TabIndex = 20;
@@ -226,9 +246,12 @@ namespace System {
 			// 
 			// profileImg
 			// 
+			this->profileImg->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->profileImg->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"profileImg.BackgroundImage")));
+			this->profileImg->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->profileImg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"profileImg.Image")));
-			this->profileImg->Location = System::Drawing::Point(42, 55);
+			this->profileImg->Location = System::Drawing::Point(36, 55);
 			this->profileImg->Name = L"profileImg";
 			this->profileImg->Size = System::Drawing::Size(253, 245);
 			this->profileImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -238,7 +261,7 @@ namespace System {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(42, 354);
+			this->pictureBox1->Location = System::Drawing::Point(36, 354);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(29, 27);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -248,7 +271,7 @@ namespace System {
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(42, 426);
+			this->pictureBox2->Location = System::Drawing::Point(36, 426);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(29, 27);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -258,7 +281,7 @@ namespace System {
 			// pictureBox3
 			// 
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(42, 389);
+			this->pictureBox3->Location = System::Drawing::Point(36, 389);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(29, 27);
 			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -271,25 +294,98 @@ namespace System {
 			this->panel1->Controls->Add(this->historyTbl);
 			this->panel1->Location = System::Drawing::Point(324, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(519, 569);
+			this->panel1->Size = System::Drawing::Size(519, 539);
 			this->panel1->TabIndex = 27;
 			// 
 			// historyTbl
 			// 
+			this->historyTbl->AllowUserToAddRows = false;
+			this->historyTbl->AllowUserToDeleteRows = false;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)),
+				static_cast<System::Int32>(static_cast<System::Byte>(186)), static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)),
+				static_cast<System::Int32>(static_cast<System::Byte>(124)), static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->historyTbl->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this->historyTbl->BackgroundColor = System::Drawing::Color::WhiteSmoke;
+			this->historyTbl->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)),
+				static_cast<System::Int32>(static_cast<System::Byte>(186)), static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)),
+				static_cast<System::Int32>(static_cast<System::Byte>(124)), static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->historyTbl->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->historyTbl->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->historyTbl->Location = System::Drawing::Point(37, 55);
+			this->historyTbl->Cursor = System::Windows::Forms::Cursors::Default;
+			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)),
+				static_cast<System::Int32>(static_cast<System::Byte>(186)), static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)),
+				static_cast<System::Int32>(static_cast<System::Byte>(124)), static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->historyTbl->DefaultCellStyle = dataGridViewCellStyle3;
+			this->historyTbl->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			this->historyTbl->Location = System::Drawing::Point(48, 30);
 			this->historyTbl->Name = L"historyTbl";
+			this->historyTbl->ReadOnly = true;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)),
+				static_cast<System::Int32>(static_cast<System::Byte>(186)), static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)),
+				static_cast<System::Int32>(static_cast<System::Byte>(124)), static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->historyTbl->RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this->historyTbl->RowHeadersWidth = 51;
+			dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)),
+				static_cast<System::Int32>(static_cast<System::Byte>(186)), static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)),
+				static_cast<System::Int32>(static_cast<System::Byte>(124)), static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->historyTbl->RowsDefaultCellStyle = dataGridViewCellStyle5;
 			this->historyTbl->RowTemplate->Height = 24;
-			this->historyTbl->Size = System::Drawing::Size(441, 455);
-			this->historyTbl->TabIndex = 2;
+			this->historyTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->historyTbl->Size = System::Drawing::Size(422, 480);
+			this->historyTbl->TabIndex = 4;
+			this->historyTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Profile::historyTbl_CellContentClick);
 			// 
 			// Profile
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->ClientSize = System::Drawing::Size(830, 534);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
@@ -300,9 +396,10 @@ namespace System {
 			this->Controls->Add(this->idNumLbl);
 			this->Controls->Add(this->nameLbl);
 			this->Controls->Add(this->menuStrip1);
-			this->Controls->Add(this->panel1);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Profile";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -338,6 +435,8 @@ namespace System {
 
 	// Exit Menu
 	private: System::Void exitMStrip_Click(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void historyTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 
 	// Edit Button
 	private: System::Void editBtn_Click(System::Object^ sender, System::EventArgs^ e);

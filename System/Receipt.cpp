@@ -52,12 +52,13 @@ namespace System {
         if (tempFeedback->Length < 1) MessageBox::Show("Warning: Feedback length is less than minimum (1)!");
         if (tempFeedback->Length > 300) MessageBox::Show("Warning: Feedback length exceed maximum (300)!");
 
-        String^ query = "INSERT INTO feedback (`USER ID`, FEEDBACK) VALUES (@tempUserId, @tempFeedback)";
-        MySqlCommand^ command = gcnew MySqlCommand(query, conn);
-        command->Parameters->AddWithValue("@tempUserId", user->getId());
-        command->Parameters->AddWithValue("@tempFeedback", tempFeedback);
-
         try {
+            String^ query = "INSERT INTO feedback (`USER ID`, `ROOM CODE`, FEEDBACK) VALUES (@tempUserId, @tempRoomCode, @tempFeedback)";
+            MySqlCommand^ command = gcnew MySqlCommand(query, conn);
+            command->Parameters->AddWithValue("@tempUserId", user->getId());
+            command->Parameters->AddWithValue("@tempRoomCode", rcodeTxtBox->Text);
+            command->Parameters->AddWithValue("@tempFeedback", tempFeedback);
+
             command->ExecuteNonQuery();
             MessageBox::Show("Dear " + user->getFname() + ", Thank you for your feedback! We truly value your input and take it seriously. Your input is essential for us to continue improving and delivering the best possible experience to our users. Rest assured that we will carefully review your feedback and take necessary actions to address any issues and enhance our services.");
         }
@@ -78,10 +79,10 @@ namespace System {
 
             MySqlDataReader^ readerReservation = cmdReservation->ExecuteReader();
             if (readerReservation->Read()) {
-                rcodeTxtBox->Text = readerReservation["ROOM CODE"]->ToString();
-                dateTxtBox->Text = readerReservation["dateOnly"]->ToString();
-                inTimeTxtBox->Text = readerReservation["IN TIME"]->ToString();
-                outTimeTxtBox->Text = readerReservation["OUT TIME"]->ToString();
+                rcodeTxtBox->Text = (readerReservation["ROOM CODE"]->ToString())->ToUpper();
+                dateTxtBox->Text = (readerReservation["dateOnly"]->ToString())->ToUpper();
+                inTimeTxtBox->Text = (readerReservation["IN TIME"]->ToString())->ToUpper();
+                outTimeTxtBox->Text = (readerReservation["OUT TIME"]->ToString())->ToUpper();
 
                 readerReservation->Close();
                 fetchRoomImg();

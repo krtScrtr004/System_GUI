@@ -47,6 +47,7 @@ namespace System {
 	private: System::Windows::Forms::PictureBox^ statusIcon;
 	private: System::Windows::Forms::PictureBox^ bldgIcon;
 	private: System::Windows::Forms::PictureBox^ rcodeImg;
+	private: System::Windows::Forms::Panel^ panel1;
 
 
 	private:
@@ -88,6 +89,7 @@ namespace System {
 			this->statusIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->bldgIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->rcodeImg = (gcnew System::Windows::Forms::PictureBox());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->acAvailabilityIcon))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tvAvailabilityIcon))->BeginInit();
@@ -102,7 +104,7 @@ namespace System {
 			// 
 			this->roomImg->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"roomImg.BackgroundImage")));
 			this->roomImg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"roomImg.Image")));
-			this->roomImg->Location = System::Drawing::Point(38, 46);
+			this->roomImg->Location = System::Drawing::Point(34, 83);
 			this->roomImg->Name = L"roomImg";
 			this->roomImg->Size = System::Drawing::Size(296, 293);
 			this->roomImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -112,72 +114,84 @@ namespace System {
 			// roomNameLbl
 			// 
 			this->roomNameLbl->AutoSize = true;
-			this->roomNameLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->roomNameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomNameLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->roomNameLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomNameLbl->Location = System::Drawing::Point(402, 92);
+			this->roomNameLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->roomNameLbl->Location = System::Drawing::Point(452, 90);
 			this->roomNameLbl->Name = L"roomNameLbl";
-			this->roomNameLbl->Size = System::Drawing::Size(124, 22);
+			this->roomNameLbl->Size = System::Drawing::Size(156, 27);
 			this->roomNameLbl->TabIndex = 46;
 			this->roomNameLbl->Text = L"ROOM CODE:";
 			// 
 			// bldLbl
 			// 
 			this->bldLbl->AutoSize = true;
-			this->bldLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->bldLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->bldLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->bldLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bldLbl->Location = System::Drawing::Point(402, 132);
+			this->bldLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->bldLbl->Location = System::Drawing::Point(452, 130);
 			this->bldLbl->Name = L"bldLbl";
-			this->bldLbl->Size = System::Drawing::Size(97, 22);
+			this->bldLbl->Size = System::Drawing::Size(127, 27);
 			this->bldLbl->TabIndex = 47;
 			this->bldLbl->Text = L"BUILDING:";
 			// 
 			// boardTypeLbl
 			// 
 			this->boardTypeLbl->AutoSize = true;
-			this->boardTypeLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->boardTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->boardTypeLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->boardTypeLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->boardTypeLbl->Location = System::Drawing::Point(402, 272);
+			this->boardTypeLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->boardTypeLbl->Location = System::Drawing::Point(452, 270);
 			this->boardTypeLbl->Name = L"boardTypeLbl";
-			this->boardTypeLbl->Size = System::Drawing::Size(122, 22);
+			this->boardTypeLbl->Size = System::Drawing::Size(156, 27);
 			this->boardTypeLbl->TabIndex = 48;
 			this->boardTypeLbl->Text = L"BOARD TYPE:";
 			// 
 			// tvAvailLbl
 			// 
 			this->tvAvailLbl->AutoSize = true;
-			this->tvAvailLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->tvAvailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tvAvailLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->tvAvailLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tvAvailLbl->Location = System::Drawing::Point(402, 317);
+			this->tvAvailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->tvAvailLbl->Location = System::Drawing::Point(452, 315);
 			this->tvAvailLbl->Name = L"tvAvailLbl";
-			this->tvAvailLbl->Size = System::Drawing::Size(113, 22);
+			this->tvAvailLbl->Size = System::Drawing::Size(150, 27);
 			this->tvAvailLbl->TabIndex = 49;
 			this->tvAvailLbl->Text = L"TELEVISION:";
 			// 
 			// acAvailLbl
 			// 
 			this->acAvailLbl->AutoSize = true;
-			this->acAvailLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->acAvailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->acAvailLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->acAvailLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->acAvailLbl->Location = System::Drawing::Point(402, 364);
+			this->acAvailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->acAvailLbl->Location = System::Drawing::Point(452, 362);
 			this->acAvailLbl->Name = L"acAvailLbl";
-			this->acAvailLbl->Size = System::Drawing::Size(180, 22);
+			this->acAvailLbl->Size = System::Drawing::Size(235, 27);
 			this->acAvailLbl->TabIndex = 50;
 			this->acAvailLbl->Text = L"AIR CONDITIONING:";
 			// 
 			// editInfoBtn
 			// 
-			this->editInfoBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->editInfoBtn->Font = (gcnew System::Drawing::Font(L"Impact", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->editInfoBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			this->editInfoBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->editInfoBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->editInfoBtn->ForeColor = System::Drawing::SystemColors::Control;
-			this->editInfoBtn->Location = System::Drawing::Point(38, 413);
+			this->editInfoBtn->Location = System::Drawing::Point(415, 411);
 			this->editInfoBtn->Name = L"editInfoBtn";
-			this->editInfoBtn->Size = System::Drawing::Size(799, 42);
+			this->editInfoBtn->Size = System::Drawing::Size(472, 42);
 			this->editInfoBtn->TabIndex = 57;
 			this->editInfoBtn->Text = L"EDIT INFO";
 			this->editInfoBtn->UseVisualStyleBackColor = false;
@@ -186,35 +200,45 @@ namespace System {
 			// roomInfoLbl
 			// 
 			this->roomInfoLbl->AutoSize = true;
-			this->roomInfoLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->roomInfoLbl->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomInfoLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->roomInfoLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomInfoLbl->Location = System::Drawing::Point(360, 34);
+			this->roomInfoLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->roomInfoLbl->Location = System::Drawing::Point(410, 32);
 			this->roomInfoLbl->Name = L"roomInfoLbl";
-			this->roomInfoLbl->Size = System::Drawing::Size(206, 29);
+			this->roomInfoLbl->Size = System::Drawing::Size(258, 30);
 			this->roomInfoLbl->TabIndex = 51;
 			this->roomInfoLbl->Text = L"ROOM INFORMATION:";
 			// 
 			// rcodeTxtBox
 			// 
-			this->rcodeTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->rcodeTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->rcodeTxtBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->rcodeTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->rcodeTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->rcodeTxtBox->Location = System::Drawing::Point(602, 83);
+			this->rcodeTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->rcodeTxtBox->Location = System::Drawing::Point(692, 81);
+			this->rcodeTxtBox->Multiline = true;
 			this->rcodeTxtBox->Name = L"rcodeTxtBox";
-			this->rcodeTxtBox->Size = System::Drawing::Size(235, 31);
+			this->rcodeTxtBox->Size = System::Drawing::Size(195, 24);
 			this->rcodeTxtBox->TabIndex = 58;
 			this->rcodeTxtBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->rcodeTxtBox->TextChanged += gcnew System::EventHandler(this, &RoomInfo::rcodeTxtBox_TextChanged);
 			// 
 			// buildingTxtBox
 			// 
-			this->buildingTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->buildingTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buildingTxtBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->buildingTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->buildingTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->buildingTxtBox->Location = System::Drawing::Point(602, 129);
+			this->buildingTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->buildingTxtBox->Location = System::Drawing::Point(692, 127);
+			this->buildingTxtBox->Multiline = true;
 			this->buildingTxtBox->Name = L"buildingTxtBox";
-			this->buildingTxtBox->Size = System::Drawing::Size(235, 31);
+			this->buildingTxtBox->Size = System::Drawing::Size(195, 24);
 			this->buildingTxtBox->TabIndex = 59;
 			this->buildingTxtBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->buildingTxtBox->TextChanged += gcnew System::EventHandler(this, &RoomInfo::buildingTxtBox_TextChanged);
@@ -222,74 +246,86 @@ namespace System {
 			// roomTypeLbll
 			// 
 			this->roomTypeLbll->AutoSize = true;
-			this->roomTypeLbll->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->roomTypeLbll->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomTypeLbll->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->roomTypeLbll->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomTypeLbll->Location = System::Drawing::Point(402, 227);
+			this->roomTypeLbll->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->roomTypeLbll->Location = System::Drawing::Point(452, 225);
 			this->roomTypeLbll->Name = L"roomTypeLbll";
-			this->roomTypeLbll->Size = System::Drawing::Size(117, 22);
+			this->roomTypeLbll->Size = System::Drawing::Size(146, 27);
 			this->roomTypeLbll->TabIndex = 63;
 			this->roomTypeLbll->Text = L"ROOM TYPE:";
 			// 
 			// roomTypeCBox
 			// 
-			this->roomTypeCBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->roomTypeCBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomTypeCBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->roomTypeCBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->roomTypeCBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->roomTypeCBox->FormattingEnabled = true;
 			this->roomTypeCBox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Ckassroom", L"Laboratory" });
-			this->roomTypeCBox->Location = System::Drawing::Point(602, 220);
+			this->roomTypeCBox->Location = System::Drawing::Point(692, 218);
 			this->roomTypeCBox->Name = L"roomTypeCBox";
-			this->roomTypeCBox->Size = System::Drawing::Size(235, 29);
+			this->roomTypeCBox->Size = System::Drawing::Size(195, 32);
 			this->roomTypeCBox->TabIndex = 65;
 			this->roomTypeCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &RoomInfo::roomTypeCBox_SelectedIndexChanged);
 			// 
 			// boardTypeCBox
 			// 
-			this->boardTypeCBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->boardTypeCBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->boardTypeCBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->boardTypeCBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->boardTypeCBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->boardTypeCBox->FormattingEnabled = true;
 			this->boardTypeCBox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Whiteboard", L"Blackboard" });
-			this->boardTypeCBox->Location = System::Drawing::Point(602, 265);
+			this->boardTypeCBox->Location = System::Drawing::Point(692, 263);
 			this->boardTypeCBox->Name = L"boardTypeCBox";
-			this->boardTypeCBox->Size = System::Drawing::Size(235, 29);
+			this->boardTypeCBox->Size = System::Drawing::Size(195, 32);
 			this->boardTypeCBox->TabIndex = 66;
 			this->boardTypeCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &RoomInfo::boardTypeCBox_SelectedIndexChanged);
 			// 
 			// tvCBox
 			// 
-			this->tvCBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->tvCBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tvCBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->tvCBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->tvCBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->tvCBox->FormattingEnabled = true;
 			this->tvCBox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Available", L"Not Available" });
-			this->tvCBox->Location = System::Drawing::Point(602, 310);
+			this->tvCBox->Location = System::Drawing::Point(692, 308);
 			this->tvCBox->Name = L"tvCBox";
-			this->tvCBox->Size = System::Drawing::Size(235, 29);
+			this->tvCBox->Size = System::Drawing::Size(195, 32);
 			this->tvCBox->TabIndex = 67;
 			this->tvCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &RoomInfo::tvCBox_SelectedIndexChanged);
 			// 
 			// acCBox
 			// 
-			this->acCBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->acCBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->acCBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->acCBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->acCBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->acCBox->FormattingEnabled = true;
 			this->acCBox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Available\t", L"Not Available" });
-			this->acCBox->Location = System::Drawing::Point(602, 357);
+			this->acCBox->Location = System::Drawing::Point(692, 355);
 			this->acCBox->Name = L"acCBox";
-			this->acCBox->Size = System::Drawing::Size(235, 29);
+			this->acCBox->Size = System::Drawing::Size(195, 32);
 			this->acCBox->TabIndex = 68;
 			this->acCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &RoomInfo::acCBox_SelectedIndexChanged);
 			// 
 			// changeImgBtn
 			// 
-			this->changeImgBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
-			this->changeImgBtn->Font = (gcnew System::Drawing::Font(L"Impact", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->changeImgBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
+			this->changeImgBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->changeImgBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->changeImgBtn->ForeColor = System::Drawing::SystemColors::Control;
-			this->changeImgBtn->Location = System::Drawing::Point(38, 355);
+			this->changeImgBtn->Location = System::Drawing::Point(34, 413);
 			this->changeImgBtn->Name = L"changeImgBtn";
 			this->changeImgBtn->Size = System::Drawing::Size(296, 39);
 			this->changeImgBtn->TabIndex = 69;
@@ -301,33 +337,37 @@ namespace System {
 			// statusLbl
 			// 
 			this->statusLbl->AutoSize = true;
-			this->statusLbl->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->statusLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->statusLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->statusLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->statusLbl->Location = System::Drawing::Point(402, 182);
+			this->statusLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->statusLbl->Location = System::Drawing::Point(452, 180);
 			this->statusLbl->Name = L"statusLbl";
-			this->statusLbl->Size = System::Drawing::Size(79, 22);
+			this->statusLbl->Size = System::Drawing::Size(103, 27);
 			this->statusLbl->TabIndex = 70;
 			this->statusLbl->Text = L"STATUS:";
 			// 
 			// statusCBox
 			// 
-			this->statusCBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->statusCBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->statusCBox->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->statusCBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->statusCBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->statusCBox->FormattingEnabled = true;
 			this->statusCBox->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Available", L"Not Available" });
-			this->statusCBox->Location = System::Drawing::Point(602, 175);
+			this->statusCBox->Location = System::Drawing::Point(692, 173);
 			this->statusCBox->Name = L"statusCBox";
-			this->statusCBox->Size = System::Drawing::Size(235, 29);
+			this->statusCBox->Size = System::Drawing::Size(195, 32);
 			this->statusCBox->TabIndex = 71;
 			this->statusCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &RoomInfo::statusCBox_SelectedIndexChanged);
 			// 
 			// acAvailabilityIcon
 			// 
-			this->acAvailabilityIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->acAvailabilityIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->acAvailabilityIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"acAvailabilityIcon.Image")));
-			this->acAvailabilityIcon->Location = System::Drawing::Point(365, 364);
+			this->acAvailabilityIcon->Location = System::Drawing::Point(415, 362);
 			this->acAvailabilityIcon->Name = L"acAvailabilityIcon";
 			this->acAvailabilityIcon->Size = System::Drawing::Size(31, 22);
 			this->acAvailabilityIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -336,9 +376,9 @@ namespace System {
 			// 
 			// tvAvailabilityIcon
 			// 
-			this->tvAvailabilityIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->tvAvailabilityIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->tvAvailabilityIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"tvAvailabilityIcon.Image")));
-			this->tvAvailabilityIcon->Location = System::Drawing::Point(365, 317);
+			this->tvAvailabilityIcon->Location = System::Drawing::Point(415, 315);
 			this->tvAvailabilityIcon->Name = L"tvAvailabilityIcon";
 			this->tvAvailabilityIcon->Size = System::Drawing::Size(31, 22);
 			this->tvAvailabilityIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -347,9 +387,9 @@ namespace System {
 			// 
 			// boardTypeIcon
 			// 
-			this->boardTypeIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->boardTypeIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->boardTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"boardTypeIcon.Image")));
-			this->boardTypeIcon->Location = System::Drawing::Point(365, 272);
+			this->boardTypeIcon->Location = System::Drawing::Point(415, 270);
 			this->boardTypeIcon->Name = L"boardTypeIcon";
 			this->boardTypeIcon->Size = System::Drawing::Size(31, 22);
 			this->boardTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -358,9 +398,9 @@ namespace System {
 			// 
 			// roomTypeIcon
 			// 
-			this->roomTypeIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->roomTypeIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->roomTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"roomTypeIcon.Image")));
-			this->roomTypeIcon->Location = System::Drawing::Point(365, 227);
+			this->roomTypeIcon->Location = System::Drawing::Point(415, 225);
 			this->roomTypeIcon->Name = L"roomTypeIcon";
 			this->roomTypeIcon->Size = System::Drawing::Size(31, 22);
 			this->roomTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -369,9 +409,9 @@ namespace System {
 			// 
 			// statusIcon
 			// 
-			this->statusIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->statusIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->statusIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"statusIcon.Image")));
-			this->statusIcon->Location = System::Drawing::Point(365, 182);
+			this->statusIcon->Location = System::Drawing::Point(415, 180);
 			this->statusIcon->Name = L"statusIcon";
 			this->statusIcon->Size = System::Drawing::Size(31, 22);
 			this->statusIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -380,9 +420,9 @@ namespace System {
 			// 
 			// bldgIcon
 			// 
-			this->bldgIcon->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->bldgIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->bldgIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"bldgIcon.Image")));
-			this->bldgIcon->Location = System::Drawing::Point(365, 132);
+			this->bldgIcon->Location = System::Drawing::Point(415, 130);
 			this->bldgIcon->Name = L"bldgIcon";
 			this->bldgIcon->Size = System::Drawing::Size(31, 22);
 			this->bldgIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -391,21 +431,30 @@ namespace System {
 			// 
 			// rcodeImg
 			// 
-			this->rcodeImg->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->rcodeImg->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->rcodeImg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"rcodeImg.Image")));
-			this->rcodeImg->Location = System::Drawing::Point(365, 92);
+			this->rcodeImg->Location = System::Drawing::Point(415, 90);
 			this->rcodeImg->Name = L"rcodeImg";
 			this->rcodeImg->Size = System::Drawing::Size(31, 22);
 			this->rcodeImg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->rcodeImg->TabIndex = 73;
 			this->rcodeImg->TabStop = false;
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			this->panel1->Location = System::Drawing::Point(-5, -2);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(378, 520);
+			this->panel1->TabIndex = 80;
+			// 
 			// RoomInfo
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->ClientSize = System::Drawing::Size(879, 488);
+			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->ClientSize = System::Drawing::Size(927, 485);
 			this->Controls->Add(this->acAvailabilityIcon);
 			this->Controls->Add(this->tvAvailabilityIcon);
 			this->Controls->Add(this->boardTypeIcon);
@@ -431,7 +480,9 @@ namespace System {
 			this->Controls->Add(this->bldLbl);
 			this->Controls->Add(this->roomNameLbl);
 			this->Controls->Add(this->roomImg);
+			this->Controls->Add(this->panel1);
 			this->Name = L"RoomInfo";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CLASSBOOK";
 			this->Load += gcnew System::EventHandler(this, &RoomInfo::RoomInfo_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomImg))->EndInit();

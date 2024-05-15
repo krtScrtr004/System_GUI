@@ -125,6 +125,7 @@
     <ClCompile Include="AddRoom.cpp" />
     <ClCompile Include="ChangePass.cpp" />
     <ClCompile Include="EditProfile.cpp" />
+    <ClCompile Include="Feedback.cpp" />
     <ClCompile Include="ForgetPass.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Profile.cpp" />
@@ -145,6 +146,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EditProfile.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Feedback.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ForgetPass.h">
@@ -187,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditProfile.resx">
       <DependentUpon>EditProfile.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feedback.resx">
+      <DependentUpon>Feedback.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetPass.resx">
       <DependentUpon>ForgetPass.h</DependentUpon>

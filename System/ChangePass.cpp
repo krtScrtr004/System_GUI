@@ -3,14 +3,12 @@
 
 namespace System {
 
-	ChangePass::ChangePass(String^ email) : tempEmail(email)
-	{
+	ChangePass::ChangePass(String^ email) : tempEmail(email) {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
 
-	ChangePass::~ChangePass()
-	{
+	ChangePass::~ChangePass() {
 		mySqlDeconn(conn);
 		if (components)
 		{
@@ -20,10 +18,12 @@ namespace System {
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// Update password text box to specified password
 	System::Void ChangePass::npassTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempPassword = npassTxtBox->Text;
 	}
 
+	// Update user's password to new password
 	System::Void ChangePass::npassBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			String^ query = "UPDATE userInfo SET EMAIL = @tempEmail";

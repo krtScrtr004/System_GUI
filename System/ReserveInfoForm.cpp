@@ -29,44 +29,12 @@ namespace System {
 			roomImg->Image = img;
 		}
 
-		roomCodeDataLbl->Text = room->getRoomCode();
-		bldDataLbl->Text = room->getBuilding();
-		boardTypeDataLbl->Text = room->getBoardType();
-		tvAvailDataLbl->Text = *(room->getTv()) ? "Available" : "Not Available";
-		acAvailDataLbl->Text = *(room->getAc()) ? "Available" : "Not Available";
-
-		if (user->getAccType() == "Admin") {
-
-		}
+		roomCodeDataLbl->Text = (room->getRoomCode())->ToUpper();
+		bldDataLbl->Text = (room->getBuilding())->ToUpper();
+		boardTypeDataLbl->Text = (room->getBoardType())->ToUpper();
+		tvAvailDataLbl->Text = *(room->getTv()) ? "AVAILABLE" : "NOT AVAILABLE";
+		acAvailDataLbl->Text = *(room->getAc()) ? "AVAILABLE" : "NOT AVAILABLE";
 	}
-
-	//System::Void ReserveInfoForm::roomImg_Click(System::Object^ sender, System::EventArgs^ e) {
-	//	OpenFileDialog^ ofd = gcnew OpenFileDialog;
-	//	ofd->Filter = "PNG Files *.png | *png | JPG Files *.jpg | *.jpg"; // Filters file type selection
-	//	if (ofd->ShowDialog() == Windows::Forms::DialogResult::OK)
-	//		tempImgLoc = ofd->FileName;
-
-	//	array<unsigned char>^ img = room->getImg();
-	//	if (!String::IsNullOrWhiteSpace(tempImgLoc)) {
-	//		try
-	//		{
-	//			FileStream^ fs = gcnew FileStream(tempImgLoc, FileMode::Open, FileAccess::Read);
-	//			BinaryReader^ br = gcnew BinaryReader(fs);
-	//			img = br->ReadBytes(fs->Length);
-
-	//			String^ query = "UPDATE room SET IMAGE = @tempImage";
-	//			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
-	//			command->Parameters->Add("@tempImage", MySqlDbType::Blob)->Value = img;
-	//			command->ExecuteNonQuery();
-	//		}
-	//		catch (Exception^ e)
-	//		{
-	//			MessageBox::Show(e->Message);
-	//		}
-
-	//		room->setImg(img);
-	//	}
-	//}
 
 	System::Void ReserveInfoForm::datePkr_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempDate = rmWhiteSpaces(datePkr->Text);		
@@ -83,9 +51,10 @@ namespace System {
 	// Submit Button
 	System::Void ReserveInfoForm::reserveBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!checkDateFormat()) {
-			MessageBox::Show("Warning: Invalid date format!");
 			this->Close();
+			return;
 		}
+		
 		if (!checkTimeFormat()) {
 			MessageBox::Show("Warning: Invalid time format!");
 			this->Close();
@@ -97,27 +66,11 @@ namespace System {
 
 		try {
 			if (checkIfReserved()) {
-				MessageBox::Show("This room is already reserved on" + tempDate + " at " + tempTime);
+				MessageBox::Show(String::Concat("This room is already reserved on" + tempDate + " at " + tempTime));
 				this->Close();
 			}
 
-			String^ insertQuery = "INSERT INTO reservation (`USER ID`, `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`, STATUS) VALUES (@tempUserId1, @tempRoomCode1, @tempDate1, @tempInTime1, @tempOutTime1, @tempStatus1)";
-			MySqlCommand^ cmdInsert = gcnew MySqlCommand(insertQuery, conn);
-			cmdInsert->Parameters->AddWithValue("@tempUserId1", user->getId());
-			cmdInsert->Parameters->AddWithValue("@tempRoomCode1", room->getRoomCode());
-			cmdInsert->Parameters->AddWithValue("@tempDate1", tempDate);
-			cmdInsert->Parameters->AddWithValue("@tempInTime1", tempTime);
-			cmdInsert->Parameters->AddWithValue("@tempOutTime1", outTime);
-			cmdInsert->Parameters->AddWithValue("@tempStatus1", true);
-
-			cmdInsert->ExecuteNonQuery();
-
-			String^ text = "Confirm reservation info?";
-			String^ header = "Reservation information confirmation";
-			if (confirmDialogue(text, header))
-				MessageBox::Show("Your reservation was successfully reserved!");
-			else
-				MessageBox::Show("Your reservation was not reserved!");
+			insertReservation(outTime);
 		}
 		catch (Exception^ e) {
 			MessageBox::Show(e->Message);
@@ -131,8 +84,37 @@ namespace System {
 	bool ReserveInfoForm::checkDateFormat(void) {
 		String^ dateFormat = "yyyy-MM-dd";
 		DateTime parsedDate;
+		// If invalid format
 		if (!DateTime::TryParseExact(tempDate, dateFormat, System::Globalization::CultureInfo::InvariantCulture, DateTimeStyles::None, parsedDate)) {
+			MessageBox::Show("Warning: Invalid date format!");
 			return false;
+		}
+
+		DateTime currentDate = DateTime::Now;
+		// If year is already passed
+		if (parsedDate.Year < currentDate.Year) {
+			MessageBox::Show("Warning: Specified year is invalid!");
+			return false;
+		}
+		else {
+			// If month is already passed OR month exceeeds 12th month
+			bool isMonthPassed = parsedDate.Month < currentDate.Month,
+				 isMonthExceed = parsedDate.Month > 12,
+				 isMonthSubceed = parsedDate.Month < 1;
+			if (isMonthPassed || isMonthExceed || isMonthSubceed) {
+				MessageBox::Show("Warning: Specified month is invalid");
+				return false;
+			}
+			else {
+				// If day is already passed OR day exceeds maximum OR day subceeds minimum
+				bool isDayPassed = parsedDate.Day < currentDate.Day,
+					isDayExceed = parsedDate.Day > 31,
+					isDaySubceed = parsedDate.Day < 1;
+				if (isDayExceed || isDayExceed || isDaySubceed) {
+					MessageBox::Show("Warning: Specified time is invalid!");
+					return false;
+				}
+			}
 		}
 
 		return true;
@@ -180,6 +162,7 @@ namespace System {
 		return outTime;
 	}
 
+	// Search whether the room is already reserved at the same date input
 	bool ReserveInfoForm::checkIfReserved(void) {
 		bool isReserved = false;
 
@@ -189,7 +172,6 @@ namespace System {
 		cmdSearch->Parameters->AddWithValue("@tempDate", tempDate);
 		cmdSearch->Parameters->AddWithValue("@tempInTime", tempTime);
 
-		// Seaech whether the room is already reserved at the same date input
 		MySqlDataReader^ reader = cmdSearch->ExecuteReader();
 		if (reader->HasRows) {
 			isReserved = true;;
@@ -197,6 +179,32 @@ namespace System {
 		reader->Close();
 
 		return isReserved;
+	}
+
+	// Insertion of user reservation
+	void ReserveInfoForm::insertReservation(String^ outTime) {
+		try {
+			String^ insertQuery = "INSERT INTO reservation (`USER ID`, `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`, STATUS) VALUES (@tempUserId1, @tempRoomCode1, @tempDate1, @tempInTime1, @tempOutTime1, @tempStatus1)";
+			MySqlCommand^ cmdInsert = gcnew MySqlCommand(insertQuery, conn);
+			cmdInsert->Parameters->AddWithValue("@tempUserId1", user->getId());
+			cmdInsert->Parameters->AddWithValue("@tempRoomCode1", room->getRoomCode());
+			cmdInsert->Parameters->AddWithValue("@tempDate1", tempDate);
+			cmdInsert->Parameters->AddWithValue("@tempInTime1", tempTime);
+			cmdInsert->Parameters->AddWithValue("@tempOutTime1", outTime);
+			cmdInsert->Parameters->AddWithValue("@tempStatus1", true);
+
+			cmdInsert->ExecuteNonQuery();
+
+			String^ text = "Confirm reservation info?";
+			String^ header = "Reservation information confirmation";
+			if (confirmDialogue(text, header))
+				MessageBox::Show("Your reservation was successfully reserved!");
+			else
+				MessageBox::Show("Your reservation was not reserved!");
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
 	}
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

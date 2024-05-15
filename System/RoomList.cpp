@@ -17,6 +17,7 @@ namespace System {
 	{
 		InitializeComponent();
 		mySqlConn(conn);
+		fillTable();
 	}
 
 	RoomList::~RoomList()
@@ -32,6 +33,8 @@ namespace System {
 
 	// Form Load
 	System::Void RoomList::RoomList_Load(System::Object^ sender, System::EventArgs^ e) {
+		clRBtn->Checked = true;
+
 		deletePassedRoomList();
 
 		if (user->getAccType() == "Admin") {
@@ -50,9 +53,9 @@ namespace System {
 				MessageBox::Show("Warning: You have pending reservation.  You can only reserve one at a time!");
 				clRBtn->Enabled = false;
 				labRBtn->Enabled = false;
+				roomsTbl->Hide();
 			}
 
-			roomsTbl->Hide();
 			addRoomBtn->Hide();
 
 			if (user->getAccType() == "Student")
@@ -164,8 +167,6 @@ namespace System {
 		catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 		}
-
-		roomsTbl->Show();
 	}
 
 	void RoomList::deletePassedRoomList(void) {
@@ -221,11 +222,11 @@ namespace System {
 			Image^ img = Image::FromStream(ms);
 			roomImg->Image = img;
 		}
-		roomCodeDataLbl->Text = room->getRoomCode();
-		bldDataLbl->Text = room->getBuilding();
-		boardTypeDataLbl->Text = room->getBoardType();
-		tvAvailDataLbl->Text = (room->getTv()) ? "Available" : "Not Available";
-		acAvailDataLbl->Text = (room->getAc()) ? "Available" : "Not Available";
+		roomCodeDataLbl->Text = (room->getRoomCode())->ToUpper();
+		bldDataLbl->Text = (room->getBuilding())->ToUpper();
+		boardTypeDataLbl->Text = (room->getBoardType())->ToUpper();
+		tvAvailDataLbl->Text = (room->getTv()) ? "AVAILABLE" : "NOT AVAILABLE";
+		acAvailDataLbl->Text = (room->getAc()) ? "AVAILABLE" : "NOT AVAILABLE";
 	}
 	
 	bool RoomList::checkUserRoomList() {

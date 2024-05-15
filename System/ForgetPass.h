@@ -51,14 +51,16 @@ namespace System {
 			// 
 			// findAccBtn
 			// 
-			this->findAccBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->findAccBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
 			this->findAccBtn->FlatAppearance->BorderSize = 0;
-			this->findAccBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->findAccBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->findAccBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->findAccBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->findAccBtn->Location = System::Drawing::Point(57, 181);
+			this->findAccBtn->Location = System::Drawing::Point(54, 206);
 			this->findAccBtn->Name = L"findAccBtn";
-			this->findAccBtn->Size = System::Drawing::Size(352, 40);
+			this->findAccBtn->Size = System::Drawing::Size(420, 40);
 			this->findAccBtn->TabIndex = 31;
 			this->findAccBtn->Text = L"FIND ACCOUNT";
 			this->findAccBtn->UseVisualStyleBackColor = false;
@@ -66,33 +68,42 @@ namespace System {
 			// 
 			// emailTxtBox
 			// 
-			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailTxtBox->BackColor = System::Drawing::Color::White;
+			this->emailTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailTxtBox->Location = System::Drawing::Point(57, 144);
+			this->emailTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->emailTxtBox->Location = System::Drawing::Point(55, 167);
+			this->emailTxtBox->Multiline = true;
 			this->emailTxtBox->Name = L"emailTxtBox";
-			this->emailTxtBox->Size = System::Drawing::Size(352, 31);
+			this->emailTxtBox->Size = System::Drawing::Size(420, 24);
 			this->emailTxtBox->TabIndex = 24;
 			this->emailTxtBox->TextChanged += gcnew System::EventHandler(this, &ForgetPass::emailTxtBox_TextChanged);
 			// 
 			// emailLbl
 			// 
 			this->emailLbl->AutoSize = true;
-			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailLbl->Location = System::Drawing::Point(53, 120);
+			this->emailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->emailLbl->Location = System::Drawing::Point(51, 143);
 			this->emailLbl->Name = L"emailLbl";
-			this->emailLbl->Size = System::Drawing::Size(49, 19);
+			this->emailLbl->Size = System::Drawing::Size(54, 22);
 			this->emailLbl->TabIndex = 23;
 			this->emailLbl->Text = L"Email:";
 			// 
 			// fpassLbl
 			// 
 			this->fpassLbl->AutoSize = true;
-			this->fpassLbl->Font = (gcnew System::Drawing::Font(L"Impact", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fpassLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->fpassLbl->Location = System::Drawing::Point(50, 46);
+			this->fpassLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->fpassLbl->Location = System::Drawing::Point(47, 47);
 			this->fpassLbl->Name = L"fpassLbl";
-			this->fpassLbl->Size = System::Drawing::Size(244, 41);
+			this->fpassLbl->Size = System::Drawing::Size(330, 42);
 			this->fpassLbl->TabIndex = 18;
 			this->fpassLbl->Text = L"Forget Password";
 			// 
@@ -101,13 +112,13 @@ namespace System {
 			this->captionTxtBox->AccessibleRole = System::Windows::Forms::AccessibleRole::None;
 			this->captionTxtBox->AutoEllipsis = true;
 			this->captionTxtBox->AutoSize = true;
-			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->captionTxtBox->Location = System::Drawing::Point(54, 87);
+			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->captionTxtBox->Location = System::Drawing::Point(51, 88);
 			this->captionTxtBox->Name = L"captionTxtBox";
-			this->captionTxtBox->Size = System::Drawing::Size(364, 19);
+			this->captionTxtBox->Size = System::Drawing::Size(411, 22);
 			this->captionTxtBox->TabIndex = 32;
 			this->captionTxtBox->Text = L"Enter your email and we\'ll check for it in our database\r\n";
 			// 
@@ -115,12 +126,15 @@ namespace System {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(471, 263);
+			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->ClientSize = System::Drawing::Size(537, 284);
 			this->Controls->Add(this->captionTxtBox);
 			this->Controls->Add(this->findAccBtn);
 			this->Controls->Add(this->emailTxtBox);
 			this->Controls->Add(this->emailLbl);
 			this->Controls->Add(this->fpassLbl);
+			this->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->Name = L"ForgetPass";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CLASSBOOK";

@@ -84,14 +84,9 @@ bool User::checkEmail(String^ EMAIL) {
 		return false;
 	}
 
-	bool hasAtSign = false;
-	for (size_t i = 0; i < EMAIL->Length; ++i) {
-		if (EMAIL[i] == '@') {
-			hasAtSign = true;
-		}
-	}
-	if (!hasAtSign) {
-		MessageBox::Show("Warning: Email  has no '@' sign!");
+	String^ domain = "@rtu.edu.ph";
+	if (!EMAIL->Contains(domain)) {
+		MessageBox::Show("Warning: This email is invalid. Use only institutional email!");
 		return false;
 	}
 

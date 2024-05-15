@@ -10,9 +10,6 @@ namespace System {
 	using namespace System::Drawing;
 	using namespace MySql::Data::MySqlClient;
 
-	/// <summary>
-	/// Summary for Signup
-	/// </summary>
 	public ref class Signup : public System::Windows::Forms::Form
 	{
 	private:
@@ -22,9 +19,6 @@ namespace System {
 		Signup(void);
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~Signup();
 
 	private: System::Windows::Forms::LinkLabel^ loginLnkLbl;
@@ -105,13 +99,13 @@ namespace System {
 			// 
 			this->loginLnkLbl->ActiveLinkColor = System::Drawing::Color::Blue;
 			this->loginLnkLbl->AutoSize = true;
-			this->loginLnkLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->loginLnkLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->loginLnkLbl->LinkBehavior = System::Windows::Forms::LinkBehavior::NeverUnderline;
 			this->loginLnkLbl->LinkColor = System::Drawing::Color::Black;
-			this->loginLnkLbl->Location = System::Drawing::Point(262, 473);
+			this->loginLnkLbl->Location = System::Drawing::Point(263, 482);
 			this->loginLnkLbl->Name = L"loginLnkLbl";
-			this->loginLnkLbl->Size = System::Drawing::Size(57, 20);
+			this->loginLnkLbl->Size = System::Drawing::Size(58, 22);
 			this->loginLnkLbl->TabIndex = 32;
 			this->loginLnkLbl->TabStop = true;
 			this->loginLnkLbl->Text = L"Log In";
@@ -120,12 +114,13 @@ namespace System {
 			// 
 			// signupBtn
 			// 
-			this->signupBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->signupBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
 			this->signupBtn->FlatAppearance->BorderSize = 0;
-			this->signupBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->signupBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->signupBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->signupBtn->Location = System::Drawing::Point(58, 418);
+			this->signupBtn->Location = System::Drawing::Point(58, 427);
 			this->signupBtn->Name = L"signupBtn";
 			this->signupBtn->Size = System::Drawing::Size(477, 40);
 			this->signupBtn->TabIndex = 31;
@@ -135,45 +130,57 @@ namespace System {
 			// 
 			// passTxtBox
 			// 
-			this->passTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->passTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->passTxtBox->BackColor = System::Drawing::Color::White;
+			this->passTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->passTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->passTxtBox->Location = System::Drawing::Point(235, 357);
+			this->passTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->passTxtBox->Location = System::Drawing::Point(251, 373);
+			this->passTxtBox->Multiline = true;
 			this->passTxtBox->Name = L"passTxtBox";
-			this->passTxtBox->Size = System::Drawing::Size(300, 31);
+			this->passTxtBox->Size = System::Drawing::Size(285, 24);
 			this->passTxtBox->TabIndex = 30;
 			this->passTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::passTxtBox_TextChanged);
 			// 
 			// passLbl
 			// 
 			this->passLbl->AutoSize = true;
-			this->passLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->passLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->passLbl->Location = System::Drawing::Point(95, 366);
+			this->passLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->passLbl->Location = System::Drawing::Point(95, 375);
 			this->passLbl->Name = L"passLbl";
-			this->passLbl->Size = System::Drawing::Size(90, 22);
+			this->passLbl->Size = System::Drawing::Size(100, 27);
 			this->passLbl->TabIndex = 29;
 			this->passLbl->Text = L"Password";
 			// 
 			// emailTxtBox
 			// 
-			this->emailTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailTxtBox->BackColor = System::Drawing::Color::White;
+			this->emailTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->emailTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailTxtBox->Location = System::Drawing::Point(235, 307);
+			this->emailTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->emailTxtBox->Location = System::Drawing::Point(251, 323);
+			this->emailTxtBox->Multiline = true;
 			this->emailTxtBox->Name = L"emailTxtBox";
-			this->emailTxtBox->Size = System::Drawing::Size(299, 31);
+			this->emailTxtBox->Size = System::Drawing::Size(285, 24);
 			this->emailTxtBox->TabIndex = 28;
 			this->emailTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::emailTxtBox_TextChanged);
 			// 
 			// emailLbl
 			// 
 			this->emailLbl->AutoSize = true;
-			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->emailLbl->Location = System::Drawing::Point(95, 316);
+			this->emailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->emailLbl->Location = System::Drawing::Point(95, 325);
 			this->emailLbl->Name = L"emailLbl";
-			this->emailLbl->Size = System::Drawing::Size(56, 22);
+			this->emailLbl->Size = System::Drawing::Size(61, 27);
 			this->emailLbl->TabIndex = 27;
 			this->emailLbl->Text = L"Email";
 			// 
@@ -181,112 +188,136 @@ namespace System {
 			// 
 			this->accTypeLbl->AutoSize = true;
 			this->accTypeLbl->BackColor = System::Drawing::Color::Transparent;
-			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->accTypeLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accTypeLbl->Location = System::Drawing::Point(95, 268);
+			this->accTypeLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->accTypeLbl->Location = System::Drawing::Point(95, 277);
 			this->accTypeLbl->Name = L"accTypeLbl";
-			this->accTypeLbl->Size = System::Drawing::Size(124, 22);
+			this->accTypeLbl->Size = System::Drawing::Size(145, 27);
 			this->accTypeLbl->TabIndex = 26;
 			this->accTypeLbl->Text = L"Account Type";
 			// 
 			// accTypeCbox
 			// 
-			this->accTypeCbox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->accTypeCbox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->accTypeCbox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->accTypeCbox->BackColor = System::Drawing::Color::White;
+			this->accTypeCbox->DisplayMember = L"ghasd";
+			this->accTypeCbox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->accTypeCbox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->accTypeCbox->FormattingEnabled = true;
 			this->accTypeCbox->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Student", L"Faculty", L"Admin" });
-			this->accTypeCbox->Location = System::Drawing::Point(235, 261);
+			this->accTypeCbox->Location = System::Drawing::Point(251, 274);
 			this->accTypeCbox->Margin = System::Windows::Forms::Padding(5);
 			this->accTypeCbox->Name = L"accTypeCbox";
-			this->accTypeCbox->Size = System::Drawing::Size(299, 29);
+			this->accTypeCbox->Size = System::Drawing::Size(285, 32);
 			this->accTypeCbox->TabIndex = 25;
 			this->accTypeCbox->SelectedIndexChanged += gcnew System::EventHandler(this, &Signup::accTypeCbox_SelectedIndexChanged);
 			// 
 			// idTxtBox
 			// 
-			this->idTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->idTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->idTxtBox->BackColor = System::Drawing::Color::White;
+			this->idTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->idTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idTxtBox->Location = System::Drawing::Point(235, 214);
+			this->idTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->idTxtBox->Location = System::Drawing::Point(251, 230);
+			this->idTxtBox->Multiline = true;
 			this->idTxtBox->Name = L"idTxtBox";
-			this->idTxtBox->Size = System::Drawing::Size(300, 31);
+			this->idTxtBox->Size = System::Drawing::Size(285, 24);
 			this->idTxtBox->TabIndex = 24;
 			this->idTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::idTxtBox_TextChanged);
 			// 
 			// idNumLbl
 			// 
 			this->idNumLbl->AutoSize = true;
-			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->idNumLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->idNumLbl->Location = System::Drawing::Point(95, 223);
+			this->idNumLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->idNumLbl->Location = System::Drawing::Point(95, 232);
 			this->idNumLbl->Name = L"idNumLbl";
-			this->idNumLbl->Size = System::Drawing::Size(102, 22);
+			this->idNumLbl->Size = System::Drawing::Size(118, 27);
 			this->idNumLbl->TabIndex = 23;
 			this->idNumLbl->Text = L"ID Number";
 			// 
 			// lnameTxtBox
 			// 
-			this->lnameTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->lnameTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lnameTxtBox->BackColor = System::Drawing::Color::White;
+			this->lnameTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->lnameTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lnameTxtBox->Location = System::Drawing::Point(235, 165);
+			this->lnameTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->lnameTxtBox->Location = System::Drawing::Point(251, 181);
+			this->lnameTxtBox->Multiline = true;
 			this->lnameTxtBox->Name = L"lnameTxtBox";
-			this->lnameTxtBox->Size = System::Drawing::Size(299, 31);
+			this->lnameTxtBox->Size = System::Drawing::Size(285, 24);
 			this->lnameTxtBox->TabIndex = 22;
 			this->lnameTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::lnameTxtBox_TextChanged);
 			// 
 			// lnameLbl
 			// 
 			this->lnameLbl->AutoSize = true;
-			this->lnameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lnameLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lnameLbl->Location = System::Drawing::Point(95, 174);
+			this->lnameLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->lnameLbl->Location = System::Drawing::Point(95, 183);
 			this->lnameLbl->Name = L"lnameLbl";
-			this->lnameLbl->Size = System::Drawing::Size(98, 22);
+			this->lnameLbl->Size = System::Drawing::Size(113, 27);
 			this->lnameLbl->TabIndex = 21;
 			this->lnameLbl->Text = L"Last Name";
 			// 
 			// fnameTxtBox
 			// 
-			this->fnameTxtBox->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->fnameTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fnameTxtBox->BackColor = System::Drawing::Color::White;
+			this->fnameTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->fnameTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->fnameTxtBox->Location = System::Drawing::Point(235, 119);
+			this->fnameTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->fnameTxtBox->Location = System::Drawing::Point(251, 135);
+			this->fnameTxtBox->Multiline = true;
 			this->fnameTxtBox->Name = L"fnameTxtBox";
-			this->fnameTxtBox->Size = System::Drawing::Size(300, 31);
+			this->fnameTxtBox->Size = System::Drawing::Size(285, 24);
 			this->fnameTxtBox->TabIndex = 20;
 			this->fnameTxtBox->TextChanged += gcnew System::EventHandler(this, &Signup::fnameTxtBox_TextChanged);
 			// 
 			// fnameLbl
 			// 
 			this->fnameLbl->AutoSize = true;
-			this->fnameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fnameLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->fnameLbl->Location = System::Drawing::Point(95, 128);
+			this->fnameLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->fnameLbl->Location = System::Drawing::Point(95, 137);
 			this->fnameLbl->Name = L"fnameLbl";
-			this->fnameLbl->Size = System::Drawing::Size(100, 22);
+			this->fnameLbl->Size = System::Drawing::Size(112, 27);
 			this->fnameLbl->TabIndex = 19;
 			this->fnameLbl->Text = L"First Name";
 			// 
 			// signupLbl
 			// 
 			this->signupLbl->AutoSize = true;
-			this->signupLbl->Font = (gcnew System::Drawing::Font(L"Impact", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->signupLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->signupLbl->Location = System::Drawing::Point(171, 44);
+			this->signupLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->signupLbl->Location = System::Drawing::Point(131, 44);
 			this->signupLbl->Name = L"signupLbl";
-			this->signupLbl->Size = System::Drawing::Size(301, 41);
+			this->signupLbl->Size = System::Drawing::Size(397, 42);
 			this->signupLbl->TabIndex = 18;
 			this->signupLbl->Text = L"Sign Up Your Account";
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(120, 42);
+			this->pictureBox1->Location = System::Drawing::Point(66, 33);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(45, 43);
+			this->pictureBox1->Size = System::Drawing::Size(59, 66);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 33;
 			this->pictureBox1->TabStop = false;
@@ -294,7 +325,7 @@ namespace System {
 			// fnameIcon
 			// 
 			this->fnameIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fnameIcon.Image")));
-			this->fnameIcon->Location = System::Drawing::Point(58, 128);
+			this->fnameIcon->Location = System::Drawing::Point(58, 137);
 			this->fnameIcon->Name = L"fnameIcon";
 			this->fnameIcon->Size = System::Drawing::Size(31, 22);
 			this->fnameIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -304,7 +335,7 @@ namespace System {
 			// lnameIcon
 			// 
 			this->lnameIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lnameIcon.Image")));
-			this->lnameIcon->Location = System::Drawing::Point(58, 174);
+			this->lnameIcon->Location = System::Drawing::Point(58, 183);
 			this->lnameIcon->Name = L"lnameIcon";
 			this->lnameIcon->Size = System::Drawing::Size(31, 22);
 			this->lnameIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -314,7 +345,7 @@ namespace System {
 			// idNumIcon
 			// 
 			this->idNumIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"idNumIcon.Image")));
-			this->idNumIcon->Location = System::Drawing::Point(58, 223);
+			this->idNumIcon->Location = System::Drawing::Point(58, 232);
 			this->idNumIcon->Name = L"idNumIcon";
 			this->idNumIcon->Size = System::Drawing::Size(31, 22);
 			this->idNumIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -324,7 +355,7 @@ namespace System {
 			// accTypeIcon
 			// 
 			this->accTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"accTypeIcon.Image")));
-			this->accTypeIcon->Location = System::Drawing::Point(58, 268);
+			this->accTypeIcon->Location = System::Drawing::Point(58, 277);
 			this->accTypeIcon->Name = L"accTypeIcon";
 			this->accTypeIcon->Size = System::Drawing::Size(31, 22);
 			this->accTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -334,7 +365,7 @@ namespace System {
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(58, 316);
+			this->pictureBox5->Location = System::Drawing::Point(58, 325);
 			this->pictureBox5->Name = L"pictureBox5";
 			this->pictureBox5->Size = System::Drawing::Size(31, 22);
 			this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -344,7 +375,7 @@ namespace System {
 			// pictureBox6
 			// 
 			this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
-			this->pictureBox6->Location = System::Drawing::Point(58, 366);
+			this->pictureBox6->Location = System::Drawing::Point(58, 375);
 			this->pictureBox6->Name = L"pictureBox6";
 			this->pictureBox6->Size = System::Drawing::Size(31, 22);
 			this->pictureBox6->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -353,7 +384,8 @@ namespace System {
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->panel1->Controls->Add(this->signupLbl);
 			this->panel1->Controls->Add(this->pictureBox1);
 			this->panel1->Location = System::Drawing::Point(-8, -9);
@@ -365,8 +397,8 @@ namespace System {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->ClientSize = System::Drawing::Size(595, 509);
+			this->BackColor = System::Drawing::Color::White;
+			this->ClientSize = System::Drawing::Size(595, 530);
 			this->Controls->Add(this->pictureBox6);
 			this->Controls->Add(this->pictureBox5);
 			this->Controls->Add(this->accTypeIcon);
@@ -388,6 +420,8 @@ namespace System {
 			this->Controls->Add(this->fnameTxtBox);
 			this->Controls->Add(this->fnameLbl);
 			this->Controls->Add(this->panel1);
+			this->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Signup";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -427,11 +461,14 @@ namespace System {
 
 	private: System::Void passTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e);
 
-	// Sign Up Button
 	private: System::Void signupBtn_Click_1(System::Object^ sender, System::EventArgs^ e);
 
-	// Return to Login Page
 	private: System::Void loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+
+
+	private: bool checkUserInfo(void);
+
+	private: void insertNewUser(void);
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };

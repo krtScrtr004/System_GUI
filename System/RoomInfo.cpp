@@ -25,11 +25,11 @@ namespace System {
 			roomImg->Image = img;
 		}
 
-		rcodeTxtBox->Text = room->getRoomCode();
-		buildingTxtBox->Text = room->getBuilding();
-		statusCBox->Text = room->getStatus();
-		roomTypeCBox->Text = room->getRoomType();
-		boardTypeCBox->Text = room->getBoardType();
+		rcodeTxtBox->Text = (room->getRoomCode())->ToUpper();
+		buildingTxtBox->Text = (room->getBuilding())->ToUpper();
+		statusCBox->Text = (room->getStatus())->ToUpper();
+		roomTypeCBox->Text = (String::Concat(room->getRoomType() + " Type"))->ToUpper();
+		boardTypeCBox->Text = (room->getBoardType()->ToUpper();
 		tvCBox->Text = (room->getTv()) ? "Available" : "Not Available";
 		acCBox->Text = (room->getAc()) ? "Available" : "Not Available";
 	}

@@ -55,26 +55,28 @@ namespace System {
 			// 
 			this->captionTxtBox->AllowDrop = true;
 			this->captionTxtBox->AutoSize = true;
-			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->captionTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->captionTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->captionTxtBox->Location = System::Drawing::Point(56, 77);
 			this->captionTxtBox->Name = L"captionTxtBox";
 			this->captionTxtBox->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->captionTxtBox->Size = System::Drawing::Size(172, 19);
+			this->captionTxtBox->Size = System::Drawing::Size(191, 22);
 			this->captionTxtBox->TabIndex = 37;
 			this->captionTxtBox->Text = L"Type your new password";
 			this->captionTxtBox->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// npassBtn
 			// 
-			this->npassBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->npassBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
 			this->npassBtn->FlatAppearance->BorderSize = 0;
-			this->npassBtn->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->npassBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->npassBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->npassBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->npassBtn->Location = System::Drawing::Point(60, 176);
+			this->npassBtn->ForeColor = System::Drawing::Color::White;
+			this->npassBtn->Location = System::Drawing::Point(60, 180);
 			this->npassBtn->Name = L"npassBtn";
 			this->npassBtn->Size = System::Drawing::Size(352, 40);
 			this->npassBtn->TabIndex = 36;
@@ -84,33 +86,42 @@ namespace System {
 			// 
 			// npassTxtBox
 			// 
-			this->npassTxtBox->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->npassTxtBox->BackColor = System::Drawing::Color::White;
+			this->npassTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->npassTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->npassTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->npassTxtBox->Location = System::Drawing::Point(60, 139);
+			this->npassTxtBox->Multiline = true;
 			this->npassTxtBox->Name = L"npassTxtBox";
-			this->npassTxtBox->Size = System::Drawing::Size(352, 31);
+			this->npassTxtBox->Size = System::Drawing::Size(352, 24);
 			this->npassTxtBox->TabIndex = 35;
 			this->npassTxtBox->TextChanged += gcnew System::EventHandler(this, &ChangePass::npassTxtBox_TextChanged);
 			// 
 			// npassLbl
 			// 
 			this->npassLbl->AutoSize = true;
-			this->npassLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->npassLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->npassLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->npassLbl->Location = System::Drawing::Point(56, 115);
 			this->npassLbl->Name = L"npassLbl";
-			this->npassLbl->Size = System::Drawing::Size(108, 19);
+			this->npassLbl->Size = System::Drawing::Size(124, 22);
 			this->npassLbl->TabIndex = 34;
 			this->npassLbl->Text = L"New Password:";
 			// 
 			// changePassLbl
 			// 
 			this->changePassLbl->AutoSize = true;
-			this->changePassLbl->Font = (gcnew System::Drawing::Font(L"Impact", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->changePassLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->changePassLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->changePassLbl->Location = System::Drawing::Point(53, 36);
 			this->changePassLbl->Name = L"changePassLbl";
-			this->changePassLbl->Size = System::Drawing::Size(261, 41);
+			this->changePassLbl->Size = System::Drawing::Size(333, 42);
 			this->changePassLbl->TabIndex = 33;
 			this->changePassLbl->Text = L"Change Password";
 			// 
@@ -118,6 +129,7 @@ namespace System {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->ClientSize = System::Drawing::Size(468, 268);
 			this->Controls->Add(this->captionTxtBox);
 			this->Controls->Add(this->npassBtn);

@@ -87,10 +87,10 @@ namespace System {
 			userProfileImg->Image = img;
 		}
 
-		nameDataLbl->Text = currentUser->getFname() + ' ' + currentUser->getLname();
-		idNumDataLbl->Text = currentUser->getId();
+		nameDataLbl->Text = String::Concat(currentUser->getFname() + " " + currentUser->getLname());
+		idNumDataLbl->Text = (currentUser->getId())->ToUpper();
 		emailDataLbl->Text = currentUser->getEmail();
-		accTypeDataLbl->Text = currentUser->getAccType() + " Type";
+		accTypeDataLbl->Text = (String::Concat(currentUser->getAccType() + " Type"))->ToUpper();
 	}
 
 	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/

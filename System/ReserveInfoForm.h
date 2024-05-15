@@ -69,6 +69,7 @@ namespace System {
 	private: System::Windows::Forms::PictureBox^ dateIcon;
 	private: System::Windows::Forms::PictureBox^ timeIcon;
 	private: System::Windows::Forms::PictureBox^ durationIcon;
+	private: System::Windows::Forms::Panel^ panel1;
 
 
 
@@ -117,6 +118,7 @@ namespace System {
 			this->dateIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->timeIcon = (gcnew System::Windows::Forms::PictureBox());
 			this->durationIcon = (gcnew System::Windows::Forms::PictureBox());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->durationNum))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->acAvailIcon))->BeginInit();
@@ -127,51 +129,63 @@ namespace System {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dateIcon))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->timeIcon))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->durationIcon))->BeginInit();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dateLbl
 			// 
 			this->dateLbl->AutoSize = true;
-			this->dateLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->dateLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->dateLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->dateLbl->Location = System::Drawing::Point(92, 340);
+			this->dateLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->dateLbl->Location = System::Drawing::Point(92, 389);
 			this->dateLbl->Name = L"dateLbl";
-			this->dateLbl->Size = System::Drawing::Size(59, 22);
+			this->dateLbl->Size = System::Drawing::Size(80, 27);
 			this->dateLbl->TabIndex = 24;
 			this->dateLbl->Text = L"DATE:";
 			// 
 			// timeLbl
 			// 
 			this->timeLbl->AutoSize = true;
-			this->timeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->timeLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->timeLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->timeLbl->Location = System::Drawing::Point(92, 378);
+			this->timeLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->timeLbl->Location = System::Drawing::Point(92, 427);
 			this->timeLbl->Name = L"timeLbl";
-			this->timeLbl->Size = System::Drawing::Size(56, 22);
+			this->timeLbl->Size = System::Drawing::Size(74, 27);
 			this->timeLbl->TabIndex = 25;
 			this->timeLbl->Text = L"TIME:";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(92, 417);
+			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(92, 466);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(106, 22);
+			this->label1->Size = System::Drawing::Size(138, 27);
 			this->label1->TabIndex = 28;
 			this->label1->Text = L"DURATION:";
 			// 
 			// reserveBtn
 			// 
-			this->reserveBtn->BackColor = System::Drawing::SystemColors::ControlDarkDark;
+			this->reserveBtn->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(159)), static_cast<System::Int32>(static_cast<System::Byte>(124)),
+				static_cast<System::Int32>(static_cast<System::Byte>(119)));
 			this->reserveBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->reserveBtn->Font = (gcnew System::Drawing::Font(L"Impact", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->reserveBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->reserveBtn->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->reserveBtn->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->reserveBtn->Location = System::Drawing::Point(54, 476);
+			this->reserveBtn->Location = System::Drawing::Point(63, 189);
 			this->reserveBtn->Name = L"reserveBtn";
-			this->reserveBtn->Size = System::Drawing::Size(702, 36);
+			this->reserveBtn->Size = System::Drawing::Size(755, 36);
 			this->reserveBtn->TabIndex = 30;
 			this->reserveBtn->Text = L"RESERVE";
 			this->reserveBtn->UseVisualStyleBackColor = false;
@@ -191,77 +205,89 @@ namespace System {
 			// roomNameLbl
 			// 
 			this->roomNameLbl->AutoSize = true;
-			this->roomNameLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->roomNameLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomNameLbl->Location = System::Drawing::Point(384, 85);
+			this->roomNameLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->roomNameLbl->Location = System::Drawing::Point(384, 99);
 			this->roomNameLbl->Name = L"roomNameLbl";
-			this->roomNameLbl->Size = System::Drawing::Size(128, 21);
+			this->roomNameLbl->Size = System::Drawing::Size(136, 23);
 			this->roomNameLbl->TabIndex = 32;
 			this->roomNameLbl->Text = L"ROOM CODE:";
 			// 
 			// bldLbl
 			// 
 			this->bldLbl->AutoSize = true;
-			this->bldLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bldLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bldLbl->Location = System::Drawing::Point(384, 120);
+			this->bldLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->bldLbl->Location = System::Drawing::Point(384, 134);
 			this->bldLbl->Name = L"bldLbl";
-			this->bldLbl->Size = System::Drawing::Size(106, 21);
+			this->bldLbl->Size = System::Drawing::Size(114, 23);
 			this->bldLbl->TabIndex = 33;
 			this->bldLbl->Text = L"BUILDING:";
 			// 
 			// boardTypeLbl
 			// 
 			this->boardTypeLbl->AutoSize = true;
-			this->boardTypeLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->boardTypeLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->boardTypeLbl->Location = System::Drawing::Point(384, 162);
+			this->boardTypeLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->boardTypeLbl->Location = System::Drawing::Point(384, 176);
 			this->boardTypeLbl->Name = L"boardTypeLbl";
-			this->boardTypeLbl->Size = System::Drawing::Size(130, 21);
+			this->boardTypeLbl->Size = System::Drawing::Size(147, 23);
 			this->boardTypeLbl->TabIndex = 34;
 			this->boardTypeLbl->Text = L"BOARD TYPE:";
 			// 
 			// tvAvailLbl
 			// 
 			this->tvAvailLbl->AutoSize = true;
-			this->tvAvailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->tvAvailLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tvAvailLbl->Location = System::Drawing::Point(384, 205);
+			this->tvAvailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->tvAvailLbl->Location = System::Drawing::Point(384, 219);
 			this->tvAvailLbl->Name = L"tvAvailLbl";
-			this->tvAvailLbl->Size = System::Drawing::Size(121, 21);
+			this->tvAvailLbl->Size = System::Drawing::Size(134, 23);
 			this->tvAvailLbl->TabIndex = 35;
 			this->tvAvailLbl->Text = L"TELEVISION:";
 			// 
 			// acAvailLbl
 			// 
 			this->acAvailLbl->AutoSize = true;
-			this->acAvailLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->acAvailLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->acAvailLbl->Location = System::Drawing::Point(384, 249);
+			this->acAvailLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->acAvailLbl->Location = System::Drawing::Point(384, 263);
 			this->acAvailLbl->Name = L"acAvailLbl";
-			this->acAvailLbl->Size = System::Drawing::Size(193, 21);
+			this->acAvailLbl->Size = System::Drawing::Size(205, 23);
 			this->acAvailLbl->TabIndex = 36;
 			this->acAvailLbl->Text = L"AIR CONDITIONING:";
 			// 
 			// roomInfoLbl
 			// 
 			this->roomInfoLbl->AutoSize = true;
-			this->roomInfoLbl->Font = (gcnew System::Drawing::Font(L"Impact", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomInfoLbl->Font = (gcnew System::Drawing::Font(L"Showcard Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomInfoLbl->Location = System::Drawing::Point(358, 41);
+			this->roomInfoLbl->Location = System::Drawing::Point(342, 41);
 			this->roomInfoLbl->Name = L"roomInfoLbl";
-			this->roomInfoLbl->Size = System::Drawing::Size(206, 29);
+			this->roomInfoLbl->Size = System::Drawing::Size(258, 30);
 			this->roomInfoLbl->TabIndex = 37;
 			this->roomInfoLbl->Text = L"ROOM INFORMATION:";
 			// 
 			// roomCodeDataLbl
 			// 
 			this->roomCodeDataLbl->AutoSize = true;
-			this->roomCodeDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->roomCodeDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->roomCodeDataLbl->Location = System::Drawing::Point(606, 85);
+			this->roomCodeDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->roomCodeDataLbl->Location = System::Drawing::Point(606, 99);
 			this->roomCodeDataLbl->Name = L"roomCodeDataLbl";
-			this->roomCodeDataLbl->Size = System::Drawing::Size(120, 22);
+			this->roomCodeDataLbl->Size = System::Drawing::Size(150, 27);
 			this->roomCodeDataLbl->TabIndex = 39;
 			this->roomCodeDataLbl->Text = L"ROOM CODE";
 			// 
@@ -269,79 +295,91 @@ namespace System {
 			// 
 			this->bldDataLbl->AutoEllipsis = true;
 			this->bldDataLbl->AutoSize = true;
-			this->bldDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->bldDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bldDataLbl->Location = System::Drawing::Point(606, 120);
+			this->bldDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->bldDataLbl->Location = System::Drawing::Point(606, 134);
 			this->bldDataLbl->Name = L"bldDataLbl";
-			this->bldDataLbl->Size = System::Drawing::Size(93, 22);
+			this->bldDataLbl->Size = System::Drawing::Size(121, 27);
 			this->bldDataLbl->TabIndex = 40;
 			this->bldDataLbl->Text = L"BUILDING";
 			// 
 			// boardTypeDataLbl
 			// 
 			this->boardTypeDataLbl->AutoSize = true;
-			this->boardTypeDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->boardTypeDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->boardTypeDataLbl->Location = System::Drawing::Point(606, 161);
+			this->boardTypeDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->boardTypeDataLbl->Location = System::Drawing::Point(606, 175);
 			this->boardTypeDataLbl->Name = L"boardTypeDataLbl";
-			this->boardTypeDataLbl->Size = System::Drawing::Size(118, 22);
+			this->boardTypeDataLbl->Size = System::Drawing::Size(150, 27);
 			this->boardTypeDataLbl->TabIndex = 41;
 			this->boardTypeDataLbl->Text = L"BOARD TYPE";
 			// 
 			// tvAvailDataLbl
 			// 
 			this->tvAvailDataLbl->AutoSize = true;
-			this->tvAvailDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tvAvailDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tvAvailDataLbl->Location = System::Drawing::Point(606, 205);
+			this->tvAvailDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->tvAvailDataLbl->Location = System::Drawing::Point(606, 219);
 			this->tvAvailDataLbl->Name = L"tvAvailDataLbl";
-			this->tvAvailDataLbl->Size = System::Drawing::Size(150, 22);
+			this->tvAvailDataLbl->Size = System::Drawing::Size(203, 27);
 			this->tvAvailDataLbl->TabIndex = 42;
 			this->tvAvailDataLbl->Text = L"TV AVAILABILITY";
 			// 
 			// acAvailDataLbl
 			// 
 			this->acAvailDataLbl->AutoSize = true;
-			this->acAvailDataLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->acAvailDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->acAvailDataLbl->Location = System::Drawing::Point(606, 249);
+			this->acAvailDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->acAvailDataLbl->Location = System::Drawing::Point(606, 263);
 			this->acAvailDataLbl->Name = L"acAvailDataLbl";
-			this->acAvailDataLbl->Size = System::Drawing::Size(152, 22);
+			this->acAvailDataLbl->Size = System::Drawing::Size(208, 27);
 			this->acAvailDataLbl->TabIndex = 43;
 			this->acAvailDataLbl->Text = L"AC AVAILABILITY";
 			// 
 			// noteLbl
 			// 
 			this->noteLbl->AutoSize = true;
-			this->noteLbl->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->noteLbl->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->noteLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->noteLbl->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->noteLbl->Location = System::Drawing::Point(468, 441);
+			this->noteLbl->Location = System::Drawing::Point(533, 155);
 			this->noteLbl->Name = L"noteLbl";
-			this->noteLbl->Size = System::Drawing::Size(288, 20);
+			this->noteLbl->Size = System::Drawing::Size(290, 22);
 			this->noteLbl->TabIndex = 44;
 			this->noteLbl->Text = L"Enter reservation duration in HOURS";
 			// 
 			// durationNum
 			// 
-			this->durationNum->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->durationNum->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->durationNum->BackColor = System::Drawing::Color::White;
+			this->durationNum->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->durationNum->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->durationNum->Location = System::Drawing::Point(242, 407);
+			this->durationNum->Location = System::Drawing::Point(251, 120);
 			this->durationNum->Name = L"durationNum";
-			this->durationNum->Size = System::Drawing::Size(516, 31);
+			this->durationNum->Size = System::Drawing::Size(567, 32);
 			this->durationNum->TabIndex = 45;
 			this->durationNum->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->durationNum->ValueChanged += gcnew System::EventHandler(this, &ReserveInfoForm::durationNum_ValueChanged);
 			// 
 			// datePkr
 			// 
-			this->datePkr->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->datePkr->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->datePkr->BackColor = System::Drawing::Color::White;
+			this->datePkr->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->datePkr->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->datePkr->Location = System::Drawing::Point(242, 330);
+			this->datePkr->Location = System::Drawing::Point(242, 389);
+			this->datePkr->Multiline = true;
 			this->datePkr->Name = L"datePkr";
-			this->datePkr->Size = System::Drawing::Size(514, 31);
+			this->datePkr->Size = System::Drawing::Size(567, 24);
 			this->datePkr->TabIndex = 46;
 			this->datePkr->Text = L"YYYY-MM-DD";
 			this->datePkr->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -349,12 +387,14 @@ namespace System {
 			// 
 			// timePkr
 			// 
-			this->timePkr->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->timePkr->Font = (gcnew System::Drawing::Font(L"Gadugi", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->timePkr->BackColor = System::Drawing::Color::White;
+			this->timePkr->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->timePkr->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->timePkr->Location = System::Drawing::Point(242, 368);
+			this->timePkr->Location = System::Drawing::Point(242, 425);
+			this->timePkr->Multiline = true;
 			this->timePkr->Name = L"timePkr";
-			this->timePkr->Size = System::Drawing::Size(514, 31);
+			this->timePkr->Size = System::Drawing::Size(567, 24);
 			this->timePkr->TabIndex = 47;
 			this->timePkr->Text = L"HH:MM:SS (Use 24-Hour format)";
 			this->timePkr->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -363,7 +403,7 @@ namespace System {
 			// acAvailIcon
 			// 
 			this->acAvailIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"acAvailIcon.Image")));
-			this->acAvailIcon->Location = System::Drawing::Point(347, 248);
+			this->acAvailIcon->Location = System::Drawing::Point(347, 262);
 			this->acAvailIcon->Name = L"acAvailIcon";
 			this->acAvailIcon->Size = System::Drawing::Size(31, 22);
 			this->acAvailIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -373,7 +413,7 @@ namespace System {
 			// tvAvailIcon
 			// 
 			this->tvAvailIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"tvAvailIcon.Image")));
-			this->tvAvailIcon->Location = System::Drawing::Point(347, 205);
+			this->tvAvailIcon->Location = System::Drawing::Point(347, 219);
 			this->tvAvailIcon->Name = L"tvAvailIcon";
 			this->tvAvailIcon->Size = System::Drawing::Size(31, 22);
 			this->tvAvailIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -383,7 +423,7 @@ namespace System {
 			// boardTypeIcon
 			// 
 			this->boardTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"boardTypeIcon.Image")));
-			this->boardTypeIcon->Location = System::Drawing::Point(347, 161);
+			this->boardTypeIcon->Location = System::Drawing::Point(347, 175);
 			this->boardTypeIcon->Name = L"boardTypeIcon";
 			this->boardTypeIcon->Size = System::Drawing::Size(31, 22);
 			this->boardTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -393,7 +433,7 @@ namespace System {
 			// bldgIcon
 			// 
 			this->bldgIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"bldgIcon.Image")));
-			this->bldgIcon->Location = System::Drawing::Point(347, 120);
+			this->bldgIcon->Location = System::Drawing::Point(347, 134);
 			this->bldgIcon->Name = L"bldgIcon";
 			this->bldgIcon->Size = System::Drawing::Size(31, 22);
 			this->bldgIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -403,7 +443,7 @@ namespace System {
 			// rcodeIcon
 			// 
 			this->rcodeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"rcodeIcon.Image")));
-			this->rcodeIcon->Location = System::Drawing::Point(347, 85);
+			this->rcodeIcon->Location = System::Drawing::Point(347, 99);
 			this->rcodeIcon->Name = L"rcodeIcon";
 			this->rcodeIcon->Size = System::Drawing::Size(31, 22);
 			this->rcodeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -412,8 +452,9 @@ namespace System {
 			// 
 			// dateIcon
 			// 
+			this->dateIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->dateIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"dateIcon.Image")));
-			this->dateIcon->Location = System::Drawing::Point(54, 340);
+			this->dateIcon->Location = System::Drawing::Point(54, 389);
 			this->dateIcon->Name = L"dateIcon";
 			this->dateIcon->Size = System::Drawing::Size(31, 21);
 			this->dateIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -422,8 +463,9 @@ namespace System {
 			// 
 			// timeIcon
 			// 
+			this->timeIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->timeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"timeIcon.Image")));
-			this->timeIcon->Location = System::Drawing::Point(54, 378);
+			this->timeIcon->Location = System::Drawing::Point(54, 427);
 			this->timeIcon->Name = L"timeIcon";
 			this->timeIcon->Size = System::Drawing::Size(31, 21);
 			this->timeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -432,20 +474,33 @@ namespace System {
 			// 
 			// durationIcon
 			// 
+			this->durationIcon->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->durationIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"durationIcon.Image")));
-			this->durationIcon->Location = System::Drawing::Point(54, 417);
+			this->durationIcon->Location = System::Drawing::Point(54, 466);
 			this->durationIcon->Name = L"durationIcon";
 			this->durationIcon->Size = System::Drawing::Size(31, 21);
 			this->durationIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->durationIcon->TabIndex = 61;
 			this->durationIcon->TabStop = false;
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::ControlLightLight;
+			this->panel1->Controls->Add(this->durationNum);
+			this->panel1->Controls->Add(this->reserveBtn);
+			this->panel1->Controls->Add(this->noteLbl);
+			this->panel1->Location = System::Drawing::Point(-9, 346);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(884, 262);
+			this->panel1->TabIndex = 62;
+			// 
 			// ReserveInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->ClientSize = System::Drawing::Size(818, 556);
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
+				static_cast<System::Int32>(static_cast<System::Byte>(177)));
+			this->ClientSize = System::Drawing::Size(868, 600);
 			this->Controls->Add(this->durationIcon);
 			this->Controls->Add(this->timeIcon);
 			this->Controls->Add(this->dateIcon);
@@ -456,8 +511,6 @@ namespace System {
 			this->Controls->Add(this->rcodeIcon);
 			this->Controls->Add(this->timePkr);
 			this->Controls->Add(this->datePkr);
-			this->Controls->Add(this->durationNum);
-			this->Controls->Add(this->noteLbl);
 			this->Controls->Add(this->acAvailDataLbl);
 			this->Controls->Add(this->tvAvailDataLbl);
 			this->Controls->Add(this->boardTypeDataLbl);
@@ -470,10 +523,10 @@ namespace System {
 			this->Controls->Add(this->bldLbl);
 			this->Controls->Add(this->roomNameLbl);
 			this->Controls->Add(this->roomImg);
-			this->Controls->Add(this->reserveBtn);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->timeLbl);
 			this->Controls->Add(this->dateLbl);
+			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"ReserveInfoForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -489,6 +542,8 @@ namespace System {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dateIcon))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->timeIcon))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->durationIcon))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -528,7 +583,8 @@ namespace System {
 
 	private: bool checkIfReserved(void);
 
-	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	private: void insertReservation(String^ outTime);
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };
 }

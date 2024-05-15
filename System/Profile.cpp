@@ -1,4 +1,5 @@
 #include "EditProfile.h"
+#include "Feedback.h"
 #include "Profile.h"
 #include "Receipt.h"
 #include "RoomList.h"
@@ -81,6 +82,21 @@ namespace System {
 		editProfileForm->Show();
 	}
 
+	System::Void Profile::historyTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (user->getAccType() == "Admin") {
+			String^ selectedUser = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[0]->Value->ToString();
+			String^ selectedRoomCode = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[1]->Value->ToString();
+
+			User^ user = gcnew User();
+			user->setId(selectedUser);
+			Room^ room = gcnew Room();
+			room->setRoomCode(selectedRoomCode);
+
+			Feedback^ feedbackForm = gcnew Feedback(user, room);
+			feedbackForm->Show();
+		}
+	}
+
 	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
 
 	void Profile::fetchUserData(void) {
@@ -120,10 +136,10 @@ namespace System {
 			profileImg->Image = img;
 		}
 
-		nameLbl->Text = user->getFname() + " " + user->getLname();
+		nameLbl->Text = String::Concat(user->getFname() + " " + user->getLname());
 		emailLbl->Text = user->getEmail();
-		idNumLbl->Text = user->getId();
-		accTypeLbl->Text = user->getAccType() + " Type";
+		idNumLbl->Text = (user->getId())->ToUpper();
+		accTypeLbl->Text = (String::Concat(user->getAccType() + " Type"))->ToUpper();
 	}
 
 	void Profile::fillTable(void) {

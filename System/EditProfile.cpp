@@ -2,7 +2,9 @@
 #include "Utils.h"
 
 namespace System {
-	EditProfile::EditProfile(User^ other) : user(other)
+	EditProfile::EditProfile(User^ other) 
+		: user(other), tempFname(user->getFname()),
+		tempLname(user->getLname()), tempPassword(user->getPassword())
 	{
 		InitializeComponent();
 		mySqlConn(conn);

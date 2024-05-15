@@ -47,6 +47,21 @@ namespace System {
 
 	// Sign Up Button
     System::Void Signup::signupBtn_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		if (checkUserInfo()) {
+			insertNewUser();
+			this->Close();
+		}		
+    }
+
+	// Return to Login Page
+	System::Void Signup::loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+		// Redirect to Log In page
+		this->Close();
+	}
+
+
+
+	bool Signup::checkUserInfo(void) {
 		User^ user = gcnew User();
 		bool isValidFname = user->checkName(tempFname),
 			isValidLname = user->checkName(tempLname),
@@ -56,38 +71,39 @@ namespace System {
 			isValidPass = user->checkPassword(tempPassword);
 
 
-		bool isValid = isValidFname && isValidLname && 
-						isValidId && isValidAccType && 
-						isValidEmail && isValidPass;
+		bool isValid = isValidFname && isValidLname &&
+			isValidId && isValidAccType &&
+			isValidEmail && isValidPass;
+		
+		return isValid;
+	}
 
-		if (isValid) {
-			// Creates INSERT query
+	void Signup::insertNewUser(void) {
+		// Insertion of new account
+		try {
 			String^ query = "INSERT INTO userInfo (`FIRST NAME`, `LAST NAME`, `ID NUMBER`, `ACCOUNT TYPE`, EMAIL, PASSWORD) VALUES (@tempFname, @tempLname, @tempId, @tempAccType, @tempEmail, @tempPassword)";
 			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
 			command->Parameters->AddWithValue("@tempFname", tempFname);
 			command->Parameters->AddWithValue("@tempLname", tempLname);
-			command->Parameters->AddWithValue("@tempId", tempId);
-			command->Parameters->AddWithValue("@tempAccType", tempAccType);
+			command->Parameters->AddWithValue("@tempId", rmWhiteSpaces(tempId));
+			command->Parameters->AddWithValue("@tempAccType", rmWhiteSpaces(tempAccType));
 			command->Parameters->AddWithValue("@tempEmail", tempEmail);
 			command->Parameters->AddWithValue("@tempPassword", tempPassword);
 
-			// Insertion execution
-			try {
+			String^ text = "NOTE: ID Number, Account Type, and Email cannot be changed after signing up! Are you sure to sign up this account?";
+			String^ header = "Sign up confirmation";
+			if (confirmDialogue(text, header)) {
 				command->ExecuteNonQuery();
-				MessageBox::Show(tempFname + " " + tempLname + " was successfully signed up!");
+				MessageBox::Show(String::Concat(tempFname + " " + tempLname + " was successfully signed up!"));
 			}
-			catch (const std::exception&) {
-				MessageBox::Show(tempFname + ' ' + tempLname + " was not successfully signed up!");
+			else {
+				MessageBox::Show(String::Concat(tempFname + ' ' + tempLname + " was not signed up!"));
 			}
 
-			this->Close();
 		}
-    }
-
-	// Return to Login Page
-	System::Void Signup::loginLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-		// Redirect to Log In page
-		this->Close();
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
 	}
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

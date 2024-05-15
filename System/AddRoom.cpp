@@ -21,31 +21,31 @@ namespace System {
 	}
 
 	System::Void AddRoom::rcodeTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempRoomCode = rcodeTxtBox->Text;
+		tempRoomCode = rmWhiteSpaces(rcodeTxtBox->Text);
 	}
 	
 	System::Void AddRoom::bldgTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempBuilding = bldgTxtBox->Text;
+		tempBuilding = rmWhiteSpaces(bldgTxtBox->Text);
 	}
 	
 	System::Void AddRoom::statusCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempStatus = statusCBox->Text;
+		tempStatus = rmWhiteSpaces(statusCBox->Text);
 	}
 	
 	System::Void AddRoom::roomTypeCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempRoomType = roomTypeCBox->Text;
+		tempRoomType = rmWhiteSpaces(roomTypeCBox->Text);
 	}
 
 	System::Void AddRoom::boardTypeCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempBoardType = boardTypeCBox->Text;
+		tempBoardType = rmWhiteSpaces(boardTypeCBox->Text);
 	}
 	
 	System::Void AddRoom::tvAvailCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempTv = tvAvailCBox->Text;
+		tempTv = rmWhiteSpaces(tvAvailCBox->Text);
 	}
 	
 	System::Void AddRoom::acAvailCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempAc = acAvailCBox->Text;
+		tempAc = rmWhiteSpaces(acAvailCBox->Text);
 	}
 
 	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
@@ -75,15 +75,15 @@ namespace System {
 			}
 
 			bool tvBool = (tempTv == "Available") ? true : false,
-				acBool = (tempAc == "Available") ? true : false;
+				 acBool = (tempAc == "Available") ? true : false;
 
 			String^ insertQuery = "INSERT INTO room (`ROOM CODE`, BUILDING, STATUS, `ROOM TYPE`, `BOARD TYPE`, TV, AC, IMAGE) VALUES (@tempRoomCode, @tempBuilding, @tempStatus, @tempRoomType, @tempBoardType, @tempTv, @tempAc, @tempImage)";
 			MySqlCommand^ cmdInsert = gcnew MySqlCommand(insertQuery, conn);
-			cmdInsert->Parameters->AddWithValue("tempRoomCode", tempRoomCode);
-			cmdInsert->Parameters->AddWithValue("@tempBuilding", tempBuilding);
-			cmdInsert->Parameters->AddWithValue("@tempStatus", tempStatus);
-			cmdInsert->Parameters->AddWithValue("@tempRoomType", tempRoomType);
-			cmdInsert->Parameters->AddWithValue("@tempBoardType", tempBoardType);
+			cmdInsert->Parameters->AddWithValue("tempRoomCode", rmWhiteSpaces(tempRoomCode));
+			cmdInsert->Parameters->AddWithValue("@tempBuilding", rmWhiteSpaces(tempBuilding));
+			cmdInsert->Parameters->AddWithValue("@tempStatus", rmWhiteSpaces(tempStatus));
+			cmdInsert->Parameters->AddWithValue("@tempRoomType", rmWhiteSpaces(tempRoomType));
+			cmdInsert->Parameters->AddWithValue("@tempBoardType", rmWhiteSpaces(tempBoardType));
 			cmdInsert->Parameters->AddWithValue("@tempTv", tvBool);
 			cmdInsert->Parameters->AddWithValue("@tempAc", acBool);
 			cmdInsert->Parameters->Add("@tempImage", MySqlDbType::Blob)->Value = img;
