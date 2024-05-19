@@ -4,43 +4,46 @@
 
 namespace System {
 
-	Signup::Signup(void)
-	{
+	Signup::Signup(void) {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
 
-	Signup::~Signup()
-	{
+	Signup::~Signup() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// First name text box
 	System::Void Signup::fnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempFname = fnameTxtBox->Text;
 	}
 
+	// Last name text box
 	System::Void Signup::lnameTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempLname = lnameTxtBox->Text;
 	}
 
+	// Id number text box
 	System::Void Signup::idTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempId = idTxtBox->Text;
 	}
 
+	// Account type text box
 	System::Void Signup::accTypeCbox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempAccType = accTypeCbox->Text;
 	}
 
+	// Email text box
 	System::Void Signup::emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempEmail = emailTxtBox->Text;
 	}
 
+	// Password text box
 	System::Void Signup::passTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempPassword = passTxtBox->Text;
 	}
@@ -59,8 +62,9 @@ namespace System {
 		this->Close();
 	}
 
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
 
-
+	// Check user's information validity
 	bool Signup::checkUserInfo(void) {
 		User^ user = gcnew User();
 		bool isValidFname = user->checkName(tempFname),
@@ -78,6 +82,7 @@ namespace System {
 		return isValid;
 	}
 
+	// Insert new user to db
 	void Signup::insertNewUser(void) {
 		// Insertion of new account
 		try {

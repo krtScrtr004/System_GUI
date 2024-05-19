@@ -13,18 +13,15 @@
 #include "Utils.h"
 
 namespace System {
-	RoomList::RoomList(User^ other) : user(other)
-	{
+	RoomList::RoomList(User^ other) : user(other) {
 		InitializeComponent();
 		mySqlConn(conn);
-		fillTable();
+		
 	}
 
-	RoomList::~RoomList()
-	{
+	RoomList::~RoomList() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
@@ -34,22 +31,21 @@ namespace System {
 	// Form Load
 	System::Void RoomList::RoomList_Load(System::Object^ sender, System::EventArgs^ e) {
 		clRBtn->Checked = true;
-
-		deletePassedRoomList();
+		fillTable();
 
 		if (user->getAccType() == "Admin") {
 			opt1MStrip->Text = "Room List";
 			opt2MStrip->Text = "User List";
 
-			roomsTbl->Height = 370;
+			reserveBtn->Text = "EDIT";
 
-			reserveBtn->Hide();
+			roomsTbl->Height = 370;
 		}
 		else {
 			opt1MStrip->Text = "Reserve";
 			opt2MStrip->Text = "Receipt";
 
-			if (checkUserRoomList()) {
+			if (checkUserReservation()) {
 				MessageBox::Show("Warning: You have pending reservation.  You can only reserve one at a time!");
 				clRBtn->Enabled = false;
 				labRBtn->Enabled = false;
@@ -77,6 +73,7 @@ namespace System {
 		this->Close();
 	}
 
+	// Receipt / UserList Menu
 	System::Void RoomList::opt2MStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (user->getAccType() == "Admin") {
 			UserList^ userListForm = gcnew UserList(user);
@@ -97,24 +94,28 @@ namespace System {
 			Application::Exit();
 	}
 
+	// Reserve room button
 	System::Void RoomList::reserveBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (user->getAccType() == "Admin") {
-			RoomInfo^ roomInfoForm = gcnew RoomInfo(room);
-			roomInfoForm->Show();
-		}
-		else {
-			if (room->getStatus() == "Available") {
-				ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
-				reserveInfoForm->Show();
+		if (room->getRoomCode() != nullptr) {
+			if (user->getAccType() == "Admin") {
+				RoomInfo^ roomInfoForm = gcnew RoomInfo(room);
+				roomInfoForm->Show();
 			}
 			else {
-				MessageBox::Show("Warning: This room is currently not available!");
+				if (room->getStatus() == "Available") {
+					ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
+					reserveInfoForm->Show();
+				}
+				else {
+					MessageBox::Show("Warning: This room is currently not available!");
+				}
 			}
 		}
 	}
 
-
+	// Classroom radio button
 	System::Void RoomList::clRBtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		// If laboratory radio button is checked, classroom radio button will be unchecked
 		if (labRBtn->Checked)
 			clRBtn->Checked = false;
 		else
@@ -123,24 +124,30 @@ namespace System {
 
 	// Laboratory Radio Button
 	System::Void RoomList::labRBtn_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		// Prevents student type users to access laboratory type rooms
 		if (user->getAccType() == "Student")
 			MessageBox::Show("Laboratory is only available for Faculty members!");
 
-
+		// If classroom radio button is checked, laboratory radio button will be unchecked
 		if (clRBtn->Checked)
 			labRBtn->Checked = false;
 		else
 			fillTable();
 	}
 
-	// Set "room's" members
+	// Set room's members when a row is clicked on the table
 	System::Void RoomList::roomsTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		String^ selectedRoomCode = roomsTbl->Rows[roomsTbl->CurrentCell->RowIndex]->Cells[0]->Value->ToString();
-		fetchRoomInfo(selectedRoomCode);
-		setRoomInfo();
+		if (roomsTbl->Rows->Count > 0) {
+			String^ selectedRoomCode = roomsTbl->Rows[roomsTbl->CurrentCell->RowIndex]->Cells[0]->Value->ToString();
+			fetchRoomInfo(selectedRoomCode);
+			setRoomInfo();
+		}
+		else {
+			MessageBox::Show("Warning: Table has no data!");
+		}
 	}
 
-	// Add Room Button
+	// Add a room button (only for Admins)
 	System::Void RoomList::addRoomBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		AddRoom^ addRoomForm = gcnew AddRoom();
 		addRoomForm->Show();
@@ -169,25 +176,7 @@ namespace System {
 		}
 	}
 
-	void RoomList::deletePassedRoomList(void) {
-		DateTime currentTime = DateTime::Now;
-		String^ currentDate = currentTime.ToString("yyyy-MM-dd");
-		String^ currentTimeStr = currentTime.ToString("HH:mm:ss");
-		
-		try {
-			// FIX ME
-			String^ deleteQuery = "UPDATE reservation SET STATUS = 0 WHERE DATE <= @currentDate AND (`OUT TIME` <= @currentTime)";
-			MySqlCommand^ deleteCommand = gcnew MySqlCommand(deleteQuery, conn);
-			deleteCommand->Parameters->AddWithValue("@currentDate", currentDate);
-			deleteCommand->Parameters->AddWithValue("@currentTime", currentTimeStr);
-
-			deleteCommand->ExecuteNonQuery();
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-		}
-	}
-
+	// Get selected room's data from the db
 	void RoomList::fetchRoomInfo(String^ selectedRoomCode) {
 		try {
 			String^ query = "SELECT * FROM room WHERE `ROOM CODE` = @selectedRoomCode";
@@ -199,6 +188,9 @@ namespace System {
 				if (reader["IMAGE"] != DBNull::Value) {
 					array<unsigned char>^ img = safe_cast<array<unsigned char>^>(reader["IMAGE"]);
 					room->setImg(img);
+				}
+				else {
+					room->setImg(nullptr);
 				}
 				room->setRoomCode(reader["ROOM CODE"]->ToString());
 				room->setBuilding(reader["BUILDING"]->ToString());
@@ -216,12 +208,18 @@ namespace System {
 		}
 	}
 
+	// Display selected room information to the form
 	void RoomList::setRoomInfo(void) {
 		if (room->getImg() != nullptr) {
 			MemoryStream^ ms = gcnew MemoryStream(room->getImg());
 			Image^ img = Image::FromStream(ms);
 			roomImg->Image = img;
 		}
+		else {
+			String^ defaultImgLoc = "\images\WHITE_IMG.png";
+			roomImg->ImageLocation = defaultImgLoc;
+		}
+
 		roomCodeDataLbl->Text = (room->getRoomCode())->ToUpper();
 		bldDataLbl->Text = (room->getBuilding())->ToUpper();
 		boardTypeDataLbl->Text = (room->getBoardType())->ToUpper();
@@ -229,7 +227,8 @@ namespace System {
 		acAvailDataLbl->Text = (room->getAc()) ? "AVAILABLE" : "NOT AVAILABLE";
 	}
 	
-	bool RoomList::checkUserRoomList() {
+	// Check whether user has pending reservation
+	bool RoomList::checkUserReservation() {
 		String^ query = "SELECT * FROM reservation WHERE `USER ID` = @tempUserId AND STATUS = 1";
 		MySqlCommand^ command = gcnew MySqlCommand(query, conn);
 		command->Parameters->AddWithValue("@tempUserId", user->getId());

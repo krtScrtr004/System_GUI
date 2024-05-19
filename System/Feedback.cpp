@@ -17,7 +17,9 @@ namespace System {
 		}
 	}
 
-
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
+	
+	// Form load
 	System::Void Feedback::Feedback_Load(System::Object^ sender, System::EventArgs^ e) {
 		fecthUserData();
 		fetchRoomData();
@@ -32,8 +34,9 @@ namespace System {
 		bldgTxtBox->Text = (room->getBuilding())->ToUpper();
 	}
 
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
 
-
+	// Get user's data from the db
 	void Feedback::fecthUserData(void) {
 		try {
 			String^ query = "SELECT * FROM userInfo WHERE `ID NUMBER` = @tempUserId";
@@ -55,6 +58,7 @@ namespace System {
 		}
 	}
 
+	// Get reserved room's data from the db
 	void Feedback::fetchRoomData(void) {
 		try {
 			String^ query = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode";
@@ -75,6 +79,7 @@ namespace System {
 
 	}
 
+	// Get reservation data from the db
 	void Feedback::fetchResrvationData(void) {
 		try {
 			String^ query = "SELECT `ROOM CODE`, DATE_FORMAT(`DATE`, '%Y-%m-%d') AS dateOnly, `IN TIME`, `OUT TIME` FROM reservation WHERE `USER ID` = @tempUserId";
@@ -94,6 +99,7 @@ namespace System {
 		}
 	}
 
+	// Get the user's feedback from the db
 	void Feedback::fetchFeedbackData(void) {
 		try {
 			String^ query = "SELECT * FROM feedback WHERE `USER ID` = @tempUserId AND `ROOM CODE` = @tempRoomCode";
@@ -111,4 +117,6 @@ namespace System {
 			MessageBox::Show(e->Message);
 		}
 	}
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 }

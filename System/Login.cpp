@@ -1,45 +1,40 @@
-// TODO: FEEDBACK PAGE
-// TODO: COMMENTS
-// TODO: CODE REVIEW
-// TODO: TEST
-
 #include "ForgetPass.h"
 #include "Login.h"
 #include "Profile.h"
 #include "Signup.h"
+#include "User.h"
 #include "Utils.h"
 
 using namespace System;
 
 namespace System {
-	Login::Login(void)
-	{
+	Login::Login(void) {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
 
-	Login::~Login()
-	{
+	Login::~Login() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// Email text box
 	System::Void Login::emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempEmail = emailTxtBox->Text;
 	}
 
+	// Password text box
 	System::Void Login::passTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempPassword = passTxtBox->Text;
 	}
 
-	// Redirect to Profile Page
+	// Redirect to Profile Page when button is clicked
 	System::Void Login::loginBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Reads data from DB
+		// Search for specified email and password to tdb
 		try {
 			String^ query = "SELECT EMAIL, PASSWORD FROM userInfo WHERE EMAIL = @tempEmail AND PASSWORD = @tempPassword";
 			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
@@ -67,13 +62,13 @@ namespace System {
 		}	
 	}
 
-	// Sign Up Hyperlink
+	// Sign up hyperlink
 	System::Void Login::signupLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 		Signup^ signUpForm = gcnew Signup();
 		signUpForm->Show();
 	}
 
-	// Forget Password Hyperlink
+	// Forget password hyperlink
 	System::Void Login::fpassLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 		ForgetPass^ forgetPassForm = gcnew ForgetPass();
 		forgetPassForm->Show();

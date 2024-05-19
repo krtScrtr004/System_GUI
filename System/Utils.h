@@ -1,4 +1,6 @@
 #pragma once
+// Utility methods
+
 #include <iostream>
 #include <msclr/marshal_cppstd.h> 
 #include <regex>
@@ -21,5 +23,3 @@ bool confirmDialogue(String^ text, String^ header);
 String^ rmWhiteSpaces(String^ str);
 
 String^ openFile(void);
-
-bool searchRoomCode(String^ roomCode, MySqlConnection^ conn);

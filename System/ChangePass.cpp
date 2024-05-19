@@ -26,8 +26,9 @@ namespace System {
 	// Update user's password to new password
 	System::Void ChangePass::npassBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
-			String^ query = "UPDATE userInfo SET EMAIL = @tempEmail";
+			String^ query = "UPDATE userInfo SET PASSWORD = @tempPassword WHERE EMAIL = @tempEmail";
 			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
+			command->Parameters->AddWithValue("@tempPassword", tempPassword);
 			command->Parameters->AddWithValue("@tempEmail", tempEmail);
 			command->ExecuteNonQuery();
 			MessageBox::Show("Password Changed Successfully!");

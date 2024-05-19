@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+// Create a connection to localhost
 void mySqlConn(MySqlConnection^% conn) {
     String^ connString = "Server=localhost;port=3306;database=roomreservation;uid=root;password=1234";
     conn = gcnew MySqlConnection(connString);
@@ -15,11 +16,13 @@ void mySqlConn(MySqlConnection^% conn) {
     }
 }
 
+// Termninate connection to localhost
 void mySqlDeconn(MySqlConnection^% conn) {
     if (conn != nullptr)
         conn->Close();
 }
 
+// Reusable confirmation dialogue
 bool confirmDialogue(String^ text, String^ header) {
     DialogResult result = MessageBox::Show(text, header, MessageBoxButtons::YesNo);
 
@@ -29,6 +32,7 @@ bool confirmDialogue(String^ text, String^ header) {
         return false;
 }
 
+// Remove white spaces to String^
 String^ rmWhiteSpaces(String^ str)
 {
     // Convert System::String^ to std::string
@@ -42,6 +46,7 @@ String^ rmWhiteSpaces(String^ str)
     return gcnew String(stdInputString.c_str());
 }
 
+// Open file dialogue
 String^ openFile(void) {
     String^ fileLoc;
 
@@ -53,24 +58,4 @@ String^ openFile(void) {
     return fileLoc;
 }
 
-bool searchRoomCode(String^ roomCode, MySqlConnection^ conn) {
-    bool isPresent = false;
 
-    try {
-        String^ searchQuery = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode";
-        MySqlCommand^ cmdSearch = gcnew MySqlCommand(searchQuery, conn);
-        cmdSearch->Parameters->AddWithValue("@tempRoomCode", roomCode);
-
-        MySqlDataReader^ reader = cmdSearch->ExecuteReader();
-        if (reader->HasRows) {
-            MessageBox::Show("Warning: Room Code has already been used!");
-            isPresent = true;
-        }
-        reader->Close();
-    }
-    catch (Exception^ e) {
-        MessageBox::Show(e->Message);
-    }
-
-    return isPresent;
-}

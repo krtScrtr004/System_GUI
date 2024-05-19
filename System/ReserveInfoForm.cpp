@@ -3,30 +3,89 @@
 
 namespace System {
 	ReserveInfoForm::ReserveInfoForm(User^ otherUser, Room^ otherRoom) 
-						: user(otherUser), room(otherRoom) 
-	{
+						: user(otherUser), room(otherRoom) {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
 
-	ReserveInfoForm::~ReserveInfoForm()
-	{
+	ReserveInfoForm::~ReserveInfoForm() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// Form load
 	System::Void ReserveInfoForm::ReserveInfoForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		// Converts Binary to an Image type
-		if (room->getImg() != nullptr)
-		{
-			MemoryStream^ ms = gcnew MemoryStream(room->getImg());
-			Image^ img = Image::FromStream(ms);
-			roomImg->Image = img;
+		displayData();
+	}
+
+	// Date picker text box
+	System::Void ReserveInfoForm::datePkr_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		tempDate = rmWhiteSpaces(datePkr->Text);		
+	}
+
+	// Time picxker text box
+	System::Void ReserveInfoForm::timePkr_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		tempTime = rmWhiteSpaces(timePkr->Text);
+	}
+
+	// Duration picker text box
+	System::Void ReserveInfoForm::durationNum_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+		tempDuration = durationNum->Value;
+	}
+
+	// Submit Button
+	System::Void ReserveInfoForm::reserveBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Check user's specified date
+		if (!checkDateFormat()) {
+			this->Close();
+			return;
+		}
+		
+		// Check user's specified time
+		if (!checkTimeFormat()) {
+			MessageBox::Show("Warning: Invalid time format!");
+			this->Close();
+			return;
+		}
+
+		// Check user's specified duration
+		if (!checkDuration()) {
+			this->Close();
+			return;
+		}
+		
+		// Parse tempTime string
+		String^ outTime = parseTime();
+
+		if (checkIfReserved()) {
+			MessageBox::Show(String::Concat("This room is already reserved on" + tempDate + " at " + tempTime));
+			this->Close();
+		}
+
+		insertReservation(outTime);
+
+		this->Close();
+	}
+
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
+
+	// Display room's data to the form
+	void ReserveInfoForm::displayData(void) {
+		try {
+			// Converts Binary to an Image type
+			if (room->getImg() != nullptr)
+			{
+				MemoryStream^ ms = gcnew MemoryStream(room->getImg());
+				Image^ img = Image::FromStream(ms);
+				roomImg->Image = img;
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
 		}
 
 		roomCodeDataLbl->Text = (room->getRoomCode())->ToUpper();
@@ -36,51 +95,7 @@ namespace System {
 		acAvailDataLbl->Text = *(room->getAc()) ? "AVAILABLE" : "NOT AVAILABLE";
 	}
 
-	System::Void ReserveInfoForm::datePkr_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempDate = rmWhiteSpaces(datePkr->Text);		
-	}
-
-	System::Void ReserveInfoForm::timePkr_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempTime = rmWhiteSpaces(timePkr->Text);
-	}
-
-	System::Void ReserveInfoForm::durationNum_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempDuration = durationNum->Value;
-	}
-
-	// Submit Button
-	System::Void ReserveInfoForm::reserveBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!checkDateFormat()) {
-			this->Close();
-			return;
-		}
-		
-		if (!checkTimeFormat()) {
-			MessageBox::Show("Warning: Invalid time format!");
-			this->Close();
-		}
-		if (!checkDuration()) this->Close();
-		
-		// Parse tempTime string
-		String^ outTime = parseTime();
-
-		try {
-			if (checkIfReserved()) {
-				MessageBox::Show(String::Concat("This room is already reserved on" + tempDate + " at " + tempTime));
-				this->Close();
-			}
-
-			insertReservation(outTime);
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-		}
-
-		this->Close();
-	}
-
-	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
-
+	// Check specifeid date's format
 	bool ReserveInfoForm::checkDateFormat(void) {
 		String^ dateFormat = "yyyy-MM-dd";
 		DateTime parsedDate;
@@ -120,6 +135,7 @@ namespace System {
 		return true;
 	}
 
+	// Check specifeid time's format
 	bool ReserveInfoForm::checkTimeFormat(void) {
 		String^ expectedTimeFormat = "HH:mm:ss";
 		DateTime parsedTime;
@@ -130,6 +146,7 @@ namespace System {
 		return true;
 	}
 
+	// Check specifeid duration
 	bool ReserveInfoForm::checkDuration(void) {
 		if (*tempDuration < 1) {
 			MessageBox::Show("Warning: Duration is less than minimum (1)!");
@@ -162,7 +179,7 @@ namespace System {
 		return outTime;
 	}
 
-	// Search whether the room is already reserved at the same date input
+	// Search whether the room is already reserved at the same date input from the db
 	bool ReserveInfoForm::checkIfReserved(void) {
 		bool isReserved = false;
 
@@ -195,7 +212,7 @@ namespace System {
 
 			cmdInsert->ExecuteNonQuery();
 
-			String^ text = "Confirm reservation info?";
+			String^ text = "Note: After confirmation, information cannot be changed! Are you sure to reserve this room?";
 			String^ header = "Reservation information confirmation";
 			if (confirmDialogue(text, header))
 				MessageBox::Show("Your reservation was successfully reserved!");

@@ -7,17 +7,14 @@
 #include "Utils.h"
 
 namespace System {
-	Profile::Profile(User^ other) : user(other)
-	{
+	Profile::Profile(User^ other) : user(other) {
 		InitializeComponent();
 		mySqlConn(conn);
 	}
 
-	Profile::~Profile()
-	{
+	Profile::~Profile() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
@@ -38,6 +35,7 @@ namespace System {
 		}
 
 		displayData();
+		deletePassedRoomList();
 		fillTable();
 	}
 
@@ -48,20 +46,22 @@ namespace System {
 		this->Close();
 	}
 
-	// Room (Admin) / RoomList Menu
+	// RoomList Menu
 	System::Void Profile::opt1MStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		RoomList^ roomListForm = gcnew RoomList(user);
 		roomListForm->Show();
 		this->Close();
 	}
 
-	// 
+	// Recceipt / UserList Menu
 	System::Void Profile::opt2MStrip_Click(System::Object ^ sender, System::EventArgs ^ e) {
+		// If admin, open UserList form
 		if (user->getAccType() == "Admin") {
 			UserList^ userListForm = gcnew UserList(user);
 			userListForm->Show();
 			this->Close();
 		}
+		// Open Receipt form
 		else {
 			Receipt^ receiptForm = gcnew Receipt(user);
 			receiptForm->Show();
@@ -82,23 +82,30 @@ namespace System {
 		editProfileForm->Show();
 	}
 
+	// Table data click
 	System::Void Profile::historyTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		if (user->getAccType() == "Admin") {
-			String^ selectedUser = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[0]->Value->ToString();
-			String^ selectedRoomCode = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[1]->Value->ToString();
+			if (historyTbl->Rows->Count > 0) {
+				String^ selectedUser = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[0]->Value->ToString();
+				String^ selectedRoomCode = historyTbl->Rows[historyTbl->CurrentCell->RowIndex]->Cells[1]->Value->ToString();
 
-			User^ user = gcnew User();
-			user->setId(selectedUser);
-			Room^ room = gcnew Room();
-			room->setRoomCode(selectedRoomCode);
+				User^ user = gcnew User();
+				user->setId(selectedUser);
+				Room^ room = gcnew Room();
+				room->setRoomCode(selectedRoomCode);
 
-			Feedback^ feedbackForm = gcnew Feedback(user, room);
-			feedbackForm->Show();
+				Feedback^ feedbackForm = gcnew Feedback(user, room);
+				feedbackForm->Show();
+			}
+			else {
+				MessageBox::Show("Warning: Table has no data!");
+			}
 		}
 	}
 
 	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// Get user's data
 	void Profile::fetchUserData(void) {
 		try {
 			String^ query = "SELECT * FROM userInfo WHERE EMAIL = @tempEmail AND PASSWORD = @tempPassword";
@@ -127,13 +134,20 @@ namespace System {
 		}
 	}
 
+	// Display data to the form
 	void Profile::displayData(void) {
-		// Converts Binary to an Image type
-		if (user->getProfileImg() != nullptr)
+		try
 		{
-			MemoryStream^ ms = gcnew MemoryStream(user->getProfileImg());
-			Image^ img = Image::FromStream(ms);
-			profileImg->Image = img;
+			// Converts Binary to an Image type
+			if (user->getProfileImg() != nullptr)
+			{
+				MemoryStream^ ms = gcnew MemoryStream(user->getProfileImg());
+				Image^ img = Image::FromStream(ms);
+				profileImg->Image = img;
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
 		}
 
 		nameLbl->Text = String::Concat(user->getFname() + " " + user->getLname());
@@ -142,12 +156,34 @@ namespace System {
 		accTypeLbl->Text = (String::Concat(user->getAccType() + " Type"))->ToUpper();
 	}
 
+	// Delete passed reservations to the db
+	void Profile::deletePassedRoomList(void) {
+		DateTime currentTime = DateTime::Now;
+		String^ currentDate = currentTime.ToString("yyyy-MM-dd");
+		String^ currentTimeStr = currentTime.ToString("HH:mm:ss");
+
+		try {
+			String^ deleteQuery = "UPDATE reservation SET STATUS = 0 WHERE DATE <= @currentDate AND (`OUT TIME` <= @currentTime)";
+			MySqlCommand^ deleteCommand = gcnew MySqlCommand(deleteQuery, conn);
+			deleteCommand->Parameters->AddWithValue("@currentDate", currentDate);
+			deleteCommand->Parameters->AddWithValue("@currentTime", currentTimeStr);
+
+			deleteCommand->ExecuteNonQuery();
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+	}
+
+	// Fill table with data from the db
 	void Profile::fillTable(void) {
 		try {
 			String^ query;
+			// If admin, show all reservations
 			if (user->getAccType() == "Admin") {
 				query = "SELECT * FROM reservation";
 			}
+			// Show current user's reservations only
 			else {
 				query = "SELECT `ROOM CODE`, DATE, `IN TIME`, `OUT TIME`, STATUS FROM reservation WHERE `USER ID` = @tempUserId";
 			}
@@ -165,7 +201,6 @@ namespace System {
 		catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 		}
-
 	}
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

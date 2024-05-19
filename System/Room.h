@@ -20,7 +20,33 @@ private:
 	bool^ ac;
 
 public:
-	// Setters
+
+	Room() : roomCode(nullptr), building(nullptr),
+		status(nullptr), roomType(nullptr), 
+		boardType(nullptr), tv(false), ac(false) {}
+
+	~Room() {}
+
+	/*--------------------------------------------------------------------------------------GETTER---------------------------------------------------------------------------*/
+
+	array<unsigned char>^ getImg(void) { return img; }
+
+	String^ getRoomCode(void) { return roomCode; }
+
+	String^ getBuilding(void) { return building; }
+
+	String^ getStatus(void) { return status; }
+
+	String^ getRoomType(void) { return roomType; }
+
+	String^ getBoardType(void) { return boardType; }
+
+	bool^ getTv(void) { return tv; }
+
+	bool^ getAc(void) { return ac; }
+
+	/*--------------------------------------------------------------------------------------SETTER---------------------------------------------------------------------------*/
+
 	void setImg(array<unsigned char>^ IMG) { img = IMG; }
 
 	void setRoomCode(String^ ROOM_CODE) { roomCode = ROOM_CODE; }
@@ -37,20 +63,6 @@ public:
 
 	void setAc(bool^ AC) { ac = AC; }
 
-	// Getters
-	array<unsigned char>^ getImg(void) { return img; }
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-	String^ getRoomCode(void) { return roomCode; }
-
-	String^ getBuilding(void) { return building; }
-
-	String^ getStatus(void) { return status; }
-
-	String^ getRoomType(void) { return roomType; }
-
-	String^ getBoardType(void) { return boardType; }
-
-	bool^ getTv(void) { return tv; }
-
-	bool^ getAc(void) { return ac; }
 };

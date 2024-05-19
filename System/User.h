@@ -24,6 +24,8 @@ public:
 
 	~User();
 
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS-----------------------------------------------------------------------*/
+
 	bool checkName(String^ NAME);
 
 	bool checkId(String^ ID);
@@ -33,6 +35,8 @@ public:
 	bool checkEmail(String^ EMAIL);
 
 	bool checkPassword(String^ PASSWORD);
+
+	/*--------------------------------------------------------------------------------------GETTER---------------------------------------------------------------------------*/
 
 	array<unsigned char>^ getProfileImg(void) { return profileImg; }
 
@@ -48,6 +52,8 @@ public:
 
 	String^ getPassword(void) { return password; }
 
+	/*--------------------------------------------------------------------------------------SETTER---------------------------------------------------------------------------*/
+
 	void setProfileImg(array<unsigned char>^ PROFILE_IMG) { profileImg = PROFILE_IMG; }
 
 	void setFname(String^ FNAME) { fname = FNAME; }
@@ -61,4 +67,6 @@ public:
 	void setEmail(String^ EMAIL) { email = EMAIL; }
 
 	void setPassword(String^ PASSWORD) { password = PASSWORD;  }
+
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };

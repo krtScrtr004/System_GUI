@@ -21,17 +21,13 @@ namespace System {
 		~Feedback();
 
 	private: System::Windows::Forms::Panel^ panel1;
-	protected:
 	private: System::Windows::Forms::PictureBox^ feedbackIcon;
 	private: System::Windows::Forms::Label^ fdBclLbl;
-
 	private: System::Windows::Forms::TextBox^ fdBackTxtBox;
-
 	private: System::Windows::Forms::TextBox^ outTimeTxtBox;
 	private: System::Windows::Forms::TextBox^ inTimeTxtBox;
 	private: System::Windows::Forms::TextBox^ dateTxtBox;
 	private: System::Windows::Forms::TextBox^ rcodeTxtBox;
-
 	private: System::Windows::Forms::PictureBox^ durationIcon;
 	private: System::Windows::Forms::PictureBox^ timeIcon;
 	private: System::Windows::Forms::PictureBox^ dateIcon;
@@ -46,6 +42,7 @@ namespace System {
 	private: System::Windows::Forms::Label^ emailDataLbl;
 	private: System::Windows::Forms::Label^ idNumDataLbl;
 	private: System::Windows::Forms::Label^ nameDataLbl;
+	private: System::Windows::Forms::Label^ reservationInfoLbl;
 
 	private:
 		/// <summary>
@@ -83,6 +80,7 @@ namespace System {
 			this->emailDataLbl = (gcnew System::Windows::Forms::Label());
 			this->idNumDataLbl = (gcnew System::Windows::Forms::Label());
 			this->nameDataLbl = (gcnew System::Windows::Forms::Label());
+			this->reservationInfoLbl = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->feedbackIcon))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->durationIcon))->BeginInit();
@@ -104,7 +102,7 @@ namespace System {
 			this->panel1->Controls->Add(this->fdBackTxtBox);
 			this->panel1->Location = System::Drawing::Point(328, -1);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(525, 486);
+			this->panel1->Size = System::Drawing::Size(522, 486);
 			this->panel1->TabIndex = 78;
 			// 
 			// feedbackIcon
@@ -121,11 +119,11 @@ namespace System {
 			// 
 			this->fdBclLbl->AutoSize = true;
 			this->fdBclLbl->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->fdBclLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fdBclLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->fdBclLbl->Location = System::Drawing::Point(91, 34);
 			this->fdBclLbl->Name = L"fdBclLbl";
-			this->fdBclLbl->Size = System::Drawing::Size(106, 27);
+			this->fdBclLbl->Size = System::Drawing::Size(110, 26);
 			this->fdBclLbl->TabIndex = 11;
 			this->fdBclLbl->Text = L"Feedback:";
 			// 
@@ -133,7 +131,7 @@ namespace System {
 			// 
 			this->fdBackTxtBox->BackColor = System::Drawing::Color::White;
 			this->fdBackTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->fdBackTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->fdBackTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->fdBackTxtBox->Location = System::Drawing::Point(50, 76);
 			this->fdBackTxtBox->Multiline = true;
@@ -147,14 +145,15 @@ namespace System {
 			this->outTimeTxtBox->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->outTimeTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->outTimeTxtBox->Enabled = false;
-			this->outTimeTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->outTimeTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->outTimeTxtBox->Location = System::Drawing::Point(72, 420);
+			this->outTimeTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->outTimeTxtBox->Location = System::Drawing::Point(70, 423);
 			this->outTimeTxtBox->Multiline = true;
 			this->outTimeTxtBox->Name = L"outTimeTxtBox";
 			this->outTimeTxtBox->ReadOnly = true;
-			this->outTimeTxtBox->Size = System::Drawing::Size(209, 24);
+			this->outTimeTxtBox->Size = System::Drawing::Size(209, 31);
 			this->outTimeTxtBox->TabIndex = 72;
 			this->outTimeTxtBox->Text = L"OUT TIME";
 			// 
@@ -163,14 +162,15 @@ namespace System {
 			this->inTimeTxtBox->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->inTimeTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->inTimeTxtBox->Enabled = false;
-			this->inTimeTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->inTimeTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->inTimeTxtBox->Location = System::Drawing::Point(72, 379);
+			this->inTimeTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->inTimeTxtBox->Location = System::Drawing::Point(70, 384);
 			this->inTimeTxtBox->Multiline = true;
 			this->inTimeTxtBox->Name = L"inTimeTxtBox";
 			this->inTimeTxtBox->ReadOnly = true;
-			this->inTimeTxtBox->Size = System::Drawing::Size(209, 24);
+			this->inTimeTxtBox->Size = System::Drawing::Size(209, 33);
 			this->inTimeTxtBox->TabIndex = 71;
 			this->inTimeTxtBox->Text = L"IN TIME";
 			// 
@@ -179,14 +179,15 @@ namespace System {
 			this->dateTxtBox->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->dateTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->dateTxtBox->Enabled = false;
-			this->dateTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->dateTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->dateTxtBox->Location = System::Drawing::Point(72, 339);
+			this->dateTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->dateTxtBox->Location = System::Drawing::Point(70, 342);
 			this->dateTxtBox->Multiline = true;
 			this->dateTxtBox->Name = L"dateTxtBox";
 			this->dateTxtBox->ReadOnly = true;
-			this->dateTxtBox->Size = System::Drawing::Size(209, 24);
+			this->dateTxtBox->Size = System::Drawing::Size(209, 36);
 			this->dateTxtBox->TabIndex = 70;
 			this->dateTxtBox->Text = L"DATE";
 			// 
@@ -195,14 +196,15 @@ namespace System {
 			this->rcodeTxtBox->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->rcodeTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->rcodeTxtBox->Enabled = false;
-			this->rcodeTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->rcodeTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->rcodeTxtBox->Location = System::Drawing::Point(72, 259);
+			this->rcodeTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->rcodeTxtBox->Location = System::Drawing::Point(70, 262);
 			this->rcodeTxtBox->Multiline = true;
 			this->rcodeTxtBox->Name = L"rcodeTxtBox";
 			this->rcodeTxtBox->ReadOnly = true;
-			this->rcodeTxtBox->Size = System::Drawing::Size(209, 24);
+			this->rcodeTxtBox->Size = System::Drawing::Size(209, 34);
 			this->rcodeTxtBox->TabIndex = 68;
 			this->rcodeTxtBox->Text = L"ROOM CODE";
 			// 
@@ -211,7 +213,7 @@ namespace System {
 			this->durationIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"durationIcon.Image")));
 			this->durationIcon->Location = System::Drawing::Point(35, 420);
 			this->durationIcon->Name = L"durationIcon";
-			this->durationIcon->Size = System::Drawing::Size(31, 22);
+			this->durationIcon->Size = System::Drawing::Size(29, 27);
 			this->durationIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->durationIcon->TabIndex = 77;
 			this->durationIcon->TabStop = false;
@@ -221,7 +223,7 @@ namespace System {
 			this->timeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"timeIcon.Image")));
 			this->timeIcon->Location = System::Drawing::Point(35, 381);
 			this->timeIcon->Name = L"timeIcon";
-			this->timeIcon->Size = System::Drawing::Size(31, 22);
+			this->timeIcon->Size = System::Drawing::Size(29, 27);
 			this->timeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->timeIcon->TabIndex = 76;
 			this->timeIcon->TabStop = false;
@@ -231,7 +233,7 @@ namespace System {
 			this->dateIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"dateIcon.Image")));
 			this->dateIcon->Location = System::Drawing::Point(35, 339);
 			this->dateIcon->Name = L"dateIcon";
-			this->dateIcon->Size = System::Drawing::Size(31, 22);
+			this->dateIcon->Size = System::Drawing::Size(29, 27);
 			this->dateIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->dateIcon->TabIndex = 75;
 			this->dateIcon->TabStop = false;
@@ -241,7 +243,7 @@ namespace System {
 			this->bldgIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"bldgIcon.Image")));
 			this->bldgIcon->Location = System::Drawing::Point(35, 299);
 			this->bldgIcon->Name = L"bldgIcon";
-			this->bldgIcon->Size = System::Drawing::Size(31, 22);
+			this->bldgIcon->Size = System::Drawing::Size(29, 27);
 			this->bldgIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->bldgIcon->TabIndex = 74;
 			this->bldgIcon->TabStop = false;
@@ -251,7 +253,7 @@ namespace System {
 			this->rcodeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"rcodeIcon.Image")));
 			this->rcodeIcon->Location = System::Drawing::Point(35, 259);
 			this->rcodeIcon->Name = L"rcodeIcon";
-			this->rcodeIcon->Size = System::Drawing::Size(31, 22);
+			this->rcodeIcon->Size = System::Drawing::Size(29, 27);
 			this->rcodeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->rcodeIcon->TabIndex = 73;
 			this->rcodeIcon->TabStop = false;
@@ -261,23 +263,24 @@ namespace System {
 			this->bldgTxtBox->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->bldgTxtBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->bldgTxtBox->Enabled = false;
-			this->bldgTxtBox->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->bldgTxtBox->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bldgTxtBox->Location = System::Drawing::Point(72, 299);
+			this->bldgTxtBox->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->bldgTxtBox->Location = System::Drawing::Point(70, 302);
 			this->bldgTxtBox->Multiline = true;
 			this->bldgTxtBox->Name = L"bldgTxtBox";
 			this->bldgTxtBox->ReadOnly = true;
-			this->bldgTxtBox->Size = System::Drawing::Size(209, 24);
+			this->bldgTxtBox->Size = System::Drawing::Size(209, 34);
 			this->bldgTxtBox->TabIndex = 69;
 			this->bldgTxtBox->Text = L"BUILDING";
 			// 
 			// accTypeIcon
 			// 
 			this->accTypeIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"accTypeIcon.Image")));
-			this->accTypeIcon->Location = System::Drawing::Point(35, 185);
+			this->accTypeIcon->Location = System::Drawing::Point(35, 203);
 			this->accTypeIcon->Name = L"accTypeIcon";
-			this->accTypeIcon->Size = System::Drawing::Size(31, 22);
+			this->accTypeIcon->Size = System::Drawing::Size(29, 27);
 			this->accTypeIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->accTypeIcon->TabIndex = 73;
 			this->accTypeIcon->TabStop = false;
@@ -285,9 +288,9 @@ namespace System {
 			// emailIcon
 			// 
 			this->emailIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"emailIcon.Image")));
-			this->emailIcon->Location = System::Drawing::Point(35, 141);
+			this->emailIcon->Location = System::Drawing::Point(35, 167);
 			this->emailIcon->Name = L"emailIcon";
-			this->emailIcon->Size = System::Drawing::Size(31, 22);
+			this->emailIcon->Size = System::Drawing::Size(29, 27);
 			this->emailIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->emailIcon->TabIndex = 72;
 			this->emailIcon->TabStop = false;
@@ -295,9 +298,9 @@ namespace System {
 			// idNumIcon
 			// 
 			this->idNumIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"idNumIcon.Image")));
-			this->idNumIcon->Location = System::Drawing::Point(35, 96);
+			this->idNumIcon->Location = System::Drawing::Point(35, 128);
 			this->idNumIcon->Name = L"idNumIcon";
-			this->idNumIcon->Size = System::Drawing::Size(31, 24);
+			this->idNumIcon->Size = System::Drawing::Size(29, 27);
 			this->idNumIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->idNumIcon->TabIndex = 71;
 			this->idNumIcon->TabStop = false;
@@ -305,9 +308,9 @@ namespace System {
 			// nameIcon
 			// 
 			this->nameIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"nameIcon.Image")));
-			this->nameIcon->Location = System::Drawing::Point(35, 54);
+			this->nameIcon->Location = System::Drawing::Point(35, 91);
 			this->nameIcon->Name = L"nameIcon";
-			this->nameIcon->Size = System::Drawing::Size(31, 24);
+			this->nameIcon->Size = System::Drawing::Size(29, 27);
 			this->nameIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->nameIcon->TabIndex = 70;
 			this->nameIcon->TabStop = false;
@@ -315,13 +318,13 @@ namespace System {
 			// accTypeDataLbl
 			// 
 			this->accTypeDataLbl->AutoSize = true;
-			this->accTypeDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->accTypeDataLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->accTypeDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->accTypeDataLbl->Location = System::Drawing::Point(68, 183);
+			this->accTypeDataLbl->Location = System::Drawing::Point(70, 204);
 			this->accTypeDataLbl->Name = L"accTypeDataLbl";
-			this->accTypeDataLbl->Size = System::Drawing::Size(168, 24);
+			this->accTypeDataLbl->Size = System::Drawing::Size(156, 26);
 			this->accTypeDataLbl->TabIndex = 69;
 			this->accTypeDataLbl->Text = L"ACCOUNT TYPE ";
 			// 
@@ -329,26 +332,26 @@ namespace System {
 			// 
 			this->emailDataLbl->AutoEllipsis = true;
 			this->emailDataLbl->AutoSize = true;
-			this->emailDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->emailDataLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->emailDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->emailDataLbl->Location = System::Drawing::Point(68, 141);
+			this->emailDataLbl->Location = System::Drawing::Point(70, 168);
 			this->emailDataLbl->Name = L"emailDataLbl";
-			this->emailDataLbl->Size = System::Drawing::Size(79, 24);
+			this->emailDataLbl->Size = System::Drawing::Size(71, 26);
 			this->emailDataLbl->TabIndex = 68;
 			this->emailDataLbl->Text = L"EMAIL ";
 			// 
 			// idNumDataLbl
 			// 
 			this->idNumDataLbl->AutoSize = true;
-			this->idNumDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->idNumDataLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->idNumDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->idNumDataLbl->Location = System::Drawing::Point(68, 96);
+			this->idNumDataLbl->Location = System::Drawing::Point(70, 129);
 			this->idNumDataLbl->Name = L"idNumDataLbl";
-			this->idNumDataLbl->Size = System::Drawing::Size(126, 24);
+			this->idNumDataLbl->Size = System::Drawing::Size(117, 26);
 			this->idNumDataLbl->TabIndex = 67;
 			this->idNumDataLbl->Text = L"ID NUMBER ";
 			// 
@@ -356,15 +359,25 @@ namespace System {
 			// 
 			this->nameDataLbl->AutoEllipsis = true;
 			this->nameDataLbl->AutoSize = true;
-			this->nameDataLbl->Font = (gcnew System::Drawing::Font(L"Kristen ITC", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->nameDataLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->nameDataLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->nameDataLbl->Location = System::Drawing::Point(68, 54);
+			this->nameDataLbl->Location = System::Drawing::Point(70, 92);
 			this->nameDataLbl->Name = L"nameDataLbl";
-			this->nameDataLbl->Size = System::Drawing::Size(75, 24);
+			this->nameDataLbl->Size = System::Drawing::Size(69, 26);
 			this->nameDataLbl->TabIndex = 66;
 			this->nameDataLbl->Text = L"NAME ";
+			// 
+			// reservationInfoLbl
+			// 
+			this->reservationInfoLbl->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->reservationInfoLbl->Location = System::Drawing::Point(30, 33);
+			this->reservationInfoLbl->Name = L"reservationInfoLbl";
+			this->reservationInfoLbl->Size = System::Drawing::Size(258, 30);
+			this->reservationInfoLbl->TabIndex = 79;
+			this->reservationInfoLbl->Text = L"RESERVATION:";
 			// 
 			// Feedback
 			// 
@@ -373,6 +386,7 @@ namespace System {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
 			this->ClientSize = System::Drawing::Size(842, 478);
+			this->Controls->Add(this->reservationInfoLbl);
 			this->Controls->Add(this->accTypeIcon);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->emailIcon);
@@ -393,7 +407,9 @@ namespace System {
 			this->Controls->Add(this->rcodeIcon);
 			this->Controls->Add(this->bldgTxtBox);
 			this->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Feedback";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CLASSBOOK";
 			this->Load += gcnew System::EventHandler(this, &Feedback::Feedback_Load);
 			this->panel1->ResumeLayout(false);
@@ -413,14 +429,17 @@ namespace System {
 
 		}
 #pragma endregion
+	// END OF AUTO GENERATED CODE
 
 	private: MySqlConnection^ conn = gcnew MySqlConnection();
 	private: User^ user = gcnew User();
 	private: Room^ room = gcnew Room();
 
+	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
 	private: System::Void Feedback_Load(System::Object^ sender, System::EventArgs^ e);
 
+	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
 
 	private: void fecthUserData(void);
 
@@ -429,5 +448,7 @@ namespace System {
 	private: void fetchResrvationData(void);
 
 	private: void fetchFeedbackData(void);
+
+	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 };
 }

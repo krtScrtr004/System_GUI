@@ -4,27 +4,26 @@
 
 namespace System {
 
-	ForgetPass::ForgetPass(void)
-	{
+	ForgetPass::ForgetPass(void) {
 		mySqlConn(conn);
 		InitializeComponent();
 	}
 
-	ForgetPass::~ForgetPass()
-	{
+	ForgetPass::~ForgetPass() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS------------------------------------------------------------------------*/
 
+	// Email text box
 	System::Void ForgetPass::emailTxtBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 		tempEmail = emailTxtBox->Text;
 	}
 
+	// Search for specified email to db when a the button is clicked
 	System::Void ForgetPass::findAccBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			String^ query = "SELECT * FROM userInfo WHERE EMAIL = @tempEmail";

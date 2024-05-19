@@ -1,3 +1,4 @@
+#include "EditProfile.h"
 #include "Profile.h"
 #include "Receipt.h"
 #include "RoomList.h"
@@ -7,34 +8,23 @@
 
 namespace System {
 
-	UserList::UserList(User^ other) : user(other)
-	{
+	UserList::UserList(User^ other) : user(other) {
 		mySqlConn(conn);
 		InitializeComponent();
 	}
 
-	UserList::~UserList()
-	{
+	UserList::~UserList() {
 		mySqlDeconn(conn);
-		if (components)
-		{
+		if (components) {
 			delete components;
 		}
 	}
 
 	/*----------------------------------------------------------------------------EVENT HANDLER FUNCTIONS-----------------------------------------------------------------------*/
 
+	// Form load
 	System::Void UserList::UserList_Load(System::Object^ sender, System::EventArgs^ e) {
-		try {
-			String^ query = "SELECT `LAST NAME`, `FIRST NAME`, `ID NUMBER`, EMAIL, `ACCOUNT TYPE` FROM userInfo";
-			MySqlDataAdapter^ adapter = gcnew MySqlDataAdapter(query, conn);
-			DataTable^ dt = gcnew DataTable();
-			adapter->Fill(dt);
-			usersTbl->DataSource = dt;
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-		}
+		fillTable();
 	}
 
 	// Profile Menu
@@ -51,7 +41,7 @@ namespace System {
 		this->Close();
 	}
 
-	// 
+	// Receipt / UserList Menu
 	System::Void UserList::opt2MStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (user->getAccType() == "Admin") {
 			UserList^ userListForm = gcnew UserList(user);
@@ -72,48 +62,88 @@ namespace System {
 			Application::Exit();
 	}
 
-
-	System::Void UserList::usersTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		String^ selectedId = usersTbl->Rows[usersTbl->CurrentCell->RowIndex]->Cells[2]->Value->ToString();
-		
-		User^ currentUser = gcnew User();
-		currentUser->setId(selectedId);
-		
-		searchUser(currentUser);
-
-		if (currentUser->getProfileImg() != nullptr) {
-			MemoryStream^ ms = gcnew MemoryStream(currentUser->getProfileImg());
-			Image^ img = Image::FromStream(ms);
-			userProfileImg->Image = img;
+	// Edit other user's information button
+	System::Void UserList::editBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (user->getEmail() != nullptr) {
+			String^ text = "You are trying to update a user's information! Do you want to proceed?";
+			String^ header = "Update user information confirmation";
+			if (confirmDialogue(text, header)) {
+				EditProfile^ editProfileForm = gcnew EditProfile(selectedUser);
+				editProfileForm->Show();
+			}
+			else {
+				MessageBox::Show("Operation aborted!");
+			}
 		}
+	}
 
-		nameDataLbl->Text = String::Concat(currentUser->getFname() + " " + currentUser->getLname());
-		idNumDataLbl->Text = (currentUser->getId())->ToUpper();
-		emailDataLbl->Text = currentUser->getEmail();
-		accTypeDataLbl->Text = (String::Concat(currentUser->getAccType() + " Type"))->ToUpper();
+	// Display other user's information on the form when a row is cliecked on the table
+	System::Void UserList::usersTbl_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (usersTbl->Rows->Count > 0) {
+			String^ selectedId = usersTbl->Rows[usersTbl->CurrentCell->RowIndex]->Cells[2]->Value->ToString();
+
+			selectedUser->setId(selectedId);
+
+			searchUser();
+
+			if (selectedUser->getProfileImg() != nullptr) {
+				MemoryStream^ ms = gcnew MemoryStream(selectedUser->getProfileImg());
+				Image^ img = Image::FromStream(ms);
+				userProfileImg->Image = img;
+			}
+			else {
+				String^ defaultImgLoc = "\\images\\WHITE_IMG.png";
+				userProfileImg->ImageLocation = defaultImgLoc;
+			}
+
+			nameDataLbl->Text = String::Concat(selectedUser->getFname() + " " + selectedUser->getLname());
+			idNumDataLbl->Text = (selectedUser->getId())->ToUpper();
+			emailDataLbl->Text = selectedUser->getEmail();
+			accTypeDataLbl->Text = (String::Concat(selectedUser->getAccType() + " Type"))->ToUpper();
+		}
+		else {
+			MessageBox::Show("Warning: Table has no data!");
+		}
 	}
 
 	/*--------------------------------------------------------------------------------HELPER FUNCTIONS--------------------------------------------------------------------------*/
+	
+	// Fill table 
+	void UserList::fillTable(void) {
+		try {
+			String^ query = "SELECT `LAST NAME`, `FIRST NAME`, `ID NUMBER`, EMAIL, `ACCOUNT TYPE` FROM userInfo";
+			MySqlDataAdapter^ adapter = gcnew MySqlDataAdapter(query, conn);
+			DataTable^ dt = gcnew DataTable();
+			adapter->Fill(dt);
+			usersTbl->DataSource = dt;
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+	}
 
-	void UserList::searchUser(User^ currentUser) {
+	// Display user's information to the form
+	void UserList::searchUser(void) {
 		try {
 			String^ query = "SELECT * FROM userInfo WHERE `ID NUMBER` = @tempId";
 			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
-			command->Parameters->AddWithValue("@tempId", currentUser->getId());
+			command->Parameters->AddWithValue("@tempId", selectedUser->getId());
 
 			MySqlDataReader^ reader = command->ExecuteReader();
 			if (reader->Read()) {
 				if (reader["PROFILE"] != DBNull::Value) {
 					array<unsigned char>^ profileImgData = safe_cast<array<unsigned char>^>(reader["PROFILE"]);
-					currentUser->setProfileImg(profileImgData);
+					selectedUser->setProfileImg(profileImgData);
+				}
+				else {
+					selectedUser->setProfileImg(nullptr);
 				}
 
-				currentUser->setFname(reader["FIRST NAME"]->ToString());
-				currentUser->setLname(reader["LAST NAME"]->ToString());
-				currentUser->setAccType(reader["ACCOUNT TYPE"]->ToString());
-				currentUser->setEmail(reader["EMAIL"]->ToString());
+				selectedUser->setFname(reader["FIRST NAME"]->ToString());
+				selectedUser->setLname(reader["LAST NAME"]->ToString());
+				selectedUser->setAccType(reader["ACCOUNT TYPE"]->ToString());
+				selectedUser->setEmail(reader["EMAIL"]->ToString());
 			}
-
 			reader->Close();
 		}
 		catch (Exception^ e) {
