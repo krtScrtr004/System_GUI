@@ -272,7 +272,6 @@ namespace System {
 			this->Name = L"Login";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CLASSBOOK";
-			this->Load += gcnew System::EventHandler(this, &Login::Login_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->passIcon))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->emailIcon))->EndInit();
 			this->panel1->ResumeLayout(false);
@@ -305,8 +304,6 @@ namespace System {
 	private: System::Void fpassLnkLbl_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 
 	 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-private: System::Void Login_Load(System::Object^ sender, System::EventArgs^ e) {
-}
 };
 };
 

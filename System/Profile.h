@@ -146,7 +146,7 @@ namespace System {
             });
             this->menuStrip1->Location = System::Drawing::Point(0, 0);
             this->menuStrip1->Name = L"menuStrip1";
-            this->menuStrip1->Size = System::Drawing::Size(946, 31);
+            this->menuStrip1->Size = System::Drawing::Size(1293, 31);
             this->menuStrip1->TabIndex = 3;
             this->menuStrip1->Text = L"menuStrip1";
             // 
@@ -261,7 +261,7 @@ namespace System {
                 static_cast<System::Byte>(0)));
             this->panel1->Location = System::Drawing::Point(365, 0);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(581, 560);
+            this->panel1->Size = System::Drawing::Size(930, 560);
             this->panel1->TabIndex = 37;
             // 
             // historyTbl
@@ -318,7 +318,7 @@ namespace System {
             this->historyTbl->RowHeadersWidth = 51;
             this->historyTbl->RowTemplate->Height = 24;
             this->historyTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->historyTbl->Size = System::Drawing::Size(522, 486);
+            this->historyTbl->Size = System::Drawing::Size(873, 486);
             this->historyTbl->TabIndex = 4;
             this->historyTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Profile::historyTbl_CellContentClick);
             // 
@@ -345,7 +345,7 @@ namespace System {
             this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
                 static_cast<System::Int32>(static_cast<System::Byte>(177)));
-            this->ClientSize = System::Drawing::Size(946, 555);
+            this->ClientSize = System::Drawing::Size(1293, 555);
             this->Controls->Add(this->editBtn);
             this->Controls->Add(this->profileImg);
             this->Controls->Add(this->panel1);

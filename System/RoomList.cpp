@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "AddRoom.h"
+#include "Login.h"
 #include "Profile.h"
 #include "Receipt.h"
 #include "Room.h"
@@ -90,8 +91,11 @@ namespace System {
 	System::Void RoomList::exitMStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ text = "Confirm exit?";
 		String^ header = "Exit Confirmation";
-		if (confirmDialogue(text, header))
-			Application::Exit();
+		if (confirmDialogue(text, header)) {
+			Login^ loginForm = gcnew Login();
+			loginForm->Show();
+			this->Hide();
+		}
 	}
 
 	// Reserve room button
@@ -102,7 +106,7 @@ namespace System {
 				roomInfoForm->Show();
 			}
 			else {
-				if (room->getStatus() == "Available") {
+				if (room->getStatus() != "Available") {
 					ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
 					reserveInfoForm->Show();
 				}
@@ -200,7 +204,6 @@ namespace System {
 				room->setTv(Convert::ToBoolean(reader["TV"]));
 				room->setAc(Convert::ToBoolean(reader["AC"]));
 			}
-
 			reader->Close();
 		}
 		catch (Exception^ e) {
@@ -223,8 +226,8 @@ namespace System {
 		roomCodeDataLbl->Text = (room->getRoomCode())->ToUpper();
 		bldDataLbl->Text = (room->getBuilding())->ToUpper();
 		boardTypeDataLbl->Text = (room->getBoardType())->ToUpper();
-		tvAvailDataLbl->Text = (room->getTv()) ? "AVAILABLE" : "NOT AVAILABLE";
-		acAvailDataLbl->Text = (room->getAc()) ? "AVAILABLE" : "NOT AVAILABLE";
+		tvAvailDataLbl->Text = (*(room->getTv())) ? "AVAILABLE" : "NOT AVAILABLE";
+		acAvailDataLbl->Text = (*(room->getAc())) ? "AVAILABLE" : "NOT AVAILABLE";
 	}
 	
 	// Check whether user has pending reservation

@@ -1,4 +1,5 @@
 #include "EditProfile.h"
+#include "Login.h"
 #include "Profile.h"
 #include "Receipt.h"
 #include "RoomList.h"
@@ -58,8 +59,11 @@ namespace System {
 	System::Void UserList::exitMStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ text = "Confirm exit?";
 		String^ header = "Exit Confirmation";
-		if (confirmDialogue(text, header))
-			Application::Exit();
+		if (confirmDialogue(text, header)) {
+			Login^ loginForm = gcnew Login();
+			loginForm->Show();
+			this->Hide();
+		}
 	}
 
 	// Edit other user's information button

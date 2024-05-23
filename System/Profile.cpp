@@ -1,5 +1,6 @@
 #include "EditProfile.h"
 #include "Feedback.h"
+#include "Login.h"
 #include "Profile.h"
 #include "Receipt.h"
 #include "RoomList.h"
@@ -30,6 +31,8 @@ namespace System {
 			opt2MStrip->Text = "User List";
 		}
 		else {
+			this->Width = 885;
+
 			opt1MStrip->Text = "Reserve";
 			opt2MStrip->Text = "Receipt";
 		}
@@ -72,8 +75,11 @@ namespace System {
 	System::Void Profile::exitMStrip_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ text = "Confirm exit?";
 		String^ header = "Exit Confirmation";
-		if (confirmDialogue(text, header))
-			Application::Exit();
+		if (confirmDialogue(text, header)) {
+			Login^ loginForm = gcnew Login();
+			loginForm->Show();
+			this->Hide();
+		}	
 	}
 
 	// Edit Button

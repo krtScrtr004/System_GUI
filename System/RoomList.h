@@ -146,7 +146,7 @@ namespace System {
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(9, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(946, 31);
+			this->menuStrip1->Size = System::Drawing::Size(897, 31);
 			this->menuStrip1->TabIndex = 7;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -291,7 +291,7 @@ namespace System {
 			this->clRBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->clRBtn->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->clRBtn->Location = System::Drawing::Point(299, 12);
+			this->clRBtn->Location = System::Drawing::Point(262, 8);
 			this->clRBtn->Name = L"clRBtn";
 			this->clRBtn->Size = System::Drawing::Size(120, 28);
 			this->clRBtn->TabIndex = 1;
@@ -306,7 +306,7 @@ namespace System {
 			this->labRBtn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->labRBtn->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labRBtn->Location = System::Drawing::Point(414, 12);
+			this->labRBtn->Location = System::Drawing::Point(377, 8);
 			this->labRBtn->Name = L"labRBtn";
 			this->labRBtn->Size = System::Drawing::Size(127, 28);
 			this->labRBtn->TabIndex = 2;
@@ -325,7 +325,7 @@ namespace System {
 			this->addRoomBtn->ForeColor = System::Drawing::SystemColors::Control;
 			this->addRoomBtn->Location = System::Drawing::Point(33, 497);
 			this->addRoomBtn->Name = L"addRoomBtn";
-			this->addRoomBtn->Size = System::Drawing::Size(520, 37);
+			this->addRoomBtn->Size = System::Drawing::Size(471, 37);
 			this->addRoomBtn->TabIndex = 8;
 			this->addRoomBtn->Text = L"ADD A ROOM";
 			this->addRoomBtn->UseVisualStyleBackColor = false;
@@ -386,7 +386,7 @@ namespace System {
 			this->roomsTbl->RowHeadersWidth = 51;
 			this->roomsTbl->RowTemplate->Height = 24;
 			this->roomsTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->roomsTbl->Size = System::Drawing::Size(520, 484);
+			this->roomsTbl->Size = System::Drawing::Size(471, 484);
 			this->roomsTbl->TabIndex = 3;
 			this->roomsTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RoomList::roomsTbl_CellContentClick);
 			// 
@@ -399,7 +399,7 @@ namespace System {
 			this->panel1->Controls->Add(this->clRBtn);
 			this->panel1->Location = System::Drawing::Point(364, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(582, 563);
+			this->panel1->Size = System::Drawing::Size(533, 563);
 			this->panel1->TabIndex = 54;
 			// 
 			// RoomList
@@ -408,7 +408,7 @@ namespace System {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
-			this->ClientSize = System::Drawing::Size(946, 555);
+			this->ClientSize = System::Drawing::Size(897, 555);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->reserveBtn);
 			this->Controls->Add(this->acAvailIcon);

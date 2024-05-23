@@ -5,14 +5,11 @@ void mySqlConn(MySqlConnection^% conn) {
     String^ connString = "Server=localhost;port=3306;database=roomreservation;uid=root;password=1234";
     conn = gcnew MySqlConnection(connString);
 
-    try
-    {
+    try {
         conn->Open();
-        MessageBox::Show("Connected");
     }
-    catch (const std::exception &e)
-    {
-        MessageBox::Show("Not Connected");
+    catch (Exception^ e) {
+        MessageBox::Show(e->Message);
     }
 }
 

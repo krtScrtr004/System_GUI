@@ -401,7 +401,7 @@ namespace System {
 				static_cast<System::Byte>(0)));
 			this->signupLbl->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(37)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->signupLbl->Location = System::Drawing::Point(101, 32);
+			this->signupLbl->Location = System::Drawing::Point(124, 36);
 			this->signupLbl->Name = L"signupLbl";
 			this->signupLbl->Size = System::Drawing::Size(336, 42);
 			this->signupLbl->TabIndex = 34;
@@ -410,7 +410,7 @@ namespace System {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(36, 20);
+			this->pictureBox1->Location = System::Drawing::Point(59, 24);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(59, 66);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;

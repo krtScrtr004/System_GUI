@@ -135,7 +135,7 @@ namespace System {
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(9, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(946, 31);
+			this->menuStrip1->Size = System::Drawing::Size(1162, 31);
 			this->menuStrip1->TabIndex = 13;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -195,7 +195,7 @@ namespace System {
 			this->usersTbl->RowHeadersWidth = 51;
 			this->usersTbl->RowTemplate->Height = 24;
 			this->usersTbl->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->usersTbl->Size = System::Drawing::Size(520, 484);
+			this->usersTbl->Size = System::Drawing::Size(735, 484);
 			this->usersTbl->TabIndex = 12;
 			this->usersTbl->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UserList::usersTbl_CellContentClick);
 			// 
@@ -271,7 +271,7 @@ namespace System {
 			this->panel1->Controls->Add(this->usersTbl);
 			this->panel1->Location = System::Drawing::Point(364, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(582, 556);
+			this->panel1->Size = System::Drawing::Size(799, 556);
 			this->panel1->TabIndex = 23;
 			// 
 			// nameIcon
@@ -337,7 +337,7 @@ namespace System {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(214)), static_cast<System::Int32>(static_cast<System::Byte>(186)),
 				static_cast<System::Int32>(static_cast<System::Byte>(177)));
-			this->ClientSize = System::Drawing::Size(946, 546);
+			this->ClientSize = System::Drawing::Size(1162, 546);
 			this->Controls->Add(this->editBtn);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->accTypeIcon);
