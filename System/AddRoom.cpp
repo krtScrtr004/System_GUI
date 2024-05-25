@@ -29,7 +29,7 @@ namespace System {
 	}
 	
 	System::Void AddRoom::statusCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		tempStatus = rmWhiteSpaces(statusCBox->Text);
+		tempStatus = statusCBox->Text;
 	}
 	
 	System::Void AddRoom::roomTypeCBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {

@@ -131,7 +131,6 @@ namespace System {
 				user->setId(reader["ID NUMBER"]->ToString());
 				user->setAccType(reader["ACCOUNT TYPE"]->ToString());
 			}
-
 			reader->Close();
 
 		}

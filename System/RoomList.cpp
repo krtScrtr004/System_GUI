@@ -106,7 +106,7 @@ namespace System {
 				roomInfoForm->Show();
 			}
 			else {
-				if (room->getStatus() != "Available") {
+				if (room->getStatus() == "Available") {
 					ReserveInfoForm^ reserveInfoForm = gcnew ReserveInfoForm(user, room);
 					reserveInfoForm->Show();
 				}

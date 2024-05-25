@@ -76,6 +76,7 @@ namespace System {
 	System::Void RoomInfo::editInfoBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!doesRoomExists()) {
 			editRoomInfo();
+			this->Close();
 		}
 	}
 
@@ -115,12 +116,15 @@ namespace System {
 		bool isAlreadyUsed = false;
 
 		try {
-			String^ query = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode AND BUILDING = @tempBuilding AND `ROOM TYPE` = @tempRoomType";
+			String^ query = "SELECT * FROM room WHERE `ROOM CODE` = @tempRoomCode AND BUILDING = @tempBuilding AND `ROOM TYPE` = @tempRoomType AND STATUS = @tempStatus AND `BOARD TYPE` = @tempBoardType AND TV = @tempTv AND AC = @tempAc";
 			MySqlCommand^ command = gcnew MySqlCommand(query, conn);
 			command->Parameters->AddWithValue("@tempRoomCode", tempRoomCode);
 			command->Parameters->AddWithValue("@tempBuilding", tempBuilding);
 			command->Parameters->AddWithValue("@tempRoomType", tempRoomType);
-
+			command->Parameters->AddWithValue("@tempStatus", tempStatus);
+			command->Parameters->AddWithValue("@tempBoardType", tempBoardType);
+			command->Parameters->AddWithValue("@tempTv", (tempTv == "Available") ? true : false);
+			command->Parameters->AddWithValue("@tempAc", (tempAc == "Available") ? true : false);
 
 			MySqlDataReader^ reader = command->ExecuteReader();
 			if (reader->HasRows) {

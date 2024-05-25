@@ -5,8 +5,6 @@
 #include "User.h"
 #include "Utils.h"
 
-using namespace System;
-
 namespace System {
 	Login::Login(void) {
 		InitializeComponent();
@@ -75,7 +73,6 @@ namespace System {
 	}
 
 	/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
 };
 
 [STAThreadAttribute]
